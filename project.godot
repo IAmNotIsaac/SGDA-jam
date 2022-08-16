@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://src/scripts/state_machine.gd"
+} ]
+_global_script_class_icons={
+"StateMachine": ""
+}
+
 [application]
 
 config/name="SGDA Jam Game"
