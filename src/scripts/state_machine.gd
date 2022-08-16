@@ -40,6 +40,14 @@ func switch(new_state : int) -> void:
 	_load_state()
 
 
+func matches(state : int) -> bool:
+	return _state == state
+
+
+func matches_any(states : PoolIntArray) -> bool:
+	return _state in states
+
+
 ## Setgets ##
 
 func get_state() -> int:
