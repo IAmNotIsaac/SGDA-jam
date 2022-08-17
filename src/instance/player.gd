@@ -1,6 +1,8 @@
 extends KinematicBody
 
 
+const _Bullet := preload("res://src/instance/Bullet.tscn")
+
 enum States {
 	DEFAULT,
 	JUMP,
@@ -18,6 +20,7 @@ var _velocity := Vector3.ZERO
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
+onready var _n_bspawn := $Gimbal/Camera/BulletSpawn
 
 
 ## Private methods ##
@@ -32,6 +35,21 @@ func _input(event : InputEvent) -> void:
 		_n_gimbal.rotation_degrees.y -= event.relative.x
 		_n_cam.rotation_degrees.x -= event.relative.y
 		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
+	
+	elif event is InputEventMouseButton:
+		if event.is_pressed() and event.button_index == 1:
+			# TEMPORARY!
+			# TODO: make proper gun handling system
+			
+			var bullet := _Bullet.instance()
+			
+			bullet.translation = _n_bspawn.global_translation
+			bullet.rotation = _n_cam.global_transform.basis.get_euler()
+			
+			get_parent().add_child(bullet)
+			yield(get_tree(), "idle_frame")
+			
+			bullet.shoot(Bullet.ShotTypes.REVOLVER)
 
 
 func _physics_process(delta : float) -> void:

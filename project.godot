@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://src/instance/bullet.gd"
+}, {
 "base": "Reference",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/scripts/state_machine.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "StateMachine": ""
 }
 
