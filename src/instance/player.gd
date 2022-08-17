@@ -6,7 +6,8 @@ const _Bullet := preload("res://src/instance/Bullet.tscn")
 enum States {
 	DEFAULT,
 	JUMP,
-	AIR
+	AIR,
+	LAND
 }
 
 const _GRAVITY := 9.8
@@ -21,6 +22,7 @@ var _velocity := Vector3.ZERO
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
 onready var _n_bspawn := $Gimbal/Camera/BulletSpawn
+onready var _n_hacky_floor_check := $HackyFloorCheck
 
 
 ## Private methods ##
@@ -50,6 +52,9 @@ func _input(event : InputEvent) -> void:
 			yield(get_tree(), "idle_frame")
 			
 			bullet.shoot(Bullet.ShotTypes.REVOLVER)
+	
+	elif event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _physics_process(delta : float) -> void:
@@ -77,6 +82,8 @@ func _sp_DEFAULT(_delta : float) -> void:
 		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	)
 	
+	_n_cam.v_offset = lerp(_n_cam.v_offset, sin(OS.get_ticks_msec() * 0.01) * 0.1 * abs(input.x + input.y), 0.2)
+	
 	var theta = _n_gimbal.global_transform.basis.get_euler().y
 	
 	var move_forward = Vector3(sin(theta) * input.y, 0.0, cos(theta) * input.y)
@@ -88,8 +95,20 @@ func _sp_DEFAULT(_delta : float) -> void:
 	if Input.is_action_pressed("jump"):
 		_state.switch(States.JUMP)
 	
-	if not is_on_floor():
+	if not _n_hacky_floor_check.is_colliding():
 		_state.switch(States.AIR)
+
+
+func _sp_LAND(delta : float) -> void:
+	_n_cam.v_offset -= 2.0 * delta
+	
+	if _state.get_state_time() > 0.1:
+		_state.switch(States.DEFAULT)
+	
+	_velocity = move_and_slide(_velocity)
+	
+	if Input.is_action_pressed("jump"):
+		_state.switch(States.JUMP)
 
 
 func _sp_AIR(delta : float) -> void:
@@ -102,20 +121,26 @@ func _sp_AIR(delta : float) -> void:
 	
 	var move_forward = Vector3(sin(theta) * input.y, 0.0, cos(theta) * input.y)
 	var move_strafe = Vector3(cos(-theta) * input.x, 0.0, sin(-theta) * input.x)
+	var accel := _GRAVITY * delta
 	
 	_velocity = Vector3(
 		clamp(_velocity.x + (move_forward.x + move_strafe.x) * _AIR_FRICTION, -_RUN_SPEED, _RUN_SPEED),
-		_velocity.y - _GRAVITY * delta,
+		_velocity.y - accel,
 		clamp(_velocity.z + (move_forward.z + move_strafe.z) * _AIR_FRICTION, -_RUN_SPEED, _RUN_SPEED)
 	)
+	var impact_vel := _velocity.y
 	
 	_velocity = move_and_slide(_velocity, Vector3.UP)
 	
 	if is_on_floor():
-		_state.switch(States.DEFAULT)
+		_state.switch(States.LAND if impact_vel < -accel - 0.1 else States.DEFAULT)
 
 
 ## State (un)loading ##
+
+
+func _su_DEFAULT() -> void:
+	_n_cam.v_offset = 0.0
 
 
 func _sl_JUMP() -> void:

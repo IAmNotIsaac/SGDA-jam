@@ -4,6 +4,7 @@ class_name StateMachine
 var _owner : Object
 var _states : Dictionary
 var _state := 0
+var _state_time := 0.0
 
 
 ## Private methods ##
@@ -37,6 +38,7 @@ func process(delta : float) -> void:
 func switch(new_state : int) -> void:
 	_unload_state()
 	_state = new_state
+	_state_time = OS.get_ticks_msec() * 0.001
 	_load_state()
 
 
@@ -52,3 +54,7 @@ func matches_any(states : PoolIntArray) -> bool:
 
 func get_state() -> int:
 	return _state
+
+
+func get_state_time() -> float:
+	return OS.get_ticks_msec() * 0.001 - _state_time
