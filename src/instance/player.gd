@@ -10,14 +10,16 @@ enum States {
 	LAND
 }
 
-const _GRAVITY := 9.8
-const _JUMP_FORCE := 4.0
+const _GRAVITY := 20.0
+const _JUMP_FORCE := 7.0
 const _RUN_SPEED := 5.0
 const _AIR_FRICTION := 0.2
 const _CONTROLLER_SENSITIVITY := 5.0
+const _MAX_JUMPS := 2
 
 var _state := StateMachine.new(self, States)
 var _velocity := Vector3.ZERO
+var _jump_count := 0
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
@@ -134,9 +136,17 @@ func _sp_AIR(delta : float) -> void:
 	
 	if is_on_floor():
 		_state.switch(States.LAND if impact_vel < -accel - 0.1 else States.DEFAULT)
+	
+	if Input.is_action_just_pressed("jump") and _jump_count < _MAX_JUMPS:
+		_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED
+		_state.switch(States.JUMP)
 
 
 ## State (un)loading ##
+
+
+func _sl_LAND() -> void:
+	_jump_count = 0
 
 
 func _su_DEFAULT() -> void:
@@ -144,5 +154,6 @@ func _su_DEFAULT() -> void:
 
 
 func _sl_JUMP() -> void:
+	_jump_count += 1
 	_velocity.y = _JUMP_FORCE
 	_state.switch(States.AIR)
