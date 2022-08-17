@@ -7,12 +7,13 @@ enum States {
 	DEFAULT,
 	JUMP,
 	AIR,
-	LAND
+	LAND,
+	WALLRUN
 }
 
 const _GRAVITY := 20.0
 const _JUMP_FORCE := 7.0
-const _RUN_SPEED := 5.0
+const _RUN_SPEED := 8.0
 const _AIR_FRICTION := 0.2
 const _CONTROLLER_SENSITIVITY := 5.0
 const _MAX_JUMPS := 2
@@ -20,11 +21,15 @@ const _MAX_JUMPS := 2
 var _state := StateMachine.new(self, States)
 var _velocity := Vector3.ZERO
 var _jump_count := 0
+var _wallrun_cast : RayCast
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
 onready var _n_bspawn := $Gimbal/Camera/BulletSpawn
 onready var _n_hacky_floor_check := $HackyFloorCheck
+onready var _n_wallrunl_check := $Gimbal/WallrunLeftCheck
+onready var _n_wallrunr_check := $Gimbal/WallrunRightCheck
+onready var _n_wallrun_tracker := $WallrunTracker
 
 
 ## Private methods ##
@@ -137,12 +142,53 @@ func _sp_AIR(delta : float) -> void:
 	if is_on_floor():
 		_state.switch(States.LAND if impact_vel < -accel - 0.1 else States.DEFAULT)
 	
-	if Input.is_action_just_pressed("jump") and _jump_count < _MAX_JUMPS:
-		_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED
+	if Input.is_action_just_pressed("jump"):
+		for c in [ {
+				"raycast": _n_wallrunl_check,
+				"input": "move_left"
+			}, {
+				"raycast": _n_wallrunr_check,
+				"input": "move_right"
+		} ]:
+			if c["raycast"].get_collider() and Input.is_action_pressed(c["input"]):
+				_wallrun_cast = c["raycast"]
+				_state.switch(States.WALLRUN)
+				return
+		
+		if _jump_count < _MAX_JUMPS:
+			_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED
+			_state.switch(States.JUMP)
+
+
+func _sp_WALLRUN(_delta : float) -> void:
+	var normal : Vector3 = _n_wallrun_tracker.get_collision_normal()
+	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
+	normal.z = max(normal.z, 0.001)
+	var angle := -atan(normal.x / normal.z)
+	
+	_velocity = Vector3(cos(angle), 0.0, sin(angle)) * 10.0 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
+	
+	_velocity = move_and_slide(_velocity)
+	
+	if not _n_wallrun_tracker.get_collider():
+		if Input.is_action_pressed("jump"):
+			_jump_count -= 1
+			_state.switch(States.JUMP)
+		else:
+			_state.switch(States.AIR)
+	
+	if Input.is_action_just_released("jump"):
+		_jump_count -= 1
+		_velocity = normal * _JUMP_FORCE
 		_state.switch(States.JUMP)
 
 
 ## State (un)loading ##
+
+
+func _sl_WALLRUN() -> void:
+	var normal := _wallrun_cast.get_collision_normal()
+	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
 
 
 func _sl_LAND() -> void:
