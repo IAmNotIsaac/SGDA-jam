@@ -4,18 +4,30 @@ extends Spatial
 
 enum ShotTypes {
 	SHOTGUN,
-	REVOLVER
+	REVOLVER,
+	PISTOL,
+	MINIGUN
 }
 
 const SHOT_DATA := {
 	ShotTypes.SHOTGUN: {
 		"distance": 5.0,
-		"accuracy": 0.8
+		"accuracy": 0.9
 	},
 	
 	ShotTypes.REVOLVER: {
 		"distance": 50.0,
 		"accuracy": 0.98
+	},
+	
+	ShotTypes.PISTOL: {
+		"distance": 25.0,
+		"accuracy": 0.95
+	},
+	
+	ShotTypes.MINIGUN: {
+		"distance": 25.0,
+		"accuracy": 0.9
 	}
 }
 

@@ -1,8 +1,5 @@
 extends KinematicBody
 
-
-const _Bullet := preload("res://src/instance/Bullet.tscn")
-
 enum States {
 	DEFAULT,
 	JUMP,
@@ -17,6 +14,8 @@ const _RUN_SPEED := 8.0
 const _AIR_FRICTION := 0.2
 const _CONTROLLER_SENSITIVITY := 5.0
 const _MAX_JUMPS := 2
+
+export(Resource) var _gun = Gun.new()
 
 var _state := StateMachine.new(self, States)
 var _velocity := Vector3.ZERO
@@ -45,28 +44,21 @@ func _input(event : InputEvent) -> void:
 		_n_cam.rotation_degrees.x -= event.relative.y
 		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 	
-	elif event is InputEventMouseButton:
-		if event.is_pressed() and event.button_index == 1:
-			# TEMPORARY!
-			# TODO: make proper gun handling system
-			
-			var bullet := _Bullet.instance()
-			
-			bullet.translation = _n_bspawn.global_translation
-			bullet.rotation = _n_cam.global_transform.basis.get_euler()
-			
-			get_parent().add_child(bullet)
-			yield(get_tree(), "idle_frame")
-			
-			bullet.shoot(Bullet.ShotTypes.REVOLVER)
-	
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	elif event.is_action_pressed("next_gun"):
+		_gun.next_alt()
+	
+	elif event.is_action_pressed("prev_gun"):
+		_gun.prev_alt()
 
 
 func _physics_process(delta : float) -> void:
 	_state.process(delta)
 	_controller_look()
+	_shoot()
+	$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
 
 
 func _controller_look() -> void:
@@ -80,6 +72,22 @@ func _controller_look() -> void:
 	_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 
 
+func _shoot() -> void:
+	if (Input.is_action_pressed("shoot_base") and _gun.is_base_auto()) or (Input.is_action_just_pressed("shoot_base") and not _gun.is_base_auto()):
+		_gun.shoot_base(
+			get_tree(),
+			_n_bspawn.global_translation,
+			_n_cam.global_transform.basis.get_euler()
+		)
+	
+	elif (Input.is_action_pressed("shoot_alt") and _gun.is_alt_auto()) or (Input.is_action_just_pressed("shoot_alt") and not _gun.is_alt_auto()):
+		_gun.shoot_alt(
+			get_tree(),
+			_n_bspawn.global_translation,
+			_n_cam.global_transform.basis.get_euler()
+		)
+
+
 ## State processes ##
 
 
@@ -89,7 +97,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	)
 	
-	_n_cam.v_offset = lerp(_n_cam.v_offset, sin(OS.get_ticks_msec() * 0.01) * 0.1 * abs(input.x + input.y), 0.2)
+	_n_cam.v_offset = lerp(_n_cam.v_offset, sin(OS.get_ticks_msec() * 0.01) * 0.1 * int(input.x or input.y), 0.2)
 	
 	var theta = _n_gimbal.global_transform.basis.get_euler().y
 	
