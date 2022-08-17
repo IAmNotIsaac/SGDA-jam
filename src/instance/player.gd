@@ -107,7 +107,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 
 
 func _sp_LAND(delta : float) -> void:
-	_n_cam.v_offset -= 2.0 * delta
+	_n_cam.v_offset = max(_n_cam.v_offset - 2.0 * delta, -0.2)
 	
 	if _state.get_state_time() > 0.1:
 		_state.switch(States.DEFAULT)
