@@ -171,11 +171,8 @@ func _sp_WALLRUN(_delta : float) -> void:
 	_velocity = move_and_slide(_velocity)
 	
 	if not _n_wallrun_tracker.get_collider():
-		if Input.is_action_pressed("jump"):
-			_jump_count -= 1
-			_state.switch(States.JUMP)
-		else:
-			_state.switch(States.AIR)
+		_jump_count -= 1
+		_state.switch(States.JUMP)
 	
 	if Input.is_action_just_released("jump"):
 		_jump_count -= 1
