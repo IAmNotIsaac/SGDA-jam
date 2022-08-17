@@ -87,6 +87,9 @@ func _sp_DEFAULT(_delta : float) -> void:
 	
 	if Input.is_action_pressed("jump"):
 		_state.switch(States.JUMP)
+	
+	if not is_on_floor():
+		_state.switch(States.AIR)
 
 
 func _sp_AIR(delta : float) -> void:
