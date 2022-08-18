@@ -34,7 +34,7 @@ const _REACTION_FACTORS := {
 	ReactionModes.HIGH: [0.02, 0.05]
 }
 
-const _SPEED := 7.0
+const _SPEED := 5.0
 const _GRAVITY := 20.0
 const _IDLE_TIME_AT_POINTS := 2000
 
@@ -53,6 +53,7 @@ var _uncomfortable := false
 var _time_at_point := 0
 var _point_idx := -1
 var _nav_finished := true
+var _last_seen_player_pos := Vector3.ZERO
 
 onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
@@ -118,6 +119,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 		MovementMode.STATIC:
 			_shoot_if_can()
 		
+		
 		MovementMode.SCARED:
 			_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
 			if translation.distance_to(_player.translation) < 5.0 and _n_player_cast.get_collider() == _player:
@@ -134,6 +136,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 			if not is_on_floor():
 				_state.switch(States.AIR)
 		
+		
 		MovementMode.PATH:
 			_velocity = global_translation.direction_to(_n_agent.get_next_location()) * _SPEED
 			
@@ -147,12 +150,46 @@ func _sp_DEFAULT(_delta : float) -> void:
 					_nav_finished = false
 			
 			_velocity = move_and_slide(_velocity)
+		
+		
+		MovementMode.CHASE:
+			if _n_player_cast.get_collider() == _player:
+				_last_seen_player_pos = _player.global_translation
+			
+			_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
+			if translation.distance_to(_player.translation) < 2.0 and _n_player_cast.get_collider() == _player:
+				var away_dir := -translation.direction_to(_player.translation)
+				away_dir.y = 0.0
+				_velocity = away_dir * _SPEED
+			
+			elif translation.distance_to(_last_seen_player_pos) > 3.0:
+				_n_agent.set_target_location(_last_seen_player_pos)
+				var towards_dir := translation.direction_to(_n_agent.get_next_location())
+				towards_dir.y = 0.0
+				_velocity = towards_dir * _SPEED
+			
+			else:
+				_velocity = Vector3.ZERO
+				_shoot_if_can()
+			
+			_velocity = move_and_slide(_velocity, Vector3.UP)
+			
+			if not is_on_floor():
+				_state.switch(States.AIR)
 
 
 func _sp_AIR(delta : float) -> void:
 	match _move_mode:
 		MovementMode.STATIC: pass
 		MovementMode.SCARED:
+			_velocity.y -= _GRAVITY * delta
+			_velocity = move_and_slide(_velocity, Vector3.UP)
+			
+			if is_on_floor():
+				_state.switch(States.DEFAULT)
+		
+		
+		MovementMode.CHASE:
 			_velocity.y -= _GRAVITY * delta
 			_velocity = move_and_slide(_velocity, Vector3.UP)
 			
