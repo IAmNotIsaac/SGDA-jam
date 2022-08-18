@@ -37,6 +37,7 @@ onready var _n_wallrunr_check := $Gimbal/WallrunRightCheck
 onready var _n_wallrun_tracker := $WallrunTracker
 onready var _n_pause_menu := $Control/PauseMenu
 onready var _n_damage_vignette := $Control/DamageVignette
+onready var _n_interact_cast := $Gimbal/Camera/InteractCast
 onready var _spawn_pos := global_translation
 
 
@@ -58,6 +59,11 @@ func _input(event : InputEvent) -> void:
 	
 	elif event.is_action_pressed("prev_gun"):
 		_gun.prev_alt()
+	
+	elif event.is_action_pressed("interact"):
+		var col : Area = _n_interact_cast.get_collider()
+		if col is Switch:
+			col.activate()
 
 
 func _physics_process(delta : float) -> void:

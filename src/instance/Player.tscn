@@ -40,6 +40,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="BulletSpawn" type="Spatial" parent="Gimbal/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3 )
 
+[node name="InteractCast" type="RayCast" parent="Gimbal/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -2 )
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="WallrunLeftCheck" type="RayCast" parent="Gimbal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 enabled = true
