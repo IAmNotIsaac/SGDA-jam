@@ -191,10 +191,9 @@ func _sp_AIR(delta : float) -> void:
 func _sp_WALLRUN(_delta : float) -> void:
 	var normal : Vector3 = _n_wallrun_tracker.get_collision_normal()
 	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
-	normal.z = max(normal.z, 0.001)
-	var angle := -atan(normal.x / normal.z)
+	var angle := atan2(normal.z, normal.x) + PI * 0.5 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
 	
-	_velocity = Vector3(cos(angle), 0.0, sin(angle)) * 10.0 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
+	_velocity = -Vector3(cos(angle), 0.0, sin(angle)) * 10.0
 	
 	_velocity = move_and_slide(_velocity)
 	

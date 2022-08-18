@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://src/instance/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/scripts/gun.gd" type="Script" id=4]
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/instance/Switch.tscn" type="PackedScene" id=6]
 
@@ -36,11 +34,13 @@ size = Vector3( 1, 2, 1 )
 [sub_resource type="SpatialMaterial" id=9]
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="Resource" id=10]
-script = ExtResource( 4 )
-base = 2
-secondaries = [  ]
-secondary_idx = 0
+[sub_resource type="CylinderMesh" id=12]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 10.0
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_texture = ExtResource( 2 )
 
 [node name="World" type="Spatial"]
 
@@ -85,15 +85,14 @@ operation = 2
 mesh = SubResource( 8 )
 material = SubResource( 9 )
 
+[node name="CSGMesh2" type="CSGMesh" parent="NavigationMeshInstance/Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 10 )
+use_collision = true
+mesh = SubResource( 12 )
+material = SubResource( 13 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, -17 )
-_gun = SubResource( 10 )
-_accuracy_mode = 2
-_reaction_mode = 2
-_path_points_path = NodePath("../EnemyPoints")
 
 [node name="EnemyPoints" type="Spatial" parent="."]
 
