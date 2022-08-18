@@ -23,7 +23,7 @@ font_data = ExtResource( 4 )
 size = 32
 font_data = ExtResource( 4 )
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["player"]]
 script = ExtResource( 1 )
 _gun = SubResource( 2 )
 

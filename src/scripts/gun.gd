@@ -99,7 +99,8 @@ func shoot_base(tree : SceneTree, spawn_pos : Vector3, spawn_rot : Vector3) -> v
 
 
 func shoot_alt(tree : SceneTree, spawn_pos : Vector3, spawn_rot : Vector3) -> void:
-	_shoot(secondaries[secondary_idx], true, tree, spawn_pos, spawn_rot)
+	if has_alt():
+		_shoot(secondaries[secondary_idx], true, tree, spawn_pos, spawn_rot)
 
 
 func can_shoot_base() -> bool:
@@ -115,6 +116,8 @@ func is_base_auto() -> bool:
 
 
 func is_alt_auto() -> bool:
+	if not has_alt():
+		return false
 	return secondaries[secondary_idx] in _FULL_AUTOS
 
 
@@ -124,3 +127,7 @@ func next_alt() -> void:
 
 func prev_alt() -> void:
 	secondary_idx = wrapi(secondary_idx - 1, 0, len(secondaries))
+
+
+func has_alt() -> bool:
+	return len(secondaries) > 0
