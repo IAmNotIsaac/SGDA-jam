@@ -15,6 +15,9 @@ const _RUN_SPEED := 8.0
 const _AIR_FRICTION := 0.2
 const _CONTROLLER_SENSITIVITY := 5.0
 const _MAX_JUMPS := 2
+const _MAX_HEALTH := 100.0
+const _HEAL_RATE := 20.0 # health per second
+const _HOLD_HEALTH_TIME := 2000 # measured in milliseconds
 
 export(Resource) var _gun = Gun.new()
 
@@ -22,6 +25,8 @@ var _state := StateMachine.new(self, States)
 var _velocity := Vector3.ZERO
 var _jump_count := 0
 var _wallrun_cast : RayCast
+var _health := _MAX_HEALTH
+var _last_damage_time := 0
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
@@ -31,6 +36,8 @@ onready var _n_wallrunl_check := $Gimbal/WallrunLeftCheck
 onready var _n_wallrunr_check := $Gimbal/WallrunRightCheck
 onready var _n_wallrun_tracker := $WallrunTracker
 onready var _n_pause_menu := $Control/PauseMenu
+onready var _n_damage_vignette := $Control/DamageVignette
+onready var _spawn_pos := global_translation
 
 
 ## Private methods ##
@@ -57,6 +64,7 @@ func _physics_process(delta : float) -> void:
 	_state.process(delta)
 	_controller_look()
 	_shoot()
+	_health_stuff(delta)
 	$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
 
 
@@ -85,6 +93,13 @@ func _shoot() -> void:
 			_n_bspawn.global_translation,
 			_n_cam.global_transform.basis.get_euler()
 		)
+
+
+func _health_stuff(delta : float) -> void:
+	_n_damage_vignette.modulate.a = 1.0 - _health / _MAX_HEALTH
+	
+	if OS.get_ticks_msec() - _last_damage_time > _HOLD_HEALTH_TIME:
+		_health = min(_health + _HEAL_RATE * delta, _MAX_HEALTH)
 
 
 ## State processes ##
@@ -207,3 +222,18 @@ func _sl_JUMP() -> void:
 	_jump_count += 1
 	_velocity.y = _JUMP_FORCE
 	_state.switch(States.AIR)
+
+
+## Public methods ##
+
+
+func damage(damage_data : Damage) -> void:
+	_last_damage_time = OS.get_ticks_msec()
+	_health -= damage_data.amount
+	if _health <= 0.0:
+		die()
+
+
+func die() -> void:
+	_health = _MAX_HEALTH
+	global_translation = _spawn_pos

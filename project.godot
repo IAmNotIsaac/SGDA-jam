@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/instance/bullet.gd"
 }, {
+"base": "Reference",
+"class": "Damage",
+"language": "GDScript",
+"path": "res://src/scripts/damage.gd"
+}, {
 "base": "KinematicBody",
 "class": "Enemey",
 "language": "GDScript",
@@ -36,6 +41,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"Damage": "",
 "Enemey": "",
 "Gun": "",
 "Player": "",

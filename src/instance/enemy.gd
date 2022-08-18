@@ -37,6 +37,7 @@ const _REACTION_FACTORS := {
 const _SPEED := 5.0
 const _GRAVITY := 20.0
 const _IDLE_TIME_AT_POINTS := 2000
+const _MAX_HEALTH := 100.0
 
 export(MovementMode) var _move_mode : int = MovementMode.STATIC
 export(Resource) var _gun : Resource
@@ -54,10 +55,14 @@ var _time_at_point := 0
 var _point_idx := -1
 var _nav_finished := true
 var _last_seen_player_pos := Vector3.ZERO
+var _health := _MAX_HEALTH
 
 onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
 onready var _n_path_points := get_node_or_null(_path_points_path)
+
+
+## Private methods ##
 
 
 func _ready() -> void:
@@ -195,3 +200,16 @@ func _sp_AIR(delta : float) -> void:
 			
 			if is_on_floor():
 				_state.switch(States.DEFAULT)
+
+
+## Public methods ##
+
+
+func damage(damage_data : Damage) -> void:
+	_health -= damage_data.amount
+	if _health <= 0.0:
+		die()
+
+
+func die() -> void:
+	queue_free()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/instance/player.gd" type="Script" id=1]
 [ext_resource path="res://src/scripts/gun.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/crosshair.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/instance/pause_menu.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/damage_vignette.png" type="Texture" id=6]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
@@ -23,7 +24,7 @@ font_data = ExtResource( 4 )
 size = 32
 font_data = ExtResource( 4 )
 
-[node name="Player" type="KinematicBody" groups=["player"]]
+[node name="Player" type="KinematicBody" groups=["entity", "player"]]
 script = ExtResource( 1 )
 _gun = SubResource( 2 )
 
@@ -61,6 +62,18 @@ cast_to = Vector3( 0, 0, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="DamageVignette" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="Control/DamageVignette"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0.290196 )
+
 [node name="Label" type="Label" parent="Control"]
 margin_right = 40.0
 margin_bottom = 14.0
@@ -85,6 +98,7 @@ expand = true
 
 [node name="PauseMenu" type="Control" parent="Control"]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )

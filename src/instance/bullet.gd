@@ -12,22 +12,30 @@ enum ShotTypes {
 const SHOT_DATA := {
 	ShotTypes.SHOTGUN: {
 		"distance": 10.0,
-		"accuracy": 0.9
+		"accuracy": 0.9,
+		"damage": 15.0,
+		"dmgtype": Damage.Type.BulletDamage.SHOTGUN
 	},
 	
 	ShotTypes.REVOLVER: {
 		"distance": 50.0,
-		"accuracy": 0.98
+		"accuracy": 0.98,
+		"damage": 40.0,
+		"dmgtype": Damage.Type.BulletDamage.REVOLVER
 	},
 	
 	ShotTypes.PISTOL: {
 		"distance": 25.0,
-		"accuracy": 0.95
+		"accuracy": 0.95,
+		"damage": 20.0,
+		"dmgtype": Damage.Type.BulletDamage.PISTOL
 	},
 	
 	ShotTypes.MINIGUN: {
 		"distance": 25.0,
-		"accuracy": 0.9
+		"accuracy": 0.9,
+		"damage": 10.0,
+		"dmgtype": Damage.Type.BulletDamage.MINIGUN
 	}
 }
 
@@ -48,11 +56,19 @@ func shoot(type : int) -> void:
 	_n_ray.cast_to = Vector3(0, 0, -distance)
 	yield(get_tree(), "idle_frame")
 	
-	if _n_ray.get_collider() != null:
+	var col = _n_ray.get_collider()
+	
+	if col != null:
 		_n_mesh.global_translation = _n_ray.get_collision_point()
 		_n_mesh.translation /= 2.0
 		
 		_n_mesh.scale.z = translation.distance_to(_n_ray.get_collision_point())
+		
+		if col.is_in_group("entity"):
+			col.damage(Damage.new(
+				SHOT_DATA[type]["dmgtype"],
+				SHOT_DATA[type]["damage"]
+			))
 	
 	else:
 		_n_mesh.translation = _n_ray.cast_to / 2.0

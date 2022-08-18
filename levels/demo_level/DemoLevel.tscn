@@ -87,11 +87,10 @@ material = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 1 )
-_move_mode = 3
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 1 )
 _gun = SubResource( 10 )
-_accuracy_mode = 0
-_reaction_mode = 0
+_accuracy_mode = 2
+_reaction_mode = 2
 _path_points_path = NodePath("../EnemyPoints")
 
 [node name="EnemyPoints" type="Spatial" parent="."]
