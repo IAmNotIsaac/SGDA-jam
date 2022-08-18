@@ -27,7 +27,7 @@ const SHOT_DATA := {
 	
 	ShotTypes.MINIGUN: {
 		"distance": 25.0,
-		"accuracy": 1.0#0.9
+		"accuracy": 0.9
 	}
 }
 
