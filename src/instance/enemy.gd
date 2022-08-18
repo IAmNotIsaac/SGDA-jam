@@ -36,11 +36,13 @@ const _REACTION_FACTORS := {
 
 const _SPEED := 7.0
 const _GRAVITY := 20.0
+const _IDLE_TIME_AT_POINTS := 2000
 
 export(MovementMode) var _move_mode : int = MovementMode.STATIC
 export(Resource) var _gun : Resource
 export(AccuracyModes) var _accuracy_mode : int = AccuracyModes.LOW
 export(ReactionModes) var _reaction_mode : int = ReactionModes.LOW
+export(NodePath) var _path_points_path : NodePath
 
 var _state := StateMachine.new(
 	self, States
@@ -48,12 +50,17 @@ var _state := StateMachine.new(
 var _player : KinematicBody
 var _velocity : Vector3
 var _uncomfortable := false
+var _time_at_point := 0
+var _point_idx := -1
+var _nav_finished := true
 
 onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
+onready var _n_path_points := get_node_or_null(_path_points_path)
 
 
 func _ready() -> void:
+	var _e := _n_agent.connect("navigation_finished", self, "_on_agent_navfinished")
 	_player = get_tree().get_nodes_in_group("player")[0]
 
 
@@ -98,6 +105,11 @@ func _shoot_if_can() -> void:
 			_shoot_at_player(true)
 
 
+func _on_agent_navfinished() -> void:
+	_nav_finished = true
+	_time_at_point = OS.get_ticks_msec()
+
+
 ## State processing ##
 
 
@@ -121,6 +133,20 @@ func _sp_DEFAULT(_delta : float) -> void:
 			
 			if not is_on_floor():
 				_state.switch(States.AIR)
+		
+		MovementMode.PATH:
+			_velocity = global_translation.direction_to(_n_agent.get_next_location()) * _SPEED
+			
+			if _nav_finished:
+				_velocity = Vector3.ZERO
+				_shoot_if_can()
+				
+				if (OS.get_ticks_msec() - _time_at_point > _IDLE_TIME_AT_POINTS) or (global_translation.distance_to(_player.global_translation) < 5.0):
+					_point_idx = wrapi(_point_idx + 1, 0, len(_n_path_points.get_children()))
+					_n_agent.set_target_location(_n_path_points.get_children()[_point_idx].global_translation)
+					_nav_finished = false
+			
+			_velocity = move_and_slide(_velocity)
 
 
 func _sp_AIR(delta : float) -> void:
