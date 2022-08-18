@@ -4,6 +4,7 @@ extends KinematicBody
 
 enum MovementMode {
 	STATIC,    # Does not move
+	SCARED,    # Static unless player gets too close
 	PATH,      # Follows a predetermined path
 	CHASE      # Chases player
 }
@@ -33,6 +34,9 @@ const _REACTION_FACTORS := {
 	ReactionModes.HIGH: [0.02, 0.05]
 }
 
+const _SPEED := 7.0
+const _GRAVITY := 20.0
+
 export(MovementMode) var _move_mode : int = MovementMode.STATIC
 export(Resource) var _gun : Resource
 export(AccuracyModes) var _accuracy_mode : int = AccuracyModes.LOW
@@ -42,8 +46,11 @@ var _state := StateMachine.new(
 	self, States
 )
 var _player : KinematicBody
+var _velocity : Vector3
+var _uncomfortable := false
 
 onready var _n_player_cast := $PlayerViewCast
+onready var _n_agent := $NavigationAgent
 
 
 func _ready() -> void:
@@ -82,15 +89,45 @@ func _shoot_at_player(alt : bool) -> void:
 			)
 
 
+func _shoot_if_can() -> void:
+	_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
+	if _n_player_cast.get_collider() == _player:
+		if _gun.can_shoot_base():
+			_shoot_at_player(false)
+		else:
+			_shoot_at_player(true)
+
+
 ## State processing ##
 
 
 func _sp_DEFAULT(_delta : float) -> void:
 	match _move_mode:
 		MovementMode.STATIC:
-			_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
-			if _n_player_cast.get_collider() == _player:
-				if _gun.can_shoot_base():
-					_shoot_at_player(false)
-				else:
-					_shoot_at_player(true)
+			_shoot_if_can()
+		
+		MovementMode.SCARED:
+			if translation.distance_to(_player.translation) < 5.0:
+				var away_dir := -translation.direction_to(_player.translation)
+				away_dir.y = 0.0
+				_velocity = away_dir * _SPEED
+			
+			else:
+				_velocity = Vector3.ZERO
+				_shoot_if_can()
+			
+			_velocity = move_and_slide(_velocity, Vector3.UP)
+			
+			if not is_on_floor():
+				_state.switch(States.AIR)
+
+
+func _sp_AIR(delta : float) -> void:
+	match _move_mode:
+		MovementMode.STATIC: pass
+		MovementMode.SCARED:
+			_velocity.y -= _GRAVITY * delta
+			_velocity = move_and_slide(_velocity, Vector3.UP)
+			
+			if is_on_floor():
+				_state.switch(States.DEFAULT)
