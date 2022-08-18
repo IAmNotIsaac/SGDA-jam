@@ -107,7 +107,8 @@ func _sp_DEFAULT(_delta : float) -> void:
 			_shoot_if_can()
 		
 		MovementMode.SCARED:
-			if translation.distance_to(_player.translation) < 5.0:
+			_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
+			if translation.distance_to(_player.translation) < 5.0 and _n_player_cast.get_collider() == _player:
 				var away_dir := -translation.direction_to(_player.translation)
 				away_dir.y = 0.0
 				_velocity = away_dir * _SPEED
