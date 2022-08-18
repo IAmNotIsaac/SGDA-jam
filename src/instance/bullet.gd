@@ -11,7 +11,7 @@ enum ShotTypes {
 
 const SHOT_DATA := {
 	ShotTypes.SHOTGUN: {
-		"distance": 5.0,
+		"distance": 10.0,
 		"accuracy": 0.9
 	},
 	
