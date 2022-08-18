@@ -29,6 +29,7 @@ onready var _n_hacky_floor_check := $HackyFloorCheck
 onready var _n_wallrunl_check := $Gimbal/WallrunLeftCheck
 onready var _n_wallrunr_check := $Gimbal/WallrunRightCheck
 onready var _n_wallrun_tracker := $WallrunTracker
+onready var _n_pause_menu := $Control/PauseMenu
 
 
 ## Private methods ##
@@ -43,9 +44,6 @@ func _input(event : InputEvent) -> void:
 		_n_gimbal.rotation_degrees.y -= event.relative.x
 		_n_cam.rotation_degrees.x -= event.relative.y
 		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
-	
-	elif event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	elif event.is_action_pressed("next_gun"):
 		_gun.next_alt()
