@@ -543,7 +543,7 @@ transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 6, -1, 0 )
 shape = SubResource( 20 )
 
 [node name="CollisionShape19" type="CollisionShape" parent="Level/Physical/Base"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0 )
 shape = SubResource( 23 )
 
 [node name="level3" parent="Level" instance=ExtResource( 1 )]
