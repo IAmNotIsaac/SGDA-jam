@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/models/levels/level3.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
@@ -71,6 +71,9 @@ extents = Vector3( 3, 2, 3 )
 extents = Vector3( 2.5, 2, 2.5 )
 
 [sub_resource type="BoxShape" id=20]
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 63, 1, 54 )
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 10 )
@@ -538,6 +541,10 @@ shape = SubResource( 20 )
 [node name="CollisionShape17" type="CollisionShape" parent="Level/Physical/Base"]
 transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 6, -1, 0 )
 shape = SubResource( 20 )
+
+[node name="CollisionShape19" type="CollisionShape" parent="Level/Physical/Base"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0 )
+shape = SubResource( 23 )
 
 [node name="level3" parent="Level" instance=ExtResource( 1 )]
 
