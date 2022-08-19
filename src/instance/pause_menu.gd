@@ -32,5 +32,10 @@ func _on_ResumeButton_pressed() -> void:
 	unpause()
 
 
+func _on_RestartButton_pressed() -> void:
+	unpause()
+	var _e := get_tree().reload_current_scene()
+
+
 func _on_TitleButton_pressed() -> void:
 	print("TODO")

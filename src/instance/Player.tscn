@@ -141,6 +141,17 @@ focus_previous = NodePath("../TitleButton")
 custom_fonts/font = SubResource( 4 )
 text = "RESUME"
 
+[node name="RestartButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
+margin_top = 195.0
+margin_right = 586.0
+margin_bottom = 250.0
+focus_neighbour_top = NodePath("../TitleButton")
+focus_neighbour_bottom = NodePath("../TitleButton")
+focus_next = NodePath("../TitleButton")
+focus_previous = NodePath("../TitleButton")
+custom_fonts/font = SubResource( 4 )
+text = "RESTART"
+
 [node name="TitleButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
 margin_top = 254.0
 margin_right = 586.0
@@ -153,4 +164,5 @@ custom_fonts/font = SubResource( 4 )
 text = "Return to Title"
 
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ResumeButton" to="Control/PauseMenu" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Control/PauseMenu/VBoxContainer/RestartButton" to="Control/PauseMenu" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/TitleButton" to="Control/PauseMenu" method="_on_TitleButton_pressed"]
