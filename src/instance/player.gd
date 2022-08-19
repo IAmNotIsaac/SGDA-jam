@@ -37,6 +37,7 @@ onready var _n_wallrunr_check := $Gimbal/WallrunRightCheck
 onready var _n_wallrun_tracker := $WallrunTracker
 onready var _n_pause_menu := $Control/PauseMenu
 onready var _n_damage_vignette := $Control/DamageVignette
+onready var _n_interact_cast := $Gimbal/Camera/InteractCast
 onready var _spawn_pos := global_translation
 
 
@@ -58,6 +59,11 @@ func _input(event : InputEvent) -> void:
 	
 	elif event.is_action_pressed("prev_gun"):
 		_gun.prev_alt()
+	
+	elif event.is_action_pressed("interact"):
+		var col : Area = _n_interact_cast.get_collider()
+		if col is Switch:
+			col.activate()
 
 
 func _physics_process(delta : float) -> void:
@@ -185,10 +191,9 @@ func _sp_AIR(delta : float) -> void:
 func _sp_WALLRUN(_delta : float) -> void:
 	var normal : Vector3 = _n_wallrun_tracker.get_collision_normal()
 	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
-	normal.z = max(normal.z, 0.001)
-	var angle := -atan(normal.x / normal.z)
+	var angle := atan2(normal.z, normal.x) + PI * 0.5 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
 	
-	_velocity = Vector3(cos(angle), 0.0, sin(angle)) * 10.0 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
+	_velocity = -Vector3(cos(angle), 0.0, sin(angle)) * 10.0
 	
 	_velocity = move_and_slide(_velocity)
 	
