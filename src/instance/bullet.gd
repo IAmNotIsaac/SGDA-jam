@@ -79,6 +79,7 @@ func shoot(type : int) -> void:
 	mat.set_feature(SpatialMaterial.FEATURE_TRANSPARENT, true)
 	mat.set_flag(SpatialMaterial.FLAG_UNSHADED, true)
 	mat.albedo_color = Color(1.0, 1.0, 0.0, 0.7)
+	_n_mesh.mesh = _n_mesh.mesh.duplicate()
 	_n_mesh.mesh.surface_set_material(0, mat)
 	
 	var tween = get_tree().create_tween()
