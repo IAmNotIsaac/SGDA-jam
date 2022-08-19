@@ -101,6 +101,7 @@ func _shoot(gun_type : int, alt : bool, tree : SceneTree, spawn_pos : Vector3, s
 			grenade.global_translation = spawn_pos + spawn_rot * 0.5
 			grenade.add_central_force(spawn_rot * 1000.0)
 			grenade.apply_torque_impulse(Vector3.ONE)
+			_cooldown(alt)
 
 
 ## Public methods ##
