@@ -73,7 +73,7 @@ extents = Vector3( 2.5, 2, 2.5 )
 [sub_resource type="BoxShape" id=20]
 
 [sub_resource type="BoxShape" id=23]
-extents = Vector3( 63, 1, 54 )
+extents = Vector3( 72, 1, 54 )
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 10 )
