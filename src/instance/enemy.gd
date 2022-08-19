@@ -56,6 +56,7 @@ var _point_idx := -1
 var _nav_finished := true
 var _last_seen_player_pos = null
 var _health := _MAX_HEALTH
+var _permitted_shoot_time := 0.0
 
 onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
@@ -75,35 +76,35 @@ func _physics_process(delta : float) -> void:
 
 
 func _shoot_at_player(alt : bool) -> void:
-	var w : float = _n_player_cast.cast_to.z
-#	var h : float = _n_player_cast.cast_to.y
-	var d : float = _n_player_cast.cast_to.x
-	var r : float = atan2(d, w) + rand_range(0.0, _ACCURACY_FACTORS[_accuracy_mode]) * [1, -1][randi() % 2]
-	
-	var f1 : bool = _gun.has_alt() and alt and not _gun.is_alt_auto()
-	var f2 : bool = not alt and not _gun.is_base_auto()
-	
-	if f1 or f2:
-		var t : float = rand_range(_REACTION_FACTORS[_reaction_mode][0], _REACTION_FACTORS[_reaction_mode][1])
-		yield(get_tree().create_timer(t), "timeout")
-	
-	var dist := global_translation.distance_to(_player.global_translation)
-	
-	match alt:
-		true:
-			if dist <= _gun.get_alt_bullet_distance():
-				_gun.shoot_alt(
-					get_tree(),
-					_n_player_cast.global_translation,
-					Vector3(0.0, PI + r, 0.0) #atan(h/w)
-				)
-		false:
-			if dist <= _gun.get_base_bullet_distance():
-				_gun.shoot_base(
-					get_tree(),
-					_n_player_cast.global_translation,
-					Vector3(0.0, PI + r, 0.0) #atan(h/w)
-				)
+	if OS.get_ticks_msec() / 1000.0 >= _permitted_shoot_time:
+		var w : float = _n_player_cast.cast_to.z
+		#	var h : float = _n_player_cast.cast_to.y
+		var d : float = _n_player_cast.cast_to.x
+		var r : float = atan2(d, w) + rand_range(0.0, _ACCURACY_FACTORS[_accuracy_mode]) * [1, -1][randi() % 2]
+
+		var f1 : bool = _gun.has_alt() and alt and not _gun.is_alt_auto()
+		var f2 : bool = not alt and not _gun.is_base_auto()
+
+		if f1 or f2:
+			_permitted_shoot_time = OS.get_ticks_msec() / 1000.0 + rand_range(_REACTION_FACTORS[_reaction_mode][0], _REACTION_FACTORS[_reaction_mode][1])
+
+		var dist := global_translation.distance_to(_player.global_translation)
+
+		match alt:
+			true:
+				if dist <= _gun.get_alt_bullet_distance():
+					_gun.shoot_alt(
+						get_tree(),
+						_n_player_cast.global_translation,
+						Vector3(0.0, PI + r, 0.0) #atan(h/w)
+					)
+			false:
+				if dist <= _gun.get_base_bullet_distance():
+					_gun.shoot_base(
+						get_tree(),
+						_n_player_cast.global_translation,
+						Vector3(0.0, PI + r, 0.0) #atan(h/w)
+					)
 
 
 func _shoot_if_can() -> void:
