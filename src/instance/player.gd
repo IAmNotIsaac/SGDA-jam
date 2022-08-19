@@ -18,6 +18,7 @@ const _MAX_JUMPS := 2
 const _MAX_HEALTH := 100.0
 const _HEAL_RATE := 20.0 # health per second
 const _HOLD_HEALTH_TIME := 2000 # measured in milliseconds
+const _WALLRUN_CAM_TILT := 5.0
 
 export(Resource) var _gun = Gun.new()
 
@@ -27,6 +28,7 @@ var _jump_count := 0
 var _wallrun_cast : RayCast
 var _health := _MAX_HEALTH
 var _last_damage_time := 0
+var _target_camera_tilt := 0.0
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
@@ -75,6 +77,7 @@ func _physics_process(delta : float) -> void:
 	_controller_look()
 	_shoot()
 	_health_stuff(delta)
+	_camera_tilt()
 	$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
 
 
@@ -110,6 +113,10 @@ func _health_stuff(delta : float) -> void:
 	
 	if OS.get_ticks_msec() - _last_damage_time > _HOLD_HEALTH_TIME:
 		_health = min(_health + _HEAL_RATE * delta, _MAX_HEALTH)
+
+
+func _camera_tilt() -> void:
+	_n_cam.rotation_degrees.z = lerp(_n_cam.rotation_degrees.z, _target_camera_tilt, 0.2)
 
 
 ## State processes ##
@@ -201,6 +208,8 @@ func _sp_WALLRUN(_delta : float) -> void:
 	
 	_velocity = move_and_slide(_velocity)
 	
+	_target_camera_tilt = _WALLRUN_CAM_TILT * (-1.0 if _wallrun_cast == _n_wallrunl_check else 1.0)
+	
 	if not _n_wallrun_tracker.get_collider():
 		_jump_count -= 1
 		_state.switch(States.JUMP)
@@ -217,6 +226,10 @@ func _sp_WALLRUN(_delta : float) -> void:
 func _sl_WALLRUN() -> void:
 	var normal := _wallrun_cast.get_collision_normal()
 	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
+
+
+func _su_WALLRUN() -> void:
+	_target_camera_tilt = 0.0
 
 
 func _sl_LAND() -> void:
