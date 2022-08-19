@@ -124,6 +124,8 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28, 2,
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 1, -30 )
+collision_layer = 7
+collision_mask = 7
 
 [node name="Switch" parent="." instance=ExtResource( 6 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -58, 1.25, 15 )
@@ -542,7 +544,11 @@ shape = SubResource( 20 )
 transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 6, -1, 0 )
 shape = SubResource( 20 )
 
-[node name="CollisionShape19" type="CollisionShape" parent="Level/Physical/Base"]
+[node name="Ceiling" type="StaticBody" parent="Level/Physical"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape19" type="CollisionShape" parent="Level/Physical/Ceiling"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0 )
 shape = SubResource( 23 )
 
