@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Bricks.jpg-b514b969fcbfc0a63cc434661a2da616.s3tc.stex"
-path.etc2="res://.import/Bricks.jpg-b514b969fcbfc0a63cc434661a2da616.etc2.stex"
+path.s3tc="res://.import/Bricks.jpg-9e30f05a90c64987c104483a5bb7ba1a.s3tc.stex"
+path.etc2="res://.import/Bricks.jpg-9e30f05a90c64987c104483a5bb7ba1a.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Bricks.jpg"
-dest_files=[ "res://.import/Bricks.jpg-b514b969fcbfc0a63cc434661a2da616.s3tc.stex", "res://.import/Bricks.jpg-b514b969fcbfc0a63cc434661a2da616.etc2.stex" ]
+source_file="C:/Users/isaac/Documents/programming/godot/SGDA Jam Game/assets/textures/Bricks.jpg"
+dest_files=[ "res://.import/Bricks.jpg-9e30f05a90c64987c104483a5bb7ba1a.s3tc.stex", "res://.import/Bricks.jpg-9e30f05a90c64987c104483a5bb7ba1a.etc2.stex" ]
 
 [params]
 

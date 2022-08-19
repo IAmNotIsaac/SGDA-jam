@@ -54,7 +54,7 @@ var _uncomfortable := false
 var _time_at_point := 0
 var _point_idx := -1
 var _nav_finished := true
-var _last_seen_player_pos := Vector3.ZERO
+var _last_seen_player_pos = null
 var _health := _MAX_HEALTH
 
 onready var _n_player_cast := $PlayerViewCast
@@ -165,17 +165,19 @@ func _sp_DEFAULT(_delta : float) -> void:
 			if _n_player_cast.get_collider() == _player:
 				_last_seen_player_pos = _player.global_translation
 			
+			var dist := translation.distance_to(_player.translation)
 			_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
-			if translation.distance_to(_player.translation) < 2.0 and _n_player_cast.get_collider() == _player:
+			if dist < 2.0 and _n_player_cast.get_collider() == _player:
 				var away_dir := -translation.direction_to(_player.translation)
 				away_dir.y = 0.0
 				_velocity = away_dir * _SPEED
 			
-			elif translation.distance_to(_last_seen_player_pos) > 3.0:
+			elif _last_seen_player_pos != null and dist > 3.0 and dist < 25.0:
 				_n_agent.set_target_location(_last_seen_player_pos)
 				var towards_dir := translation.direction_to(_n_agent.get_next_location())
 				towards_dir.y = 0.0
 				_velocity = towards_dir * _SPEED
+				_shoot_if_can()
 			
 			else:
 				_velocity = Vector3.ZERO

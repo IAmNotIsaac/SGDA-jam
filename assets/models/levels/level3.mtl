@@ -1,0 +1,24 @@
+# Blender MTL File: 'level3_collision.blend'
+# Material Count: 2
+
+newmtl Concrete
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:\\Users\\isaac\\Documents\\programming\\godot\\SGDA Jam Game\\assets\\textures\\asphalt.png
+
+newmtl Material
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:\\Users\\isaac\\Documents\\programming\\godot\\SGDA Jam Game\\assets\\textures\\Bricks.jpg

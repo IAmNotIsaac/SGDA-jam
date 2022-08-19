@@ -25,6 +25,8 @@ size = 32
 font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody" groups=["entity", "player"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 1 )
 _gun = SubResource( 2 )
 
