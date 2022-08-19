@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Guitar.ogg-a288e4f2c65cbc949b4b977795d02923.oggstr"
+
+[deps]
+
+source_file="res://assets/music/killer/Guitar.ogg"
+dest_files=[ "res://.import/Guitar.ogg-a288e4f2c65cbc949b4b977795d02923.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

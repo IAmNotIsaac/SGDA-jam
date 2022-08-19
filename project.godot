@@ -63,8 +63,12 @@ _global_script_class_icons={
 [application]
 
 config/name="SGDA Jam Game"
-run/main_scene="res://levels/demo_level/DemoLevel.tscn"
+run/main_scene="res://src/levels/DemoLevel.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SoundTrack="*res://src/singletons/SoundTrack.tscn"
 
 [display]
 

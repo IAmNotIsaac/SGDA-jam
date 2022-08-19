@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DrumNSnare.ogg-f079db25223f930768c042ca38ac839f.oggstr"
+
+[deps]
+
+source_file="res://assets/music/killer/DrumNSnare.ogg"
+dest_files=[ "res://.import/DrumNSnare.ogg-f079db25223f930768c042ca38ac839f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

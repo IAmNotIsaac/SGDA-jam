@@ -45,7 +45,11 @@ onready var _spawn_pos := global_translation
 
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
+#	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
+#	yield(get_tree().create_timer(2.0), "timeout")
+#	SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [1])
+#	SoundTrack.deactivate_layers(SoundTrack.Songs.KILLER, [0])
 
 
 func _input(event : InputEvent) -> void:
