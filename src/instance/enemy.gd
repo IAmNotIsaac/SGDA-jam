@@ -41,8 +41,8 @@ const _MAX_HEALTH := 100.0
 
 export(MovementMode) var _move_mode : int = MovementMode.STATIC
 export(Resource) var _gun : Resource
-export(AccuracyModes) var _accuracy_mode : int = AccuracyModes.LOW
-export(ReactionModes) var _reaction_mode : int = ReactionModes.LOW
+export(AccuracyModes) var _accuracy_mode : int = AccuracyModes.MID
+export(ReactionModes) var _reaction_mode : int = ReactionModes.MID
 export(NodePath) var _path_points_path : NodePath
 
 var _state := StateMachine.new(
@@ -87,19 +87,23 @@ func _shoot_at_player(alt : bool) -> void:
 		var t : float = rand_range(_REACTION_FACTORS[_reaction_mode][0], _REACTION_FACTORS[_reaction_mode][1])
 		yield(get_tree().create_timer(t), "timeout")
 	
+	var dist := global_translation.distance_to(_player.global_translation)
+	
 	match alt:
 		true:
-			_gun.shoot_alt(
-				get_tree(),
-				_n_player_cast.global_translation,
-				Vector3(0.0, PI + r, 0.0) #atan(h/w)
-			)
+			if dist <= _gun.get_alt_bullet_distance():
+				_gun.shoot_alt(
+					get_tree(),
+					_n_player_cast.global_translation,
+					Vector3(0.0, PI + r, 0.0) #atan(h/w)
+				)
 		false:
-			_gun.shoot_base(
-				get_tree(),
-				_n_player_cast.global_translation,
-				Vector3(0.0, PI + r, 0.0) #atan(h/w)
-			)
+			if dist <= _gun.get_base_bullet_distance():
+				_gun.shoot_base(
+					get_tree(),
+					_n_player_cast.global_translation,
+					Vector3(0.0, PI + r, 0.0) #atan(h/w)
+				)
 
 
 func _shoot_if_can() -> void:

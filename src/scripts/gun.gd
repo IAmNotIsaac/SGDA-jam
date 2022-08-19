@@ -131,3 +131,13 @@ func prev_alt() -> void:
 
 func has_alt() -> bool:
 	return len(secondaries) > 0
+
+
+func get_base_bullet_distance() -> float:
+	return Bullet.SHOT_DATA[base]["distance"]
+
+
+func get_alt_bullet_distance() -> float:
+	if not len(secondaries) > 0:
+		return 0.0
+	return Bullet.SHOT_DATA[secondaries[secondary_idx]]["distance"]
