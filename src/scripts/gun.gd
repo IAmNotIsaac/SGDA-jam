@@ -6,16 +6,19 @@ enum GunTypes {
 	SHOTGUN,
 	REVOLVER,
 	PISTOL,
-	MINIGUN
+	MINIGUN,
+	GRENADE_LAUNCHER
 }
 
 const _Bullet := preload("res://src/instance/Bullet.tscn")
+const _Grenade := preload("res://src/instance/Grenade.tscn")
 # measured in milliseconds
 const _COOLDOWNS := {
 	GunTypes.SHOTGUN: 1000,
 	GunTypes.REVOLVER: 1500,
 	GunTypes.PISTOL: 250,
-	GunTypes.MINIGUN: 100
+	GunTypes.MINIGUN: 100,
+	GunTypes.GRENADE_LAUNCHER: 2000
 }
 const _FULL_AUTOS := [
 	GunTypes.MINIGUN
@@ -85,10 +88,19 @@ func _shoot(gun_type : int, alt : bool, tree : SceneTree, spawn_pos : Vector3, s
 			_spawn_bullet(Bullet.ShotTypes.PISTOL, tree, spawn_pos, spawn_rot)
 			_cooldown(alt)
 		
-		
 		GunTypes.MINIGUN:
 			_spawn_bullet(Bullet.ShotTypes.MINIGUN, tree, spawn_pos, spawn_rot)
 			_cooldown(alt)
+		
+		GunTypes.GRENADE_LAUNCHER:
+			spawn_rot = Vector3(-sin(spawn_rot.y), sin(spawn_rot.x), -cos(spawn_rot.y))
+			
+			var grenade := _Grenade.instance()
+			tree.get_current_scene().add_child(grenade)
+			
+			grenade.global_translation = spawn_pos
+			grenade.add_central_force(spawn_rot * 1000.0)
+			grenade.apply_torque_impulse(Vector3.ONE)
 
 
 ## Public methods ##

@@ -7,6 +7,9 @@ class Type:
 		const REVOLVER := 1
 		const PISTOL   := 2
 		const MINIGUN  := 3
+	
+	class ExplosionDamage:
+		const GRENADE := 4
 
 
 var damage_type : int
