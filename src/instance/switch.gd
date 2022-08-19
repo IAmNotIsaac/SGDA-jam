@@ -4,6 +4,8 @@ extends Area
 
 export(NodePath) var _door_path : NodePath
 
+var _activated := false
+
 onready var _n_door : Door = get_node_or_null(_door_path)
 onready var _n_anim := $SwitchMesh/AnimationPlayer
 
@@ -20,6 +22,7 @@ func _ready() -> void:
 
 
 func activate() -> void:
-	if _n_door:
+	if _n_door and _activated == false:
 		_n_anim.play("default")
 		_n_door.switch_activate()
+		_activated = true
