@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/singletons/sound_track.gd" type="Script" id=1]
+[ext_resource path="res://assets/music/killer/Drum.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/music/killer/DrumNSnare.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/killer/Guitar.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/music/killer/Scream.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/music/killer/Shakey.ogg" type="AudioStream" id=6]
+
+[node name="SoundTrack" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Killer" type="Spatial" parent="."]
+
+[node name="Drum" type="AudioStreamPlayer" parent="Killer"]
+stream = ExtResource( 2 )
+
+[node name="DrumNSnare" type="AudioStreamPlayer" parent="Killer"]
+stream = ExtResource( 3 )
+
+[node name="Guitar" type="AudioStreamPlayer" parent="Killer"]
+stream = ExtResource( 4 )
+
+[node name="Scream" type="AudioStreamPlayer" parent="Killer"]
+stream = ExtResource( 5 )
+
+[node name="Shakey" type="AudioStreamPlayer" parent="Killer"]
+stream = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
