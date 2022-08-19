@@ -2,6 +2,8 @@ class_name Enemey
 extends KinematicBody
 
 
+const _DamageIndicator := preload("res://src/instance/DamageIndicator.tscn")
+
 enum MovementMode {
 	STATIC,    # Does not move
 	SCARED,    # Static unless player gets too close
@@ -213,8 +215,18 @@ func _sp_AIR(delta : float) -> void:
 
 
 func damage(damage_data : Damage) -> void:
+	var dmgind := _DamageIndicator.instance()
+	get_parent().add_child(dmgind)
+	
+	dmgind.text = str(int(damage_data.amount))
+	dmgind.global_translation = global_translation + Vector3(rand_range(-1, 1), 0.0, rand_range(-1, 1))
+	
 	_health -= damage_data.amount
+	
+	var percentage := _health / _MAX_HEALTH
+	dmgind.modulate = Color(1.0 - percentage, percentage, percentage)
 	if _health <= 0.0:
+		dmgind.modulate = Color.yellow
 		die()
 
 
