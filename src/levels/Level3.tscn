@@ -554,6 +554,10 @@ shape = SubResource( 23 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 1, 9.5 )
 _gun = SubResource( 11 )
 
+[node name="Enemy14" parent="Enemies" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 3, -25.5 )
+_gun = SubResource( 11 )
+
 [node name="Enemy10" parent="Enemies" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, 3, 1.5 )
 _gun = SubResource( 11 )
