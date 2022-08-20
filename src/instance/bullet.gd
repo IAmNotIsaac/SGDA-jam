@@ -20,7 +20,7 @@ const SHOT_DATA := {
 	
 	ShotTypes.REVOLVER: {
 		"distance": 50.0,
-		"accuracy": 0.98,
+		"accuracy": 0.99,
 		"damage": 40.0,
 		"dmgtype": Damage.Type.BulletDamage.REVOLVER
 	},
