@@ -55,11 +55,11 @@ func act(tree : SceneTree, player) -> void:
 					break
 			
 			if target != null:
-				var dir : Vector3 = player.global_translation.direction_to(target.global_translation)
-				var rot := Vector3(asin(dir.y), acos(-dir.z), 0.0)
+				var dir : Vector3 = (player.global_translation + Vector3(0.0, 0.25, 0.0)).direction_to(target.global_translation)
+				var rot := Vector3(asin(dir.y), -atan2(dir.x, dir.z), 0.0)
 				
 				# whatever im lazy
-				player._gun.shoot(tree, 5, player.global_translation, rot)
+				player._gun.shoot(tree, 5, player.global_translation + Vector3(0.0, 0.25, 0.0), rot)
 			
 			yield(tree.create_timer(1.0), "timeout")
 		
