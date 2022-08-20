@@ -11,6 +11,8 @@ enum States {
 	DEAD_PAUSE
 }
 
+const _Ragdoll := preload("res://src/instance/RobotRagdoll.tscn")
+
 const _GRAVITY := 20.0
 const _JUMP_FORCE := 7.0
 const _RUN_SPEED := 8.0
@@ -311,6 +313,11 @@ func _su_DEAD() -> void:
 
 
 func _sl_DEAD_PAUSE() -> void:
+	var ragdoll = _Ragdoll.instance()
+	
+	get_parent().add_child(ragdoll)
+	ragdoll.global_translation = global_translation
+	
 	speed_factor = 1.0
 	_n_death_action.show()
 	yield(get_tree().create_timer(1.0), "timeout")

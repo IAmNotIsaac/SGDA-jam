@@ -14,6 +14,7 @@ enum MovementMode {
 enum States {
 	DEFAULT,   # Walking
 	AIR,       # In air
+	DEAD
 }
 
 enum AccuracyModes {
@@ -35,6 +36,8 @@ const _REACTION_FACTORS := {
 	ReactionModes.MID:  [0.07, 0.15],
 	ReactionModes.HIGH: [0.02, 0.05]
 }
+
+const _Ragdoll := preload("res://src/instance/RobotRagdoll.tscn")
 
 const _SPEED := 5.0
 const _GRAVITY := 20.0
@@ -257,14 +260,25 @@ func damage(damage_data : Damage) -> void:
 	
 	var percentage := _health / _MAX_HEALTH
 	dmgind.modulate = Color(1.0 - percentage, percentage, percentage)
-	if _health <= 0.0:
+	if _health <= 0.0 and is_alive():
 		dmgind.modulate = Color.yellow
 		die()
 
 
 func die() -> void:
+	_state.switch(States.DEAD)
+	
+	var ragdoll := _Ragdoll.instance()
+	
+	get_parent().add_child(ragdoll)
+	ragdoll.global_translation = global_translation
+	
 	queue_free()
 
 
 func can_see_player() -> bool:
 	return _n_player_cast.get_collider() == _player
+
+
+func is_alive() -> bool:
+	return not _state.matches(States.DEAD)

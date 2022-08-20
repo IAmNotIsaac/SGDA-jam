@@ -77,6 +77,13 @@ func shoot(type : int) -> void:
 				SHOT_DATA[type]["dmgtype"],
 				SHOT_DATA[type]["damage"]
 			))
+		
+		elif col.is_in_group("ragdoll_bone"):
+			col = col.get_parent().get_parent()
+			col.damage(Damage.new(
+				SHOT_DATA[type]["dmgtype"],
+				SHOT_DATA[type]["damage"]
+			))
 	
 	else:
 		_n_mesh.translation = _n_ray.cast_to / 2.0

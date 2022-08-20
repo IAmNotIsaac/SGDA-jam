@@ -31,6 +31,15 @@ func explode(size : float, ignore : PhysicsBody = null) -> void:
 				body.damage(Damage.new(
 					Damage.Type.ExplosionDamage.GRENADE, amount
 				))
+			
+			elif body.is_in_group("ragdoll_bone"):
+				body = body.get_parent().get_parent()
+				
+				var distance_factor : float = max(0.0, 1.0 - (body.global_translation.distance_to(global_translation) / size))
+				var amount : float = 125.0 * distance_factor
+				body.damage(Damage.new(
+					Damage.Type.ExplosionDamage.GRENADE, amount
+				))
 	
 	_n_explosion.mesh = _n_explosion.mesh.duplicate()
 	_n_explosion.mesh.material = _n_explosion.mesh.material.duplicate()
