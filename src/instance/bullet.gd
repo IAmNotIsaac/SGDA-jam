@@ -6,7 +6,8 @@ enum ShotTypes {
 	SHOTGUN,
 	REVOLVER,
 	PISTOL,
-	MINIGUN
+	MINIGUN,
+	INSTAKILL
 }
 
 const SHOT_DATA := {
@@ -36,6 +37,13 @@ const SHOT_DATA := {
 		"accuracy": 0.9,
 		"damage": 10.0,
 		"dmgtype": Damage.Type.BulletDamage.MINIGUN
+	},
+	
+	ShotTypes.INSTAKILL: {
+		"distance": 200.0,
+		"accuracy": 1.0,
+		"damage": 999.0,
+		"dmgtype": Damage.Type.BulletDamage.INSTAKILL
 	}
 }
 

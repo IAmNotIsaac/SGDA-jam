@@ -6,7 +6,9 @@ enum States {
 	JUMP,
 	AIR,
 	LAND,
-	WALLRUN
+	WALLRUN,
+	DEAD,
+	DEAD_PAUSE
 }
 
 const _GRAVITY := 20.0
@@ -29,6 +31,9 @@ var _wallrun_cast : RayCast
 var _health := _MAX_HEALTH
 var _last_damage_time := 0
 var _target_camera_tilt := 0.0
+var _action := DeathAction.new(DeathAction.Type.NONE)
+
+var speed_factor := 1.0
 
 onready var _n_gimbal := $Gimbal
 onready var _n_cam := $Gimbal/Camera
@@ -40,14 +45,26 @@ onready var _n_wallrun_tracker := $WallrunTracker
 onready var _n_pause_menu := $Control/PauseMenu
 onready var _n_damage_vignette := $Control/DamageVignette
 onready var _n_interact_cast := $Gimbal/Camera/InteractCast
+onready var _n_death_action := $Control/DeathAction
+onready var _n_death_action_buttons := $Control/DeathAction/HBoxContainer
 onready var _spawn_pos := global_translation
 
 
 ## Private methods ##
 
 
+func _spawn() -> void:
+	_action.act(get_tree(), self)
+	yield(_action, "action_complete")
+	
+	_state.switch(States.DEFAULT)
+	global_translation = _spawn_pos
+	_health = _MAX_HEALTH
+	_gun.clear_cooldowns()
+
+
 func _ready() -> void:
-	pass
+	_spawn()
 #	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
 #	yield(get_tree().create_timer(2.0), "timeout")
 #	SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [1])
@@ -56,9 +73,10 @@ func _ready() -> void:
 
 func _input(event : InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		_n_gimbal.rotation_degrees.y -= event.relative.x
-		_n_cam.rotation_degrees.x -= event.relative.y
-		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
+		if is_alive():
+			_n_gimbal.rotation_degrees.y -= event.relative.x
+			_n_cam.rotation_degrees.x -= event.relative.y
+			_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 	
 	elif event.is_action_pressed("next_gun"):
 		_gun.next_alt()
@@ -82,30 +100,32 @@ func _physics_process(delta : float) -> void:
 
 
 func _controller_look() -> void:
-	var input := Vector2(
-		Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
-		Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
-	)
-	
-	_n_gimbal.rotation_degrees.y -= input.x * _CONTROLLER_SENSITIVITY
-	_n_cam.rotation_degrees.x -= input.y * _CONTROLLER_SENSITIVITY
-	_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
+	if is_alive():
+		var input := Vector2(
+			Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
+			Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+		)
+		
+		_n_gimbal.rotation_degrees.y -= input.x * _CONTROLLER_SENSITIVITY
+		_n_cam.rotation_degrees.x -= input.y * _CONTROLLER_SENSITIVITY
+		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 
 
 func _shoot() -> void:
-	if (Input.is_action_pressed("shoot_base") and _gun.is_base_auto()) or (Input.is_action_just_pressed("shoot_base") and not _gun.is_base_auto()):
-		_gun.shoot_base(
-			get_tree(),
-			_n_bspawn.global_translation,
-			_n_cam.global_transform.basis.get_euler()
-		)
-	
-	elif (Input.is_action_pressed("shoot_alt") and _gun.is_alt_auto()) or (Input.is_action_just_pressed("shoot_alt") and not _gun.is_alt_auto()):
-		_gun.shoot_alt(
-			get_tree(),
-			_n_bspawn.global_translation,
-			_n_cam.global_transform.basis.get_euler()
-		)
+	if is_alive():
+		if (Input.is_action_pressed("shoot_base") and _gun.is_base_auto()) or (Input.is_action_just_pressed("shoot_base") and not _gun.is_base_auto()):
+			_gun.shoot_base(
+				get_tree(),
+				_n_bspawn.global_translation,
+				_n_cam.global_transform.basis.get_euler()
+			)
+		
+		elif (Input.is_action_pressed("shoot_alt") and _gun.is_alt_auto()) or (Input.is_action_just_pressed("shoot_alt") and not _gun.is_alt_auto()):
+			_gun.shoot_alt(
+				get_tree(),
+				_n_bspawn.global_translation,
+				_n_cam.global_transform.basis.get_euler()
+			)
 
 
 func _health_stuff(delta : float) -> void:
@@ -117,6 +137,16 @@ func _health_stuff(delta : float) -> void:
 
 func _camera_tilt() -> void:
 	_n_cam.rotation_degrees.z = lerp(_n_cam.rotation_degrees.z, _target_camera_tilt, 0.2)
+
+
+func _on_deathbutton_pressed(id : int) -> void:
+	_action = DeathAction.new(id)
+	_spawn()
+	
+	for c in _n_death_action_buttons.get_children():
+		c.queue_free()
+	
+	_n_death_action.hide()
 
 
 ## State processes ##
@@ -134,7 +164,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 	
 	var move_forward = Vector3(sin(theta) * input.y, 0.0, cos(theta) * input.y)
 	var move_strafe = Vector3(cos(-theta) * input.x, 0.0, sin(-theta) * input.x)
-	_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED
+	_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED * speed_factor
 	
 	_velocity = move_and_slide(_velocity)
 	
@@ -170,9 +200,9 @@ func _sp_AIR(delta : float) -> void:
 	var accel := _GRAVITY * delta
 	
 	_velocity = Vector3(
-		clamp(_velocity.x + (move_forward.x + move_strafe.x) * _AIR_FRICTION, -_RUN_SPEED, _RUN_SPEED),
+		clamp(_velocity.x + (move_forward.x + move_strafe.x) * _AIR_FRICTION, -_RUN_SPEED * speed_factor, _RUN_SPEED * speed_factor),
 		_velocity.y - accel,
-		clamp(_velocity.z + (move_forward.z + move_strafe.z) * _AIR_FRICTION, -_RUN_SPEED, _RUN_SPEED)
+		clamp(_velocity.z + (move_forward.z + move_strafe.z) * _AIR_FRICTION, -_RUN_SPEED * speed_factor, _RUN_SPEED * speed_factor)
 	)
 	var impact_vel := _velocity.y
 	
@@ -220,6 +250,10 @@ func _sp_WALLRUN(_delta : float) -> void:
 		_state.switch(States.JUMP)
 
 
+func _sp_DEAD(_delta : float) -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
 ## State (un)loading ##
 
 
@@ -246,16 +280,49 @@ func _sl_JUMP() -> void:
 	_state.switch(States.AIR)
 
 
+func _sl_DEAD() -> void:
+	for g in _gun.get_secondaries() + [_gun.get_base()]:
+		var id : int = _gun.get_gun_action_type(g)
+		var button := DeathButton.new()
+		
+		button.id = id
+		button.text = DeathAction.get_action_name(id)
+		
+		_n_death_action_buttons.add_child(button)
+		button.set_h_size_flags(Button.SIZE_EXPAND_FILL)
+		var _e := button.connect("db_pressed", self, "_on_deathbutton_pressed")
+	
+	_n_death_action_buttons.get_children()[0].grab_focus()
+	_n_death_action_buttons.show()
+
+
+func _su_DEAD() -> void:
+	_n_death_action_buttons.hide()
+	_n_death_action.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _sl_DEAD_PAUSE() -> void:
+	speed_factor = 1.0
+	_n_death_action.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	_state.switch(States.DEAD)
+
+
 ## Public methods ##
 
 
 func damage(damage_data : Damage) -> void:
 	_last_damage_time = OS.get_ticks_msec()
 	_health -= damage_data.amount
-	if _health <= 0.0:
+	if _health <= 0.0 and is_alive():
 		die()
 
 
 func die() -> void:
-	_health = _MAX_HEALTH
-	global_translation = _spawn_pos
+#	global_translation = _spawn_pos
+	_state.switch(States.DEAD_PAUSE)
+
+
+func is_alive() -> bool:
+	return not _state.matches_any([States.DEAD, States.DEAD_PAUSE])

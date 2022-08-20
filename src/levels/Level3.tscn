@@ -78,38 +78,25 @@ extents = Vector3( 72, 1, 54 )
 [sub_resource type="Resource" id=11]
 script = ExtResource( 10 )
 base = 3
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=21]
 script = ExtResource( 10 )
 base = 0
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 10 )
 base = 3
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 10 )
 base = 1
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 10 )
 base = 0
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 10 )
-base = 2
-secondaries = [  ]
-secondary_idx = 0
 
 [node name="Level3" type="Spatial"]
 

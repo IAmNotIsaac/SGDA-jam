@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/scripts/damage.gd"
 }, {
+"base": "Reference",
+"class": "DeathAction",
+"language": "GDScript",
+"path": "res://src/scripts/death_action.gd"
+}, {
+"base": "Button",
+"class": "DeathButton",
+"language": "GDScript",
+"path": "res://src/scripts/death_button.gd"
+}, {
 "base": "StaticBody",
 "class": "Door",
 "language": "GDScript",
@@ -52,6 +62,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Bullet": "",
 "Damage": "",
+"DeathAction": "",
+"DeathButton": "",
 "Door": "",
 "Enemey": "",
 "Gun": "",

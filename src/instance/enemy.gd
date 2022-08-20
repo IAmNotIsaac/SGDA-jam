@@ -110,12 +110,13 @@ func _shoot_at_player(alt : bool) -> void:
 
 
 func _shoot_if_can() -> void:
-	_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
-	if _n_player_cast.get_collider() == _player:
-		if _gun.can_shoot_base():
-			_shoot_at_player(false)
-		else:
-			_shoot_at_player(true)
+	if _player.is_alive():
+		_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
+		if _n_player_cast.get_collider() == _player:
+			if _gun.can_shoot_base():
+				_shoot_at_player(false)
+			else:
+				_shoot_at_player(true)
 
 
 func _on_agent_navfinished() -> void:
@@ -232,3 +233,7 @@ func damage(damage_data : Damage) -> void:
 
 func die() -> void:
 	queue_free()
+
+
+func can_see_player() -> bool:
+	return _n_player_cast.get_collider() == _player

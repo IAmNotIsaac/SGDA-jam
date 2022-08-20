@@ -2,6 +2,7 @@ extends Spatial
 
 
 signal _physics_process
+signal explosion_complete
 
 onready var _n_explosion := $Explosion
 onready var _n_smoke := $Smoke
@@ -14,7 +15,7 @@ func _physics_process(_delta : float) -> void:
 	emit_signal("_physics_process")
 
 
-func explode(size : float) -> void:
+func explode(size : float, ignore : PhysicsBody = null) -> void:
 	_n_collision.shape = _n_collision.shape.duplicate()
 	_n_collision.shape.radius = size
 	
@@ -23,12 +24,13 @@ func explode(size : float) -> void:
 		yield(get_tree(), "physics_frame")
 	
 	for body in _n_damage_zone.get_overlapping_bodies():
-		if body.is_in_group("entity"):
-			var distance_factor : float = max(0.0, 1.0 - (body.global_translation.distance_to(global_translation) / size))
-			var amount : float = 125.0 * distance_factor
-			body.damage(Damage.new(
-				Damage.Type.ExplosionDamage.GRENADE, amount
-			))
+		if body != ignore:
+			if body.is_in_group("entity"):
+				var distance_factor : float = max(0.0, 1.0 - (body.global_translation.distance_to(global_translation) / size))
+				var amount : float = 125.0 * distance_factor
+				body.damage(Damage.new(
+					Damage.Type.ExplosionDamage.GRENADE, amount
+				))
 	
 	_n_explosion.mesh = _n_explosion.mesh.duplicate()
 	_n_explosion.mesh.material = _n_explosion.mesh.material.duplicate()
@@ -50,4 +52,7 @@ func explode(size : float) -> void:
 	_n_tween.interpolate_property(_n_smoke.mesh.material, "albedo_color:a", 0.5, 0.0, 0.19, 0, 2, 0.7)
 	_n_tween.start()
 	
-	var _e := _n_tween.connect("tween_all_completed", self, "queue_free")
+	yield(_n_tween, "tween_all_completed")
+	
+	emit_signal("explosion_complete")
+	queue_free()
