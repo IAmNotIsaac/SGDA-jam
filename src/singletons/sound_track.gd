@@ -29,12 +29,18 @@ func play(song : int, layers : PoolIntArray) -> void:
 		for t in l:
 			t.play()
 			if i in layers:
-				t.volume_db = linear2db(0.1)
+				t.volume_db = linear2db(Settings.music)
 			else:
 				t.volume_db = linear2db(0.0)
 		i += 1
 	
 	now_playing = song
+
+
+func stop() -> void:
+	for l in _tracks[now_playing]:
+		for t in l:
+			t.stop()
 
 
 func activate_layers(song : int, layers : PoolIntArray) -> void:
@@ -44,7 +50,7 @@ func activate_layers(song : int, layers : PoolIntArray) -> void:
 			if i in layers:
 				for t in l:
 					t.volume_db = linear2db(0.01)
-					var _e := get_tree().create_tween().tween_property(t, "volume_db", linear2db(0.1), 1.0)
+					var _e := get_tree().create_tween().tween_property(t, "volume_db", linear2db(Settings.music), 1.0)
 			i += 1
 
 
@@ -54,6 +60,6 @@ func deactivate_layers(song : int, layers : PoolIntArray) -> void:
 		for l in _tracks[song]:
 			if i in layers:
 				for t in l:
-					t.volume_db = linear2db(0.1)
+					t.volume_db = linear2db(Settings.music)
 					var _e := get_tree().create_tween().tween_property(t, "volume_db", linear2db(0.0), 1.0)
 			i += 1

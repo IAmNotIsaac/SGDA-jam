@@ -36,6 +36,7 @@ var _target_camera_tilt := 0.0
 var _action := DeathAction.new(DeathAction.Type.NONE)
 var _spawn_pos := translation
 var _spawn_rot := rotation.y
+var _enemies := []
 
 var speed_factor := 1.0
 
@@ -73,10 +74,9 @@ func _ready() -> void:
 	_spawn_rot = rotation.y
 	rotation.y = 0.0
 	_spawn()
-#	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
-#	yield(get_tree().create_timer(2.0), "timeout")
-#	SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [1])
-#	SoundTrack.deactivate_layers(SoundTrack.Songs.KILLER, [0])
+	
+	SoundTrack.deactivate_layers(SoundTrack.Songs.KILLER, [1])
+	SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [0])
 
 
 func _input(event : InputEvent) -> void:
@@ -351,3 +351,25 @@ func die() -> void:
 
 func is_alive() -> bool:
 	return not _state.matches_any([States.DEAD, States.DEAD_PAUSE])
+
+
+func add_enemies(enemies : Array) -> void:
+	if len(_enemies) == 0 and len(enemies) >= 1:
+		SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [1])
+		SoundTrack.deactivate_layers(SoundTrack.Songs.KILLER, [0])
+	
+	for enemy in enemies:
+		if not has_enemy(enemy):
+			_enemies.append(enemy)
+
+
+func remove_enemy(enemy) -> void:
+	_enemies.erase(enemy)
+	
+	if len(_enemies) == 0:
+		SoundTrack.deactivate_layers(SoundTrack.Songs.KILLER, [1])
+		SoundTrack.activate_layers(SoundTrack.Songs.KILLER, [0])
+
+
+func has_enemy(enemy) -> bool:
+	return _enemies.has(enemy)

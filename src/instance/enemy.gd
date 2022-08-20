@@ -1,4 +1,4 @@
-class_name Enemey
+class_name Enemy
 extends KinematicBody
 
 
@@ -80,6 +80,9 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	_state.process(delta)
+	
+	if not _player.has_enemy(self) and can_see_player():
+		_player.add_enemies([self])
 
 
 func _look_at_player() -> void:
@@ -277,6 +280,8 @@ func die() -> void:
 	
 	get_parent().add_child(ragdoll)
 	ragdoll.global_translation = global_translation
+	
+	_player.remove_enemy(self)
 	
 	queue_free()
 

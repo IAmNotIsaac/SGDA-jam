@@ -35,7 +35,7 @@ _global_script_classes=[ {
 "path": "res://src/instance/door.gd"
 }, {
 "base": "KinematicBody",
-"class": "Enemey",
+"class": "Enemy",
 "language": "GDScript",
 "path": "res://src/instance/enemy.gd"
 }, {
@@ -65,7 +65,7 @@ _global_script_class_icons={
 "DeathAction": "",
 "DeathButton": "",
 "Door": "",
-"Enemey": "",
+"Enemy": "",
 "Gun": "",
 "Player": "",
 "StateMachine": "",

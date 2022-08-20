@@ -12,11 +12,13 @@ func _process(_delta : float) -> void:
 
 
 func _ready() -> void:
+	SoundTrack.stop()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_n_play_button.grab_focus()
 
 
 func _on_PlayButton_pressed() -> void:
+	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
 	LevelSwitcher.load_level(LevelSwitcher.LEVELS[Settings.level])
 
 
