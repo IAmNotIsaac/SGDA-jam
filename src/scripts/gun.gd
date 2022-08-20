@@ -27,11 +27,11 @@ const _FULL_AUTOS := [
 	GunTypes.INSTAKILL
 ]
 const _ACTIONS := {
-	GunTypes.SHOTGUN: DeathAction.Type.BULLET_EXPLOSION,
-	GunTypes.REVOLVER: DeathAction.Type.RANDOM_KO,
-	GunTypes.PISTOL: DeathAction.Type.NONE,
-	GunTypes.MINIGUN: DeathAction.Type.SPEED_BUFF,
-	GunTypes.GRENADE_LAUNCHER: DeathAction.Type.EXPLODE
+	GunTypes.SHOTGUN: 2,#DeathAction.Type.BULLET_EXPLOSION,
+	GunTypes.REVOLVER: 3,#DeathAction.Type.RANDOM_KO,
+	GunTypes.PISTOL: 0,#DeathAction.Type.NONE,
+	GunTypes.MINIGUN: 4,#DeathAction.Type.SPEED_BUFF,
+	GunTypes.GRENADE_LAUNCHER: 1,#DeathAction.Type.EXPLODE
 }
 
 export(GunTypes) var base : int = GunTypes.PISTOL
