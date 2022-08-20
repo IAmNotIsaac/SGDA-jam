@@ -10,6 +10,10 @@ enum ShotTypes {
 	INSTAKILL
 }
 
+const _Explosion := preload("res://src/instance/Explosion.tscn")
+
+const _EXPLOSION_SIZE := 4.0
+
 const SHOT_DATA := {
 	ShotTypes.SHOTGUN: {
 		"distance": 10.0,
@@ -86,6 +90,15 @@ func shoot(type : int) -> void:
 				SHOT_DATA[type]["dmgtype"],
 				SHOT_DATA[type]["damage"]
 			))
+		
+		
+		if Settings.explosion_mode:
+			var explosion := _Explosion.instance()
+			
+			get_parent().add_child(explosion)
+			
+			explosion.global_translation = _n_ray.get_collision_point()
+			explosion.explode(_EXPLOSION_SIZE)
 	
 	else:
 		_n_mesh.translation = _n_ray.cast_to / 2.0

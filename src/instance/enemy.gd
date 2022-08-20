@@ -93,16 +93,16 @@ func _shoot_at_player(alt : bool) -> void:
 		var w : float = _n_player_cast.cast_to.z
 		#	var h : float = _n_player_cast.cast_to.y
 		var d : float = _n_player_cast.cast_to.x
-		var r : float = atan2(d, w) + rand_range(0.0, _ACCURACY_FACTORS[_accuracy_mode]) * [1, -1][randi() % 2]
-
+		var r : float = atan2(d, w) + rand_range(0.0, _ACCURACY_FACTORS[_accuracy_mode]) * [1, -1][randi() % 2] * int(not Settings.super_difficult_enemies_mode)
+		
 		var f1 : bool = _gun.has_alt() and alt and not _gun.is_alt_auto()
 		var f2 : bool = not alt and not _gun.is_base_auto()
-
-		if f1 or f2:
+		
+		if not Settings.super_difficult_enemies_mode and (f1 or f2):
 			_permitted_shoot_time = OS.get_ticks_msec() / 1000.0 + rand_range(_REACTION_FACTORS[_reaction_mode][0], _REACTION_FACTORS[_reaction_mode][1])
-
+		
 		var dist := global_translation.distance_to(_player.global_translation)
-
+		
 		match alt:
 			true:
 				if dist <= _gun.get_alt_bullet_distance():

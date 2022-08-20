@@ -21,25 +21,24 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.1
-anchor_right = 0.95
-anchor_bottom = 0.9
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -578.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_right = 864.0
-margin_bottom = 758.0
+margin_right = 578.0
+margin_bottom = 974.0
 rect_pivot_offset = Vector2( -1610, -597 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 69.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 49.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -47,8 +46,9 @@ text = "Mouse Look sensitivity"
 align = 2
 
 [node name="SensitivitySlider" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 53.0
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 69.0
 min_value = 0.1
 max_value = 2.0
@@ -58,12 +58,12 @@ tick_count = 20
 ticks_on_borders = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 109.0
-margin_right = 864.0
-margin_bottom = 178.0
+margin_top = 73.0
+margin_right = 578.0
+margin_bottom = 142.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 49.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -71,8 +71,9 @@ text = "Controller Look sensitivity"
 align = 2
 
 [node name="ControllerSensitivitySlider" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 margin_top = 53.0
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 69.0
 min_value = 1.0
 max_value = 8.0
@@ -82,12 +83,12 @@ tick_count = 8
 ticks_on_borders = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 218.0
-margin_right = 864.0
-margin_bottom = 311.0
+margin_top = 146.0
+margin_right = 578.0
+margin_bottom = 239.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
-margin_right = 864.0
+margin_right = 578.0
 margin_bottom = 49.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -95,18 +96,99 @@ text = "Developer mode"
 align = 2
 
 [node name="DeveloperModeCheckButton" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
 margin_top = 53.0
-margin_right = 864.0
+margin_right = 578.0
+margin_bottom = 93.0
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 243.0
+margin_right = 578.0
+margin_bottom = 336.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer4"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "super fast mode"
+align = 2
+
+[node name="SuperFastMode" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
+margin_bottom = 93.0
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 340.0
+margin_right = 578.0
+margin_bottom = 433.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer5"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "very difficult enemies"
+align = 2
+
+[node name="VeryDifficultEnemies" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer5"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
+margin_bottom = 93.0
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 437.0
+margin_right = 578.0
+margin_bottom = 530.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer6"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "God mode"
+align = 2
+
+[node name="GodMode" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer6"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
+margin_bottom = 93.0
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 534.0
+margin_right = 578.0
+margin_bottom = 627.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer7"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "Explosion mode"
+align = 2
+
+[node name="ExplosionMode" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer7"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
 margin_bottom = 93.0
 
 [node name="ReturnButton" type="Button" parent="VBoxContainer"]
-margin_top = 762.0
-margin_right = 864.0
-margin_bottom = 864.0
+margin_top = 978.0
+margin_right = 578.0
+margin_bottom = 1080.0
 custom_fonts/font = SubResource( 2 )
 text = "Return"
 
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer2/ControllerSensitivitySlider" to="." method="_on_ControllerSensitivitySlider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer3/DeveloperModeCheckButton" to="." method="_on_DeveloperModeCheckButton_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer4/SuperFastMode" to="." method="_on_SuperFastMode_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer5/VeryDifficultEnemies" to="." method="_on_VeryDifficultEnemies_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer6/GodMode" to="." method="_on_GodMode_toggled"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer7/ExplosionMode" to="." method="_on_ExplosionMode_toggled"]
 [connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]

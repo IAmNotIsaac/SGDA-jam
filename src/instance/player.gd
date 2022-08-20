@@ -22,6 +22,7 @@ const _MAX_HEALTH := 100.0
 const _HEAL_RATE := 20.0 # health per second
 const _HOLD_HEALTH_TIME := 2000 # measured in milliseconds
 const _WALLRUN_CAM_TILT := 5.0
+const _FAST_SPEED := 1.5
 
 export(Resource) var _gun = Gun.new()
 
@@ -174,7 +175,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 	
 	var move_forward = Vector3(sin(theta) * input.y, 0.0, cos(theta) * input.y)
 	var move_strafe = Vector3(cos(-theta) * input.x, 0.0, sin(-theta) * input.x)
-	_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED * speed_factor
+	_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0)
 	
 	_velocity = move_and_slide(_velocity)
 	
@@ -210,9 +211,9 @@ func _sp_AIR(delta : float) -> void:
 	var accel := _GRAVITY * delta
 	
 	_velocity = Vector3(
-		clamp(_velocity.x + (move_forward.x + move_strafe.x) * _AIR_FRICTION, -_RUN_SPEED * speed_factor, _RUN_SPEED * speed_factor),
+		clamp(_velocity.x + (move_forward.x + move_strafe.x) * _AIR_FRICTION, -_RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0), _RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0)),
 		_velocity.y - accel,
-		clamp(_velocity.z + (move_forward.z + move_strafe.z) * _AIR_FRICTION, -_RUN_SPEED * speed_factor, _RUN_SPEED * speed_factor)
+		clamp(_velocity.z + (move_forward.z + move_strafe.z) * _AIR_FRICTION, -_RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0), _RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0))
 	)
 	var impact_vel := _velocity.y
 	
@@ -334,6 +335,9 @@ func _sl_DEAD_PAUSE() -> void:
 
 
 func damage(damage_data : Damage) -> void:
+	if Settings.god_mode:
+		return
+	
 	_last_damage_time = OS.get_ticks_msec()
 	_health -= damage_data.amount
 	if _health <= 0.0 and is_alive():
