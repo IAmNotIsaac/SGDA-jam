@@ -96,7 +96,8 @@ func _physics_process(delta : float) -> void:
 	_shoot()
 	_health_stuff(delta)
 	_camera_tilt()
-	$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
+	if _gun.get_secondaries():
+		$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
 
 
 func _controller_look() -> void:
