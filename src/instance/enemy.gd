@@ -143,6 +143,11 @@ func _sp_DEFAULT(_delta : float) -> void:
 		MovementMode.STATIC:
 			_shoot_if_can()
 			_look_at_player()
+			
+			if can_see_player():
+				_n_anim.play("IdleAim")
+			else:
+				_n_anim.play("Idle")
 		
 		
 		MovementMode.SCARED:

@@ -1,0 +1,25 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/Level1.exr-3adb8c124a152e73bbfb36697de100a2.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://src/levels/Level1.exr"
+dest_files=[ "res://.import/Level1.exr-3adb8c124a152e73bbfb36697de100a2.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=false
+slices/horizontal=1
+slices/vertical=1
