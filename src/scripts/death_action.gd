@@ -9,10 +9,17 @@ enum Type {
 
 const _ACTION_NAMES := {
 	Type.NONE: "None",
-	Type.EXPLODE: "Explode",
-	Type.BULLET_EXPLOSION: "Bullet Explosion",
-	Type.RANDOM_KO: "Head-shot",
-	Type.SPEED_BUFF: "Increased speed"
+	Type.EXPLODE: "Sore Loser",
+	Type.BULLET_EXPLOSION: "Chancin' It",
+	Type.RANDOM_KO: "Head-Shot",
+	Type.SPEED_BUFF: "New Shoes"
+}
+const _ACTION_HINTS := {
+	Type.NONE: "No benefit.",
+	Type.EXPLODE: "Explode right here, right now.",
+	Type.BULLET_EXPLOSION: "Insta-kill bullets in every direction.",
+	Type.RANDOM_KO: "Insta-kill a random enemy, so long as it's in sight.",
+	Type.SPEED_BUFF: "Move faster for your next life."
 }
 
 const _Explosion := preload("res://src/instance/Explosion.tscn")
@@ -75,5 +82,10 @@ func act(tree : SceneTree, player) -> void:
 	
 	emit_signal("action_complete")
 
+
 static func get_action_name(type : int) -> String:
 	return _ACTION_NAMES[type]
+
+
+static func get_action_hint(type : int) -> String:
+	return _ACTION_HINTS[type]
