@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=2]
 
-[ext_resource path="res://assets/models/levels/level3.dae" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/levels/level3/level3.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/textures/city.png" type="Texture" id=5]
@@ -38,21 +38,21 @@ vertices = PoolVector3Array( -57.4006, 1, -24.8294, -54.6506, 1, -25.0794, -54.6
 polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 9, 8, 10 ), PoolIntArray( 10, 8, 11 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 15, 12, 17 ), PoolIntArray( 15, 17, 16 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 22, 21, 23 ), PoolIntArray( 23, 21, 24 ), PoolIntArray( 27, 26, 25 ), PoolIntArray( 28, 32, 29 ), PoolIntArray( 29, 32, 30 ), PoolIntArray( 30, 32, 31 ), PoolIntArray( 36, 35, 33 ), PoolIntArray( 33, 35, 34 ), PoolIntArray( 40, 39, 37 ), PoolIntArray( 37, 39, 38 ), PoolIntArray( 44, 43, 41 ), PoolIntArray( 41, 43, 42 ), PoolIntArray( 47, 46, 45 ), PoolIntArray( 50, 49, 48 ), PoolIntArray( 52, 51, 53 ), PoolIntArray( 53, 51, 54 ), PoolIntArray( 57, 56, 55 ), PoolIntArray( 59, 58, 60 ), PoolIntArray( 60, 58, 62 ), PoolIntArray( 60, 62, 61 ), PoolIntArray( 64, 63, 65 ), PoolIntArray( 65, 63, 66 ), PoolIntArray( 66, 63, 67 ), PoolIntArray( 70, 69, 68 ), PoolIntArray( 73, 72, 71 ), PoolIntArray( 75, 74, 76 ), PoolIntArray( 76, 74, 77 ), PoolIntArray( 79, 78, 80 ), PoolIntArray( 80, 78, 81 ), PoolIntArray( 81, 78, 82 ), PoolIntArray( 85, 84, 83 ), PoolIntArray( 87, 86, 88 ), PoolIntArray( 88, 86, 89 ), PoolIntArray( 92, 91, 90 ), PoolIntArray( 94, 93, 95 ), PoolIntArray( 95, 93, 98 ), PoolIntArray( 95, 98, 96 ), PoolIntArray( 96, 98, 97 ), PoolIntArray( 100, 99, 101 ), PoolIntArray( 101, 99, 102 ), PoolIntArray( 102, 99, 104 ), PoolIntArray( 102, 104, 103 ), PoolIntArray( 105, 110, 106 ), PoolIntArray( 106, 110, 109 ), PoolIntArray( 106, 109, 108 ), PoolIntArray( 106, 108, 107 ), PoolIntArray( 113, 112, 111 ), PoolIntArray( 116, 115, 114 ), PoolIntArray( 120, 119, 117 ), PoolIntArray( 117, 119, 118 ), PoolIntArray( 122, 121, 123 ), PoolIntArray( 123, 121, 124 ), PoolIntArray( 126, 125, 127 ), PoolIntArray( 127, 125, 129 ), PoolIntArray( 127, 129, 128 ), PoolIntArray( 131, 130, 132 ), PoolIntArray( 132, 130, 133 ), PoolIntArray( 133, 130, 134 ), PoolIntArray( 136, 135, 137 ), PoolIntArray( 137, 135, 138 ), PoolIntArray( 142, 141, 139 ), PoolIntArray( 139, 141, 140 ), PoolIntArray( 144, 143, 145 ), PoolIntArray( 150, 149, 151 ), PoolIntArray( 151, 149, 148 ), PoolIntArray( 151, 148, 147 ), PoolIntArray( 151, 147, 146 ), PoolIntArray( 153, 152, 154 ), PoolIntArray( 154, 152, 155 ), PoolIntArray( 156, 159, 157 ), PoolIntArray( 157, 159, 158 ), PoolIntArray( 161, 160, 162 ), PoolIntArray( 162, 160, 163 ), PoolIntArray( 163, 160, 164 ), PoolIntArray( 166, 165, 167 ), PoolIntArray( 167, 165, 168 ), PoolIntArray( 170, 169, 171 ), PoolIntArray( 171, 169, 172 ), PoolIntArray( 173, 178, 174 ), PoolIntArray( 174, 178, 175 ), PoolIntArray( 175, 178, 176 ), PoolIntArray( 176, 178, 177 ), PoolIntArray( 181, 180, 179 ), PoolIntArray( 184, 183, 182 ), PoolIntArray( 187, 186, 185 ), PoolIntArray( 190, 189, 188 ), PoolIntArray( 193, 192, 191 ), PoolIntArray( 196, 195, 194 ), PoolIntArray( 198, 197, 199 ), PoolIntArray( 199, 197, 200 ), PoolIntArray( 203, 202, 201 ), PoolIntArray( 206, 205, 204 ), PoolIntArray( 208, 207, 209 ), PoolIntArray( 209, 207, 212 ), PoolIntArray( 209, 212, 211 ), PoolIntArray( 209, 211, 210 ), PoolIntArray( 216, 215, 213 ), PoolIntArray( 213, 215, 214 ), PoolIntArray( 218, 217, 219 ), PoolIntArray( 219, 217, 220 ), PoolIntArray( 224, 223, 225 ), PoolIntArray( 225, 223, 222 ), PoolIntArray( 225, 222, 221 ), PoolIntArray( 228, 227, 226 ), PoolIntArray( 230, 229, 231 ), PoolIntArray( 231, 229, 234 ), PoolIntArray( 231, 234, 232 ), PoolIntArray( 232, 234, 233 ), PoolIntArray( 240, 239, 235 ), PoolIntArray( 235, 239, 238 ), PoolIntArray( 235, 238, 236 ), PoolIntArray( 236, 238, 237 ), PoolIntArray( 242, 241, 243 ), PoolIntArray( 243, 241, 244 ), PoolIntArray( 244, 241, 245 ), PoolIntArray( 247, 246, 248 ), PoolIntArray( 248, 246, 249 ), PoolIntArray( 252, 251, 250 ), PoolIntArray( 256, 255, 253 ), PoolIntArray( 253, 255, 254 ), PoolIntArray( 258, 257, 259 ), PoolIntArray( 259, 257, 262 ), PoolIntArray( 259, 262, 260 ), PoolIntArray( 260, 262, 261 ), PoolIntArray( 264, 263, 265 ), PoolIntArray( 265, 263, 266 ), PoolIntArray( 269, 268, 267 ), PoolIntArray( 271, 270, 272 ), PoolIntArray( 272, 270, 273 ), PoolIntArray( 276, 275, 274 ), PoolIntArray( 279, 278, 277 ), PoolIntArray( 283, 282, 280 ), PoolIntArray( 280, 282, 281 ), PoolIntArray( 286, 285, 284 ), PoolIntArray( 288, 287, 289 ), PoolIntArray( 289, 287, 290 ), PoolIntArray( 290, 287, 291 ), PoolIntArray( 291, 287, 292 ), PoolIntArray( 296, 295, 293 ), PoolIntArray( 293, 295, 294 ), PoolIntArray( 297, 301, 298 ), PoolIntArray( 298, 301, 300 ), PoolIntArray( 298, 300, 299 ), PoolIntArray( 303, 302, 304 ), PoolIntArray( 304, 302, 305 ), PoolIntArray( 308, 307, 306 ), PoolIntArray( 311, 310, 309 ), PoolIntArray( 313, 312, 314 ), PoolIntArray( 314, 312, 315 ), PoolIntArray( 319, 318, 316 ), PoolIntArray( 316, 318, 317 ), PoolIntArray( 321, 320, 322 ), PoolIntArray( 322, 320, 323 ), PoolIntArray( 325, 324, 326 ), PoolIntArray( 326, 324, 327 ), PoolIntArray( 327, 324, 328 ), PoolIntArray( 330, 329, 331 ), PoolIntArray( 331, 329, 332 ), PoolIntArray( 333, 336, 334 ), PoolIntArray( 334, 336, 335 ), PoolIntArray( 340, 339, 341 ), PoolIntArray( 341, 339, 337 ), PoolIntArray( 337, 339, 338 ), PoolIntArray( 343, 342, 344 ), PoolIntArray( 344, 342, 345 ), PoolIntArray( 349, 348, 346 ), PoolIntArray( 346, 348, 347 ), PoolIntArray( 353, 352, 350 ), PoolIntArray( 350, 352, 351 ), PoolIntArray( 354, 358, 355 ), PoolIntArray( 355, 358, 357 ), PoolIntArray( 355, 357, 356 ), PoolIntArray( 361, 360, 362 ), PoolIntArray( 362, 360, 359 ), PoolIntArray( 366, 365, 363 ), PoolIntArray( 363, 365, 364 ), PoolIntArray( 368, 367, 369 ), PoolIntArray( 369, 367, 370 ), PoolIntArray( 372, 371, 373 ), PoolIntArray( 373, 371, 374 ), PoolIntArray( 374, 371, 375 ), PoolIntArray( 377, 376, 378 ), PoolIntArray( 378, 376, 379 ), PoolIntArray( 381, 380, 382 ), PoolIntArray( 384, 383, 385 ), PoolIntArray( 385, 383, 386 ), PoolIntArray( 389, 388, 387 ), PoolIntArray( 391, 390, 392 ), PoolIntArray( 392, 390, 393 ), PoolIntArray( 393, 390, 394 ), PoolIntArray( 398, 397, 395 ), PoolIntArray( 395, 397, 396 ), PoolIntArray( 400, 399, 401 ), PoolIntArray( 401, 399, 402 ), PoolIntArray( 405, 404, 403 ), PoolIntArray( 408, 407, 406 ), PoolIntArray( 411, 410, 412 ), PoolIntArray( 412, 410, 409 ), PoolIntArray( 416, 415, 413 ), PoolIntArray( 413, 415, 414 ), PoolIntArray( 418, 417, 419 ), PoolIntArray( 419, 417, 420 ), PoolIntArray( 420, 417, 421 ), PoolIntArray( 423, 422, 424 ), PoolIntArray( 424, 422, 425 ), PoolIntArray( 427, 426, 428 ), PoolIntArray( 428, 426, 429 ), PoolIntArray( 432, 431, 430 ), PoolIntArray( 435, 434, 433 ), PoolIntArray( 439, 438, 436 ), PoolIntArray( 436, 438, 437 ), PoolIntArray( 440, 445, 441 ), PoolIntArray( 441, 445, 442 ), PoolIntArray( 442, 445, 443 ), PoolIntArray( 443, 445, 444 ), PoolIntArray( 449, 448, 446 ), PoolIntArray( 446, 448, 447 ), PoolIntArray( 453, 452, 450 ), PoolIntArray( 450, 452, 451 ), PoolIntArray( 456, 455, 454 ), PoolIntArray( 459, 458, 457 ), PoolIntArray( 461, 460, 462 ), PoolIntArray( 462, 460, 463 ), PoolIntArray( 469, 468, 464 ), PoolIntArray( 464, 468, 465 ), PoolIntArray( 465, 468, 466 ), PoolIntArray( 466, 468, 467 ), PoolIntArray( 472, 471, 470 ), PoolIntArray( 475, 474, 473 ), PoolIntArray( 479, 478, 476 ), PoolIntArray( 476, 478, 477 ), PoolIntArray( 482, 481, 480 ), PoolIntArray( 485, 484, 483 ), PoolIntArray( 489, 488, 486 ), PoolIntArray( 486, 488, 487 ), PoolIntArray( 493, 492, 490 ), PoolIntArray( 490, 492, 491 ), PoolIntArray( 497, 496, 494 ), PoolIntArray( 494, 496, 495 ), PoolIntArray( 501, 500, 498 ), PoolIntArray( 498, 500, 499 ), PoolIntArray( 503, 502, 504 ), PoolIntArray( 504, 502, 507 ), PoolIntArray( 504, 507, 506 ), PoolIntArray( 504, 506, 505 ), PoolIntArray( 511, 510, 508 ), PoolIntArray( 508, 510, 509 ), PoolIntArray( 515, 514, 512 ), PoolIntArray( 512, 514, 513 ), PoolIntArray( 519, 518, 516 ), PoolIntArray( 516, 518, 517 ), PoolIntArray( 523, 522, 520 ), PoolIntArray( 520, 522, 521 ), PoolIntArray( 525, 524, 526 ), PoolIntArray( 526, 524, 527 ), PoolIntArray( 531, 530, 528 ), PoolIntArray( 528, 530, 529 ), PoolIntArray( 535, 534, 532 ), PoolIntArray( 532, 534, 533 ), PoolIntArray( 538, 537, 536 ), PoolIntArray( 541, 540, 539 ), PoolIntArray( 543, 542, 544 ), PoolIntArray( 544, 542, 545 ), PoolIntArray( 547, 546, 548 ), PoolIntArray( 548, 546, 549 ), PoolIntArray( 549, 546, 550 ), PoolIntArray( 554, 553, 551 ), PoolIntArray( 551, 553, 552 ), PoolIntArray( 557, 556, 555 ), PoolIntArray( 559, 558, 560 ), PoolIntArray( 560, 558, 561 ), PoolIntArray( 563, 562, 564 ), PoolIntArray( 564, 562, 565 ), PoolIntArray( 568, 567, 566 ), PoolIntArray( 570, 569, 571 ), PoolIntArray( 571, 569, 572 ), PoolIntArray( 575, 574, 573 ), PoolIntArray( 577, 576, 578 ), PoolIntArray( 578, 576, 579 ), PoolIntArray( 581, 580, 582 ), PoolIntArray( 582, 580, 583 ), PoolIntArray( 585, 584, 586 ), PoolIntArray( 586, 584, 587 ), PoolIntArray( 589, 588, 590 ), PoolIntArray( 590, 588, 591 ), PoolIntArray( 594, 593, 592 ), PoolIntArray( 596, 595, 597 ), PoolIntArray( 597, 595, 598 ), PoolIntArray( 600, 599, 601 ), PoolIntArray( 601, 599, 602 ), PoolIntArray( 605, 604, 603 ), PoolIntArray( 607, 606, 608 ), PoolIntArray( 608, 606, 611 ), PoolIntArray( 608, 611, 609 ), PoolIntArray( 609, 611, 610 ), PoolIntArray( 614, 613, 612 ), PoolIntArray( 616, 615, 617 ), PoolIntArray( 617, 615, 618 ), PoolIntArray( 622, 621, 619 ), PoolIntArray( 619, 621, 620 ), PoolIntArray( 626, 625, 623 ), PoolIntArray( 623, 625, 624 ), PoolIntArray( 630, 629, 627 ), PoolIntArray( 627, 629, 628 ), PoolIntArray( 634, 633, 631 ), PoolIntArray( 631, 633, 632 ), PoolIntArray( 638, 637, 635 ), PoolIntArray( 635, 637, 636 ), PoolIntArray( 642, 641, 639 ), PoolIntArray( 639, 641, 640 ), PoolIntArray( 644, 643, 645 ), PoolIntArray( 645, 643, 646 ), PoolIntArray( 648, 647, 649 ), PoolIntArray( 649, 647, 651 ), PoolIntArray( 649, 651, 650 ), PoolIntArray( 654, 653, 652 ), PoolIntArray( 656, 655, 657 ), PoolIntArray( 657, 655, 658 ), PoolIntArray( 660, 659, 661 ), PoolIntArray( 661, 659, 662 ), PoolIntArray( 665, 664, 663 ), PoolIntArray( 667, 666, 668 ), PoolIntArray( 668, 666, 669 ), PoolIntArray( 672, 671, 670 ), PoolIntArray( 674, 673, 675 ), PoolIntArray( 675, 673, 676 ), PoolIntArray( 679, 678, 680 ), PoolIntArray( 680, 678, 677 ), PoolIntArray( 680, 677, 681 ), PoolIntArray( 681, 677, 682 ), PoolIntArray( 685, 684, 686 ), PoolIntArray( 686, 684, 683 ), PoolIntArray( 689, 688, 690 ), PoolIntArray( 690, 688, 687 ), PoolIntArray( 690, 687, 692 ), PoolIntArray( 690, 692, 691 ), PoolIntArray( 695, 694, 693 ), PoolIntArray( 698, 697, 696 ), PoolIntArray( 701, 700, 699 ), PoolIntArray( 703, 702, 704 ), PoolIntArray( 704, 702, 705 ), PoolIntArray( 706, 710, 707 ), PoolIntArray( 707, 710, 708 ), PoolIntArray( 708, 710, 709 ), PoolIntArray( 712, 711, 713 ), PoolIntArray( 713, 711, 715 ), PoolIntArray( 713, 715, 714 ), PoolIntArray( 717, 716, 718 ), PoolIntArray( 718, 716, 719 ), PoolIntArray( 720, 722, 721 ), PoolIntArray( 723, 725, 724 ), PoolIntArray( 731, 730, 726 ), PoolIntArray( 726, 730, 729 ), PoolIntArray( 726, 729, 728 ), PoolIntArray( 726, 728, 727 ), PoolIntArray( 735, 734, 732 ), PoolIntArray( 732, 734, 733 ), PoolIntArray( 738, 737, 736 ), PoolIntArray( 741, 740, 739 ), PoolIntArray( 743, 742, 744 ), PoolIntArray( 744, 742, 745 ), PoolIntArray( 748, 747, 746 ), PoolIntArray( 751, 750, 749 ), PoolIntArray( 753, 752, 754 ), PoolIntArray( 754, 752, 755 ), PoolIntArray( 757, 756, 758 ), PoolIntArray( 758, 756, 759 ), PoolIntArray( 762, 761, 760 ), PoolIntArray( 764, 763, 765 ), PoolIntArray( 765, 763, 767 ), PoolIntArray( 765, 767, 766 ), PoolIntArray( 769, 768, 770 ), PoolIntArray( 770, 768, 771 ), PoolIntArray( 774, 773, 772 ), PoolIntArray( 777, 776, 778 ), PoolIntArray( 778, 776, 775 ), PoolIntArray( 778, 775, 779 ), PoolIntArray( 783, 782, 780 ), PoolIntArray( 780, 782, 781 ), PoolIntArray( 787, 786, 784 ), PoolIntArray( 784, 786, 785 ), PoolIntArray( 791, 790, 788 ), PoolIntArray( 788, 790, 789 ), PoolIntArray( 793, 792, 794 ), PoolIntArray( 794, 792, 795 ), PoolIntArray( 799, 798, 796 ), PoolIntArray( 796, 798, 797 ), PoolIntArray( 803, 802, 800 ), PoolIntArray( 800, 802, 801 ) ]
 cell_height = 0.5
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=24]
 flags_transparent = true
 albedo_texture = ExtResource( 8 )
 uv1_scale = Vector3( 3, 5, 1 )
 
 [sub_resource type="PlaneMesh" id=7]
-material = SubResource( 6 )
+material = SubResource( 24 )
 size = Vector2( 3, 6 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=25]
 albedo_texture = ExtResource( 9 )
 uv1_scale = Vector3( -5.947, 0.109, 1 )
 
 [sub_resource type="CubeMesh" id=10]
-material = SubResource( 9 )
+material = SubResource( 25 )
 size = Vector3( 6, 0.1, 0.1 )
 
 [sub_resource type="BoxShape" id=8]
@@ -283,7 +283,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink"]
@@ -303,7 +302,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink2"]
@@ -323,7 +321,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink3"]
@@ -343,7 +340,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink4"]
@@ -363,7 +359,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink5"]
@@ -383,7 +378,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink6"]
@@ -403,7 +397,6 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Physical/Chainlink7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 7 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Level/Physical/Chainlink7"]
