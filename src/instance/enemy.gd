@@ -62,6 +62,8 @@ var _permitted_shoot_time := 0.0
 
 onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
+onready var _n_model := $robot
+onready var _n_anim := $robot/AnimationPlayer
 onready var _n_path_points := get_node_or_null(_path_points_path)
 
 
@@ -75,6 +77,12 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	_state.process(delta)
+
+
+func _look_at_player() -> void:
+	var dir := global_translation.direction_to(_player.global_translation)
+	var rot := atan2(dir.x, dir.z)
+	_n_model.rotation.y = rot
 
 
 func _shoot_at_player(alt : bool) -> void:
@@ -131,6 +139,7 @@ func _sp_DEFAULT(_delta : float) -> void:
 	match _move_mode:
 		MovementMode.STATIC:
 			_shoot_if_can()
+			_look_at_player()
 		
 		
 		MovementMode.SCARED:
@@ -139,15 +148,23 @@ func _sp_DEFAULT(_delta : float) -> void:
 				var away_dir := -translation.direction_to(_player.translation)
 				away_dir.y = 0.0
 				_velocity = away_dir * _SPEED
+				_n_anim.play("RunBackward")
 			
 			else:
 				_velocity = Vector3.ZERO
 				_shoot_if_can()
+				
+				if can_see_player():
+					_n_anim.play("IdleAim")
+				else:
+					_n_anim.play("Idle")
 			
 			_velocity = move_and_slide(_velocity, Vector3.UP)
 			
 			if not is_on_floor():
 				_state.switch(States.AIR)
+			
+			_look_at_player()
 		
 		
 		MovementMode.PATH:
@@ -175,6 +192,8 @@ func _sp_DEFAULT(_delta : float) -> void:
 				var away_dir := -translation.direction_to(_player.translation)
 				away_dir.y = 0.0
 				_velocity = away_dir * _SPEED
+				
+				_n_anim.play("RunBackward")
 			
 			elif _last_seen_player_pos != null and dist > 3.0 and dist < 25.0:
 				_n_agent.set_target_location(_last_seen_player_pos)
@@ -182,15 +201,27 @@ func _sp_DEFAULT(_delta : float) -> void:
 				towards_dir.y = 0.0
 				_velocity = towards_dir * _SPEED
 				_shoot_if_can()
+				
+				if can_see_player():
+					_n_anim.play("RunBackwardAim")
+				else:
+					_n_anim.play("RunBackward")
 			
 			else:
 				_velocity = Vector3.ZERO
 				_shoot_if_can()
+				
+				if can_see_player():
+					_n_anim.play("IdleAim")
+				else:
+					_n_anim.play("Idle")
 			
 			_velocity = move_and_slide(_velocity, Vector3.UP)
 			
 			if not is_on_floor():
 				_state.switch(States.AIR)
+			
+			_look_at_player()
 
 
 func _sp_AIR(delta : float) -> void:
