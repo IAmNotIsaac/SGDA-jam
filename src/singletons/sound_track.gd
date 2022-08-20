@@ -64,6 +64,6 @@ func deactivate_layers(song : int, layers : PoolIntArray) -> void:
 					if db2linear(t.volume_db) != 0.0:
 						t.volume_db = linear2db(Settings.music)
 						var tween := get_tree().create_tween().tween_property(t, "volume_db", linear2db(0.01), 1.0)
-						yield(tween, "complete")
+						yield(tween, "finished")
 						t.volume_db = linear2db(Settings.music)
 			i += 1
