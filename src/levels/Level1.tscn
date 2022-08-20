@@ -101,7 +101,7 @@ secondary_idx = 0
 [node name="Level1" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 18 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 1, 18 )
 _gun = SubResource( 17 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

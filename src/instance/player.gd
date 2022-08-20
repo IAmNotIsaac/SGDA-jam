@@ -32,6 +32,8 @@ var _health := _MAX_HEALTH
 var _last_damage_time := 0
 var _target_camera_tilt := 0.0
 var _action := DeathAction.new(DeathAction.Type.NONE)
+var _spawn_pos := translation
+var _spawn_rot := rotation.y
 
 var speed_factor := 1.0
 
@@ -47,23 +49,27 @@ onready var _n_damage_vignette := $Control/DamageVignette
 onready var _n_interact_cast := $Gimbal/Camera/InteractCast
 onready var _n_death_action := $Control/DeathAction
 onready var _n_death_action_buttons := $Control/DeathAction/HBoxContainer
-onready var _spawn_pos := global_translation
 
 
 ## Private methods ##
 
 
 func _spawn() -> void:
-	_action.act(get_tree(), self)
-	yield(_action, "action_complete")
+	if _action._action != DeathAction.Type.NONE:
+		_action.act(get_tree(), self)
+		yield(_action, "action_complete")
 	
 	_state.switch(States.DEFAULT)
-	global_translation = _spawn_pos
+	translation = _spawn_pos
+	_n_gimbal.rotation.y = _spawn_rot
 	_health = _MAX_HEALTH
 	_gun.clear_cooldowns()
 
 
 func _ready() -> void:
+	_spawn_pos = translation
+	_spawn_rot = rotation.y
+	rotation.y = 0.0
 	_spawn()
 #	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
 #	yield(get_tree().create_timer(2.0), "timeout")
