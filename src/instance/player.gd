@@ -17,7 +17,6 @@ const _GRAVITY := 20.0
 const _JUMP_FORCE := 7.0
 const _RUN_SPEED := 8.0
 const _AIR_FRICTION := 0.2
-const _CONTROLLER_SENSITIVITY := 5.0
 const _MAX_JUMPS := 2
 const _MAX_HEALTH := 100.0
 const _HEAL_RATE := 20.0 # health per second
@@ -82,8 +81,8 @@ func _ready() -> void:
 func _input(event : InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if is_alive():
-			_n_gimbal.rotation_degrees.y -= event.relative.x
-			_n_cam.rotation_degrees.x -= event.relative.y
+			_n_gimbal.rotation_degrees.y -= event.relative.x * Settings.camera_sensitivity
+			_n_cam.rotation_degrees.x -= event.relative.y * Settings.camera_sensitivity
 			_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 	
 	elif event.is_action_pressed("next_gun"):
@@ -104,6 +103,8 @@ func _physics_process(delta : float) -> void:
 	_shoot()
 	_health_stuff(delta)
 	_camera_tilt()
+	
+	$Control/Label.visible = Settings.developer_mode
 	if _gun.get_secondaries():
 		$Control/Label.text = Gun.GunTypes.keys()[_gun.secondaries[_gun.secondary_idx]]
 
@@ -115,8 +116,8 @@ func _controller_look() -> void:
 			Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
 		)
 		
-		_n_gimbal.rotation_degrees.y -= input.x * _CONTROLLER_SENSITIVITY
-		_n_cam.rotation_degrees.x -= input.y * _CONTROLLER_SENSITIVITY
+		_n_gimbal.rotation_degrees.y -= input.x * Settings.controller_sensitivity
+		_n_cam.rotation_degrees.x -= input.y * Settings.controller_sensitivity
 		_n_cam.rotation_degrees.x = clamp(_n_cam.rotation_degrees.x, -90, 90)
 
 
@@ -346,4 +347,3 @@ func die() -> void:
 
 func is_alive() -> bool:
 	return not _state.matches_any([States.DEAD, States.DEAD_PAUSE])
-

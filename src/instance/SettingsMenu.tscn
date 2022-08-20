@@ -32,6 +32,7 @@ margin_bottom = 758.0
 rect_pivot_offset = Vector2( -1610, -597 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_right = 864.0
@@ -42,7 +43,7 @@ margin_right = 864.0
 margin_bottom = 49.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 1 )
-text = "Look sensitivity"
+text = "Mouse Look sensitivity"
 align = 2
 
 [node name="SensitivitySlider" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
@@ -52,7 +53,51 @@ margin_bottom = 69.0
 min_value = 0.1
 max_value = 2.0
 step = 0.1
-value = 1.0
+value = 0.5
+tick_count = 20
+ticks_on_borders = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 109.0
+margin_right = 864.0
+margin_bottom = 178.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 864.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "Controller Look sensitivity"
+align = 2
+
+[node name="ControllerSensitivitySlider" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 53.0
+margin_right = 864.0
+margin_bottom = 69.0
+min_value = 1.0
+max_value = 8.0
+step = 0.1
+value = 5.0
+tick_count = 8
+ticks_on_borders = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 218.0
+margin_right = 864.0
+margin_bottom = 311.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
+margin_right = 864.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "Developer mode"
+align = 2
+
+[node name="DeveloperModeCheckButton" type="CheckButton" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
+margin_top = 53.0
+margin_right = 864.0
+margin_bottom = 93.0
 
 [node name="ReturnButton" type="Button" parent="VBoxContainer"]
 margin_top = 762.0
@@ -62,4 +107,6 @@ custom_fonts/font = SubResource( 2 )
 text = "Return"
 
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer2/ControllerSensitivitySlider" to="." method="_on_ControllerSensitivitySlider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer3/DeveloperModeCheckButton" to="." method="_on_DeveloperModeCheckButton_toggled"]
 [connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
