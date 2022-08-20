@@ -9,10 +9,10 @@ enum Type {
 
 const _ACTION_NAMES := {
 	Type.NONE: "None",
-	Type.EXPLODE: "B4NG B4NG",
-	Type.BULLET_EXPLOSION: "BU11ET PR1SM",
-	Type.RANDOM_KO: "H3Ad-SH0T",
-	Type.SPEED_BUFF: "N3W K1CK5"
+	Type.EXPLODE: "BANG-BANG",
+	Type.BULLET_EXPLOSION: "BULLET-PRISM",
+	Type.RANDOM_KO: "HEAD-SHOT",
+	Type.SPEED_BUFF: "NEW-KICK5"
 }
 const _ACTION_HINTS := {
 	Type.NONE: "No benefit.",

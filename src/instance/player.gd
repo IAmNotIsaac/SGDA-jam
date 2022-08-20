@@ -293,10 +293,15 @@ func _sl_DEAD() -> void:
 	for g in _gun.get_secondaries() + [_gun.get_base()]:
 		var id : int = _gun.get_gun_action_type(g)
 		var button := DeathButton.new()
+		var font := DynamicFont.new()
+		
+		font.font_data = load("res://assets/fonts/propaganda/PROPAGAN.ttf")
+		font.size = 32
 		
 		button.id = id
 		button.text = DeathAction.get_action_name(id)
 		button.hint_tooltip = DeathAction.get_action_hint(id)
+		button.add_font_override("font", font)
 		
 		_n_death_action_buttons.add_child(button)
 		button.set_h_size_flags(Button.SIZE_EXPAND_FILL)
