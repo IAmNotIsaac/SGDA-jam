@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/models/levels/level1/level1.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/chainlink.png" type="Texture" id=8]
 [ext_resource path="res://src/scripts/gun.gd" type="Script" id=9]
 [ext_resource path="res://src/instance/Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/instance/LevelEnd.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 9 )
@@ -425,3 +426,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 1, -5 )
 _move_mode = 1
 _gun = SubResource( 15 )
 _reaction_mode = 0
+
+[node name="LevelEnd" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -25, 0, -23 )
+_next_level = 1
+_short_level = true
+
+[node name="Start" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 7, 0, 17 )
+_short_level = true
+_decorational = true

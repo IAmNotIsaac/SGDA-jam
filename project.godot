@@ -81,6 +81,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SoundTrack="*res://src/singletons/SoundTrack.tscn"
+LevelSwitcher="*res://src/singletons/LevelSwitcher.tscn"
 
 [display]
 

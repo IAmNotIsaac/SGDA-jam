@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/models/levels/level3/level3.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/instance/LevelEnd.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/textures/city.png" type="Texture" id=5]
 [ext_resource path="res://src/instance/Switch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/models/props/crate/crate.dae" type="PackedScene" id=7]
@@ -78,25 +79,38 @@ extents = Vector3( 72, 1, 54 )
 [sub_resource type="Resource" id=11]
 script = ExtResource( 10 )
 base = 3
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=21]
 script = ExtResource( 10 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 10 )
 base = 3
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 10 )
 base = 1
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 10 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 10 )
+base = 2
+secondaries = [  ]
+secondary_idx = 0
 
 [node name="Level3" type="Spatial"]
 
@@ -597,3 +611,10 @@ _gun = SubResource( 12 )
 [node name="Enemy5" parent="Enemies" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 25.5 )
 _gun = SubResource( 12 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 64, 2, -3 )
+
+[node name="Start" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -50, 0, -30 )
+_decorational = true
