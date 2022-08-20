@@ -69,7 +69,8 @@ func act(tree : SceneTree, player) -> void:
 			
 			for pitchi in range(-pitch_incs / 2 + 1, pitch_incs / 2):
 				for yawi in range(yaw_incs):
-					var rot := Vector3(PI / pitch_incs * pitchi, PI * 2.0 * (1.0 / yaw_incs) * (yawi), 0.0)
+					var yaw := PI * 2.0 * (1.0 / yaw_incs) * (yawi)
+					var rot := Vector3(PI / pitch_incs * pitchi, yaw + player._n_gimbal.rotation.y, 0.0)
 					
 					player._gun.shoot(tree, 5, player.global_translation, rot, true)
 			
