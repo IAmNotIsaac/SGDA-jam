@@ -2,6 +2,7 @@ extends Control
 
 
 onready var _resume_button := $VBoxContainer/ResumeButton
+onready var _n_settings_menu := $SettingsMenu
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func unpause() -> void:
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	hide()
+	_n_settings_menu.hide()
 
 
 func _on_ResumeButton_pressed() -> void:
@@ -38,4 +40,13 @@ func _on_RestartButton_pressed() -> void:
 
 
 func _on_TitleButton_pressed() -> void:
-	print("TODO")
+	unpause()
+	LevelSwitcher.load_level(load("res://src/levels/MainMenu.tscn"))
+
+
+func _on_SettingsButton_pressed() -> void:
+	_n_settings_menu.show()
+
+
+func _on_SettingsMenu_back_pressed() -> void:
+	_n_settings_menu.hide()

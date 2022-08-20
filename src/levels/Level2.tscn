@@ -17,12 +17,13 @@
 radiance_size = 4
 panorama = ExtResource( 4 )
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=27]
 background_mode = 2
 background_sky = SubResource( 26 )
 background_color = Color( 1, 0.156863, 0.156863, 1 )
 background_energy = 2.98
 ambient_light_color = Color( 0.984314, 0.662745, 0.662745, 1 )
+ambient_light_energy = 2.65
 fog_enabled = true
 fog_color = Color( 0.701961, 0.501961, 0.501961, 1 )
 fog_depth_begin = 12.0
@@ -127,7 +128,7 @@ secondary_idx = 0
 [node name="Level2" type="Spatial"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 27 )
 
 [node name="Door" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.25, 2, -19 )

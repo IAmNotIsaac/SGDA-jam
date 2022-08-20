@@ -75,13 +75,14 @@ _global_script_class_icons={
 [application]
 
 config/name="SGDA Jam Game"
-run/main_scene="res://src/levels/Level1.tscn"
+run/main_scene="res://src/levels/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SoundTrack="*res://src/singletons/SoundTrack.tscn"
 LevelSwitcher="*res://src/singletons/LevelSwitcher.tscn"
+Settings="*res://src/singletons/settings.gd"
 
 [display]
 

@@ -346,3 +346,4 @@ func die() -> void:
 
 func is_alive() -> bool:
 	return not _state.matches_any([States.DEAD, States.DEAD_PAUSE])
+

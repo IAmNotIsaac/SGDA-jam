@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/instance/player.gd" type="Script" id=1]
 [ext_resource path="res://src/scripts/gun.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/instance/pause_menu.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/damage_vignette.png" type="Texture" id=6]
+[ext_resource path="res://src/instance/SettingsMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
@@ -29,6 +30,14 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 4 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.460123, 0.582822 )
+colors = PoolColorArray( 0, 0, 0, 0.352941, 0, 0, 0, 0.352941, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 7 )
+width = 1920
 
 [node name="Player" type="KinematicBody" groups=["entity", "player"]]
 collision_layer = 3
@@ -77,6 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="DamageVignette" type="TextureRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
@@ -138,7 +148,6 @@ text = "YOU ARE DEAD"
 
 [node name="PauseMenu" type="Control" parent="Control"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -173,10 +182,21 @@ focus_previous = NodePath("../TitleButton")
 custom_fonts/font = SubResource( 4 )
 text = "RESUME"
 
-[node name="RestartButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
-margin_top = 195.0
+[node name="SettingsButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
+margin_top = 254.0
 margin_right = 586.0
-margin_bottom = 250.0
+margin_bottom = 309.0
+focus_neighbour_top = NodePath("../TitleButton")
+focus_neighbour_bottom = NodePath("../TitleButton")
+focus_next = NodePath("../TitleButton")
+focus_previous = NodePath("../TitleButton")
+custom_fonts/font = SubResource( 4 )
+text = "SETTINGS"
+
+[node name="RestartButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
+margin_top = 313.0
+margin_right = 586.0
+margin_bottom = 368.0
 focus_neighbour_top = NodePath("../TitleButton")
 focus_neighbour_bottom = NodePath("../TitleButton")
 focus_next = NodePath("../TitleButton")
@@ -185,9 +205,9 @@ custom_fonts/font = SubResource( 4 )
 text = "RESTART"
 
 [node name="TitleButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
-margin_top = 254.0
+margin_top = 372.0
 margin_right = 586.0
-margin_bottom = 309.0
+margin_bottom = 427.0
 focus_neighbour_top = NodePath("../ResumeButton")
 focus_neighbour_bottom = NodePath("../ResumeButton")
 focus_next = NodePath("../ResumeButton")
@@ -195,6 +215,20 @@ focus_previous = NodePath("../ResumeButton")
 custom_fonts/font = SubResource( 4 )
 text = "Return to Title"
 
+[node name="SettingsMenu" parent="Control/PauseMenu" instance=ExtResource( 7 )]
+
+[node name="TextureRect" type="TextureRect" parent="Control/PauseMenu/SettingsMenu"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.98
+texture = SubResource( 6 )
+expand = true
+
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/ResumeButton" to="Control/PauseMenu" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Control/PauseMenu/VBoxContainer/SettingsButton" to="Control/PauseMenu" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/RestartButton" to="Control/PauseMenu" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Control/PauseMenu/VBoxContainer/TitleButton" to="Control/PauseMenu" method="_on_TitleButton_pressed"]
+[connection signal="back_pressed" from="Control/PauseMenu/SettingsMenu" to="Control/PauseMenu" method="_on_SettingsMenu_back_pressed"]
