@@ -19,4 +19,5 @@ func _ready() -> void:
 
 func _on_Area_body_entered(body : PhysicsBody) -> void:
 	if not _decorational and body is Player:
+		Settings.level = _next_level
 		LevelSwitcher.load_level(LevelSwitcher.LEVELS[_next_level])

@@ -1,8 +1,6 @@
 extends Spatial
 
 
-const _Level1 := preload("res://src/levels/Level1.tscn")
-
 onready var _n_play_button := $"%PlayButton"
 onready var _n_model_anim := $robot/AnimationPlayer
 onready var _n_anim := $AnimationPlayer
@@ -18,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	LevelSwitcher.load_level(_Level1)
+	LevelSwitcher.load_level(LevelSwitcher.LEVELS[Settings.level])
 
 
 func _on_SettingsButton_pressed() -> void:
