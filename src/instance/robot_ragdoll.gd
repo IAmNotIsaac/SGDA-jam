@@ -22,7 +22,7 @@ func damage(damage_data : Damage) -> void:
 	get_parent().add_child(dmgind)
 	
 	dmgind.text = str(int(damage_data.amount))
-	dmgind.global_translation = global_translation + Vector3(rand_range(-1, 1), 0.0, rand_range(-1, 1))
+	dmgind.global_translation = _n_skeleton.get_bone_global_pose(_n_skeleton.find_bone("Torso")).origin + _n_skeleton.global_translation + Vector3(rand_range(-1, 1), 0.0, rand_range(-1, 1))
 	
 	_health -= damage_data.amount
 	
