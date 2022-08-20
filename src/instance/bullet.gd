@@ -79,6 +79,8 @@ func shoot(type : int) -> void:
 			))
 		
 		elif col.is_in_group("ragdoll_bone"):
+			col.apply_impulse(_n_ray.get_collision_point(), Vector3.UP * 0.1)
+			
 			col = col.get_parent().get_parent()
 			col.damage(Damage.new(
 				SHOT_DATA[type]["dmgtype"],
