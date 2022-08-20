@@ -12,7 +12,7 @@ const _ACTION_NAMES := {
 	Type.EXPLODE: "BANG-BANG",
 	Type.BULLET_EXPLOSION: "BULLET-PRISM",
 	Type.RANDOM_KO: "HEAD-SHOT",
-	Type.SPEED_BUFF: "NEW-KICK5"
+	Type.SPEED_BUFF: "NEW-KICKS"
 }
 const _ACTION_HINTS := {
 	Type.NONE: "No benefit.",
