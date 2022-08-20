@@ -46,7 +46,9 @@ func _on_TitleButton_pressed() -> void:
 
 func _on_SettingsButton_pressed() -> void:
 	_n_settings_menu.show()
+	_n_settings_menu.focus_up()
 
 
 func _on_SettingsMenu_back_pressed() -> void:
 	_n_settings_menu.hide()
+	_resume_button.grab_focus()

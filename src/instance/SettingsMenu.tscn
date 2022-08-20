@@ -50,6 +50,7 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_bottom = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
 min_value = 0.1
 max_value = 2.0
 step = 0.1
@@ -75,6 +76,8 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_top = NodePath("../../VBoxContainer/SensitivitySlider")
+focus_neighbour_bottom = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
 min_value = 1.0
 max_value = 8.0
 step = 0.1
@@ -100,6 +103,8 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_top = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
+focus_neighbour_bottom = NodePath("../../VBoxContainer4/SuperFastMode")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 243.0
@@ -119,6 +124,8 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_top = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
+focus_neighbour_bottom = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 340.0
@@ -138,6 +145,8 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_top = NodePath("../../VBoxContainer4/SuperFastMode")
+focus_neighbour_bottom = NodePath("../../VBoxContainer6/GodMode")
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 437.0
@@ -157,6 +166,8 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_top = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
+focus_neighbour_bottom = NodePath("../../VBoxContainer7/ExplosionMode")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 534.0
@@ -176,11 +187,14 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_top = NodePath("../../VBoxContainer6/GodMode")
+focus_neighbour_bottom = NodePath("../../../ReturnButton")
 
 [node name="ReturnButton" type="Button" parent="VBoxContainer"]
 margin_top = 978.0
 margin_right = 578.0
 margin_bottom = 1080.0
+focus_neighbour_top = NodePath("../VBoxContainer/VBoxContainer7/ExplosionMode")
 custom_fonts/font = SubResource( 2 )
 text = "Return"
 

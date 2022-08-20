@@ -23,6 +23,10 @@ func _ready() -> void:
 	_n_emode.pressed = Settings.explosion_mode
 
 
+func focus_up() -> void:
+	_n_senslider.grab_focus()
+
+
 func _on_ReturnButton_pressed() -> void:
 	emit_signal("back_pressed")
 
