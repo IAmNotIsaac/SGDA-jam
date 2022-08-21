@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/won.ogg-33efd33817d9cf692899be79815abcb0.oggstr"
+
+[deps]
+
+source_file="res://assets/voice/won.ogg"
+dest_files=[ "res://.import/won.ogg-33efd33817d9cf692899be79815abcb0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

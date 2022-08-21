@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/models/levels/final/final.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
@@ -9,10 +9,21 @@
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/models/props/robot/Metal.material" type="Material" id=8]
 [ext_resource path="res://assets/models/props/robot/Face.material" type="Material" id=9]
+[ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/music/end this/Royalty Free Music Evan King End This Epic.ogg" type="AudioStream" id=11]
+
+[sub_resource type="GDScript" id=20]
+script/source = "extends Spatial
+
+
+func _ready() -> void:
+	SoundTrack.stop()
+
+"
 
 [sub_resource type="Animation" id=9]
 resource_name = "default"
-length = 32.0
+length = 37.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera:translation")
 tracks/0/interp = 1
@@ -72,10 +83,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 19, 22, 24 ),
-"transitions": PoolRealArray( 1, 1, 17.0342, 1 ),
+"times": PoolRealArray( 0, 19, 22, 24, 37 ),
+"transitions": PoolRealArray( 1, 1, 17.0342, 1e+06, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "method"
 tracks/5/path = NodePath("big_robo/AnimationPlayer")
@@ -103,6 +114,22 @@ tracks/6/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Control/Label:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 37 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="DynamicFont" id=19]
+size = 64
+font_data = ExtResource( 10 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube.001"
@@ -818,6 +845,7 @@ func _on_Area_body_entered(_body : PhysicsBody) -> void:
 extents = Vector3( 1, 2, 2 )
 
 [node name="Final" type="Spatial"]
+script = SubResource( 20 )
 
 [node name="Animation" type="Spatial" parent="."]
 
@@ -835,6 +863,18 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
+
+[node name="Label" type="Label" parent="Animation/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.643137, 0.643137, 0.643137, 1 )
+custom_fonts/font = SubResource( 19 )
+text = "thank you for playing"
+align = 1
+valign = 1
 
 [node name="big_robo" type="Spatial" parent="Animation"]
 transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 45, 0, 0 )
@@ -911,6 +951,10 @@ anims/RunBackwardAim = SubResource( 5 )
 anims/RunToward = SubResource( 6 )
 anims/RunTowardAim = SubResource( 7 )
 anims/Twist = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Animation"]
+stream = ExtResource( 11 )
+volume_db = 0.7
 
 [node name="Level" type="Spatial" parent="."]
 __meta__ = {
