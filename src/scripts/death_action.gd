@@ -72,7 +72,7 @@ func act(tree : SceneTree, player) -> void:
 					var yaw := PI * 2.0 * (1.0 / yaw_incs) * (yawi)
 					var rot := Vector3(PI / pitch_incs * pitchi, yaw + player._n_gimbal.rotation.y, 0.0)
 					
-					player._gun.shoot(tree, 5, player.global_translation, rot, true)
+					player._gun.shoot(tree, 5, player.global_translation + Vector3(0.0, 0.25, 0.0), rot, true)
 			
 			yield(tree.create_timer(1.0), "timeout")
 		
