@@ -3,15 +3,15 @@
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/instance/settings_menu.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 32
-outline_size = 8
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 64
 outline_size = 12
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
@@ -25,13 +25,23 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -578.0
+custom_constants/separation = 60
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer"]
+margin_right = 578.0
+margin_bottom = 102.0
+focus_neighbour_top = NodePath("../VBoxContainer/VBoxContainer7/ExplosionMode")
+custom_fonts/font = SubResource( 2 )
+text = "Return"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 162.0
 margin_right = 578.0
-margin_bottom = 974.0
+margin_bottom = 1080.0
 rect_pivot_offset = Vector2( -1610, -597 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_right = 578.0
@@ -59,9 +69,9 @@ tick_count = 20
 ticks_on_borders = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 73.0
+margin_top = 69.0
 margin_right = 578.0
-margin_bottom = 142.0
+margin_bottom = 138.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
 margin_right = 578.0
@@ -77,7 +87,7 @@ margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
 focus_neighbour_top = NodePath("../../VBoxContainer/SensitivitySlider")
-focus_neighbour_bottom = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
+focus_neighbour_bottom = NodePath("../../VBoxContainer8/MusicVolume")
 min_value = 1.0
 max_value = 8.0
 step = 0.1
@@ -85,10 +95,62 @@ value = 5.0
 tick_count = 8
 ticks_on_borders = true
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 146.0
+[node name="VBoxContainer8" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 138.0
 margin_right = 578.0
-margin_bottom = 239.0
+margin_bottom = 207.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer8"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "music volume"
+align = 2
+
+[node name="MusicVolume" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer8"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
+margin_bottom = 69.0
+focus_neighbour_top = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
+focus_neighbour_bottom = NodePath("../../VBoxContainer9/SFXVolume")
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 8
+ticks_on_borders = true
+
+[node name="VBoxContainer9" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 207.0
+margin_right = 578.0
+margin_bottom = 276.0
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer9"]
+margin_right = 578.0
+margin_bottom = 49.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "SFX volume"
+align = 2
+
+[node name="SFXVolume" type="HSlider" parent="VBoxContainer/VBoxContainer/VBoxContainer9"]
+unique_name_in_owner = true
+margin_top = 53.0
+margin_right = 578.0
+margin_bottom = 69.0
+focus_neighbour_top = NodePath("../../VBoxContainer8/MusicVolume")
+focus_neighbour_bottom = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 8
+ticks_on_borders = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 276.0
+margin_right = 578.0
+margin_bottom = 369.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
 margin_right = 578.0
@@ -103,13 +165,13 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
-focus_neighbour_top = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
+focus_neighbour_top = NodePath("../../VBoxContainer9/SFXVolume")
 focus_neighbour_bottom = NodePath("../../VBoxContainer4/SuperFastMode")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 243.0
+margin_top = 369.0
 margin_right = 578.0
-margin_bottom = 336.0
+margin_bottom = 462.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer4"]
 margin_right = 578.0
@@ -128,9 +190,9 @@ focus_neighbour_top = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
 focus_neighbour_bottom = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 340.0
+margin_top = 462.0
 margin_right = 578.0
-margin_bottom = 433.0
+margin_bottom = 555.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer5"]
 margin_right = 578.0
@@ -149,9 +211,9 @@ focus_neighbour_top = NodePath("../../VBoxContainer4/SuperFastMode")
 focus_neighbour_bottom = NodePath("../../VBoxContainer6/GodMode")
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 437.0
+margin_top = 555.0
 margin_right = 578.0
-margin_bottom = 530.0
+margin_bottom = 648.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer6"]
 margin_right = 578.0
@@ -170,9 +232,9 @@ focus_neighbour_top = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
 focus_neighbour_bottom = NodePath("../../VBoxContainer7/ExplosionMode")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 534.0
+margin_top = 648.0
 margin_right = 578.0
-margin_bottom = 627.0
+margin_bottom = 741.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer7"]
 margin_right = 578.0
@@ -190,19 +252,13 @@ margin_bottom = 93.0
 focus_neighbour_top = NodePath("../../VBoxContainer6/GodMode")
 focus_neighbour_bottom = NodePath("../../../ReturnButton")
 
-[node name="ReturnButton" type="Button" parent="VBoxContainer"]
-margin_top = 978.0
-margin_right = 578.0
-margin_bottom = 1080.0
-focus_neighbour_top = NodePath("../VBoxContainer/VBoxContainer7/ExplosionMode")
-custom_fonts/font = SubResource( 2 )
-text = "Return"
-
+[connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer2/ControllerSensitivitySlider" to="." method="_on_ControllerSensitivitySlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer8/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer9/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer3/DeveloperModeCheckButton" to="." method="_on_DeveloperModeCheckButton_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer4/SuperFastMode" to="." method="_on_SuperFastMode_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer5/VeryDifficultEnemies" to="." method="_on_VeryDifficultEnemies_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer6/GodMode" to="." method="_on_GodMode_toggled"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/VBoxContainer7/ExplosionMode" to="." method="_on_ExplosionMode_toggled"]
-[connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]

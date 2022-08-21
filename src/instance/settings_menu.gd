@@ -6,6 +6,8 @@ signal back_pressed
 
 onready var _n_senslider := $"%SensitivitySlider"
 onready var _n_conslider := $"%ControllerSensitivitySlider"
+onready var _n_musicslider := $"%MusicVolume"
+onready var _n_sfxslider := $"%SFXVolume"
 onready var _n_devmode := $"%DeveloperModeCheckButton"
 onready var _n_sfmode := $"%SuperFastMode"
 onready var _n_vdemode := $"%VeryDifficultEnemies"
@@ -16,6 +18,8 @@ onready var _n_emode := $"%ExplosionMode"
 func _ready() -> void:
 	_n_senslider.value = Settings.camera_sensitivity
 	_n_conslider.value = Settings.controller_sensitivity
+	_n_musicslider.value = Settings.music
+	_n_sfxslider.value = Settings.sfx
 	_n_devmode.pressed = Settings.developer_mode
 	_n_sfmode.pressed = Settings.super_fast_mode
 	_n_vdemode.pressed = Settings.super_difficult_enemies_mode
@@ -57,3 +61,11 @@ func _on_GodMode_toggled(button_pressed : bool) -> void:
 
 func _on_ExplosionMode_toggled(button_pressed : bool) -> void:
 	Settings.explosion_mode = button_pressed
+
+
+func _on_MusicVolume_value_changed(value : float) -> void:
+	Settings.music = value
+
+
+func _on_SFXVolume_value_changed(value : float) -> void:
+	Settings.sfx = value
