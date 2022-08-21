@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/Bricks.jpg" type="Texture" id=2]
@@ -161,6 +161,12 @@ outline_size = 12
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=32]
+size = 32
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 64
 outline_size = 12
@@ -223,12 +229,27 @@ margin_left = -0.320068
 
 [node name="Title" type="Label" parent="HBoxContainer/Main/VBoxContainer"]
 margin_right = 863.0
-margin_bottom = 546.0
+margin_bottom = 271.0
 grow_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "robot"
+text = "Akimbot"
 align = 1
+
+[node name="Title2" type="Label" parent="HBoxContainer/Main/VBoxContainer"]
+margin_top = 275.0
+margin_right = 863.0
+margin_bottom = 546.0
+grow_horizontal = 2
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 32 )
+text = "isaac astell
+hadi shaheen
+
+made in seven days for the 
+sgda summer game jam"
+align = 1
+autowrap = true
 
 [node name="PlayButton" type="Button" parent="HBoxContainer/Main/VBoxContainer"]
 unique_name_in_owner = true
