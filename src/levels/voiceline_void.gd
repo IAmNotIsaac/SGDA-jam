@@ -8,7 +8,6 @@ onready var _n_sub := $Label
 
 
 func go(voice : AudioStream, subtitles : String) -> void:
-	print(subtitles)
 	_n_sub.text = subtitles
 	_n_voice.stream = voice
 	_n_voice.play()
