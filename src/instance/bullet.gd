@@ -106,7 +106,17 @@ func shoot(type : int) -> void:
 			get_parent().add_child(bullet_hole)
 			
 			bullet_hole.global_translation = _n_ray.get_collision_point()
-			bullet_hole.look_at(_n_ray.get_collision_point() + _n_ray.get_collision_normal(), Vector3.UP)
+			
+			# required because look at fails if aligned with axis
+			match _n_ray.get_collision_normal():
+				Vector3.UP:
+					bullet_hole.rotation = Vector3(90.0, 0.0, 0.0)
+				
+				Vector3.DOWN:
+					bullet_hole.rotation = Vector3(-90.0, 0.0, 0.0)
+				
+				_:
+					bullet_hole.look_at(_n_ray.get_collision_point() + _n_ray.get_collision_normal(), Vector3.UP)
 		
 		
 		if Settings.explosion_mode:
