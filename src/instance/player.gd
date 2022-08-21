@@ -319,22 +319,33 @@ func _sl_JUMP() -> void:
 func _sl_DEAD() -> void:
 	for g in _gun.get_secondaries() + [_gun.get_base()]:
 		var id : int = _gun.get_gun_action_type(g)
+		var vbc := VBoxContainer.new()
+		var label := Label.new()
 		var button := DeathButton.new()
 		var font := DynamicFont.new()
 		
 		font.font_data = load("res://assets/fonts/propaganda/PROPAGAN.ttf")
 		font.size = 32
 		
+		var font2 := font.duplicate()
+		font2.size = 16
+		
+		label.text = DeathAction.get_action_hint(id)
+		label.add_font_override("font", font2)
+		
 		button.id = id
 		button.text = DeathAction.get_action_name(id)
-		button.hint_tooltip = DeathAction.get_action_hint(id)
 		button.add_font_override("font", font)
 		
-		_n_death_action_buttons.add_child(button)
-		button.set_h_size_flags(Button.SIZE_EXPAND_FILL)
+		_n_death_action_buttons.add_child(vbc)
+		vbc.add_child(button)
+		vbc.add_child(label)
+		
+		vbc.set_h_size_flags(Button.SIZE_EXPAND_FILL)
+		
 		var _e := button.connect("db_pressed", self, "_on_deathbutton_pressed")
 	
-	_n_death_action_buttons.get_children()[0].grab_focus()
+	_n_death_action_buttons.get_children()[0].get_children()[0].grab_focus()
 	_n_death_action_buttons.show()
 
 
