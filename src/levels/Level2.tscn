@@ -82,49 +82,35 @@ data = PoolVector3Array( -26, 4, 26, -17, 0, 26, -26, 0, 26, -17, 4, 26, -17, 0,
 script = ExtResource( 9 )
 base = 0
 secondaries = [ 1 ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 9 )
 base = 0
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=22]
 script = ExtResource( 9 )
 base = 0
 secondaries = [ 2 ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=21]
 script = ExtResource( 9 )
 base = 0
 secondaries = [ 2 ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 9 )
-base = 2
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=18]
 script = ExtResource( 9 )
 base = 0
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=19]
 script = ExtResource( 9 )
 base = 1
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="Resource" id=20]
 script = ExtResource( 9 )
 base = 3
-secondaries = [  ]
-secondary_idx = 0
 
 [sub_resource type="BoxShape" id=28]
 extents = Vector3( 11, 2, 5 )

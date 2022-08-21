@@ -13,6 +13,7 @@ enum GunTypes {
 
 const _Bullet := preload("res://src/instance/Bullet.tscn")
 const _Grenade := preload("res://src/instance/Grenade.tscn")
+const _SFX := preload("res://src/instance/SoundEffect.tscn")
 # measured in milliseconds
 const _COOLDOWNS := {
 	GunTypes.SHOTGUN: 1000,
@@ -32,6 +33,13 @@ const _ACTIONS := {
 	GunTypes.PISTOL: 0,#DeathAction.Type.NONE,
 	GunTypes.MINIGUN: 4,#DeathAction.Type.SPEED_BUFF,
 	GunTypes.GRENADE_LAUNCHER: 1,#DeathAction.Type.EXPLODE
+}
+const _SOUNDS := {
+	GunTypes.SHOTGUN: SoundEffect.SOUNDS.SHOTGUN,
+	GunTypes.REVOLVER: SoundEffect.SOUNDS.REVOLVER,
+	GunTypes.PISTOL: SoundEffect.SOUNDS.PISTOL,
+	GunTypes.MINIGUN: SoundEffect.SOUNDS.MINIGUN,
+	GunTypes.GRENADE_LAUNCHER: SoundEffect.SOUNDS.GRENADE_LAUNCHER,
 }
 
 export(GunTypes) var base : int = GunTypes.PISTOL
@@ -80,9 +88,17 @@ func _spawn_bullet(bullet_type : int, tree : SceneTree, spawn_pos : Vector3, spa
 	bullet.shoot(bullet_type)
 
 
-func _shoot(gun_type : int, alt : bool, tree : SceneTree, spawn_pos : Vector3, spawn_rot : Vector3, ignore_cooldown := false) -> void:
+func _shoot(gun_type : int, alt : bool, tree : SceneTree, spawn_pos : Vector3, spawn_rot : Vector3, ignore_cooldown := false, play_sound := true) -> void:
 	if (not ignore_cooldown and not _can_shoot(alt)):
 		return
+	
+	if play_sound and _SOUNDS.has(gun_type):
+		var sound := _SFX.instance()
+		
+		tree.get_current_scene().add_child(sound)
+		
+		sound.global_translation = spawn_pos
+		sound.play_sound(_SOUNDS[gun_type], 24.0)
 	
 	match gun_type:
 		GunTypes.SHOTGUN:
@@ -121,8 +137,8 @@ func _shoot(gun_type : int, alt : bool, tree : SceneTree, spawn_pos : Vector3, s
 ## Public methods ##
 
 
-func shoot(tree : SceneTree, gun_ : int, spawn_pos : Vector3, spawn_rot : Vector3, ignore_cooldown := false) -> void:
-	_shoot(gun_, true, tree, spawn_pos, spawn_rot, ignore_cooldown)
+func shoot(tree : SceneTree, gun_ : int, spawn_pos : Vector3, spawn_rot : Vector3, ignore_cooldown := false, play_sound := false) -> void:
+	_shoot(gun_, true, tree, spawn_pos, spawn_rot, ignore_cooldown, play_sound)
 
 
 func shoot_base(tree : SceneTree, spawn_pos : Vector3, spawn_rot : Vector3) -> void:

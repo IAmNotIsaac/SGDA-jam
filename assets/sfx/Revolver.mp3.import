@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Revolver.mp3-88e319ce296ace93fff70f07a8feec04.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Revolver.mp3"
+dest_files=[ "res://.import/Revolver.mp3-88e319ce296ace93fff70f07a8feec04.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

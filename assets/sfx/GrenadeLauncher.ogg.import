@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GrenadeLauncher.ogg-d36250cd0e6b38c2b71d398812459e01.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/GrenadeLauncher.ogg"
+dest_files=[ "res://.import/GrenadeLauncher.ogg-d36250cd0e6b38c2b71d398812459e01.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -8,6 +8,7 @@ var _activated := false
 
 onready var _n_door : Door = get_node_or_null(_door_path)
 onready var _n_anim := $SwitchMesh/AnimationPlayer
+onready var _n_sfx := $SoundEffect
 
 
 ## Private methods ##
@@ -26,3 +27,4 @@ func activate() -> void:
 		_n_anim.play("default")
 		_n_door.switch_activate()
 		_activated = true
+		_n_sfx.play_sound(SoundEffect.SOUNDS.SWITCH, 1.0)

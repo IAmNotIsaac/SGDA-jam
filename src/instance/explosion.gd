@@ -4,6 +4,8 @@ extends Spatial
 signal _physics_process
 signal explosion_complete
 
+const _SFX := preload("res://src/instance/SoundEffect.tscn")
+
 onready var _n_explosion := $Explosion
 onready var _n_smoke := $Smoke
 onready var _n_tween := $Tween
@@ -40,6 +42,11 @@ func explode(size : float, ignore : PhysicsBody = null) -> void:
 				body.damage(Damage.new(
 					Damage.Type.ExplosionDamage.GRENADE, amount
 				))
+	
+	var sound := _SFX.instance()
+	get_parent().add_child(sound)
+	sound.global_translation = global_translation
+	sound.play_sound(SoundEffect.SOUNDS.EXPLOSION, 12.0)
 	
 	_n_explosion.mesh = _n_explosion.mesh.duplicate()
 	_n_explosion.mesh.material = _n_explosion.mesh.material.duplicate()

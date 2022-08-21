@@ -12,6 +12,7 @@ enum States {
 }
 
 const _Ragdoll := preload("res://src/instance/RobotRagdoll.tscn")
+const _SFX := preload("res://src/instance/SoundEffect.tscn")
 
 const _GRAVITY := 20.0
 const _JUMP_FORCE := 7.0
@@ -37,6 +38,7 @@ var _action := DeathAction.new(DeathAction.Type.NONE)
 var _spawn_pos := translation
 var _spawn_rot := rotation.y
 var _enemies := []
+var _last_step_sound := 0
 
 var speed_factor := 1.0
 
@@ -52,6 +54,7 @@ onready var _n_damage_vignette := $Control/DamageVignette
 onready var _n_interact_cast := $Gimbal/Camera/InteractCast
 onready var _n_death_action := $Control/DeathAction
 onready var _n_death_action_buttons := $Control/DeathAction/HBoxContainer
+onready var _n_damage_sound := $AudioStreamPlayer
 
 
 ## Private methods ##
@@ -141,6 +144,7 @@ func _shoot() -> void:
 
 func _health_stuff(delta : float) -> void:
 	_n_damage_vignette.modulate.a = 1.0 - _health / _MAX_HEALTH
+	_n_damage_sound.volume_db = linear2db((1.0 - _health / _MAX_HEALTH) * Settings.sfx)
 	
 	if OS.get_ticks_msec() - _last_damage_time > _HOLD_HEALTH_TIME:
 		_health = min(_health + _HEAL_RATE * delta, _MAX_HEALTH)
@@ -160,6 +164,15 @@ func _on_deathbutton_pressed(id : int) -> void:
 	_n_death_action.hide()
 
 
+func _step_sound() -> void:
+	var sound := _SFX.instance()
+	
+	get_parent().add_child(sound)
+	
+	sound.global_translation = global_translation
+	sound.play_sound(SoundEffect.SOUNDS.STEP)
+
+
 ## State processes ##
 
 
@@ -176,6 +189,10 @@ func _sp_DEFAULT(_delta : float) -> void:
 	var move_forward = Vector3(sin(theta) * input.y, 0.0, cos(theta) * input.y)
 	var move_strafe = Vector3(cos(-theta) * input.x, 0.0, sin(-theta) * input.x)
 	_velocity = (move_forward + move_strafe).normalized() * _RUN_SPEED * speed_factor * max(_FAST_SPEED * int(Settings.super_fast_mode), 1.0)
+	
+	if _velocity != Vector3.ZERO and OS.get_ticks_msec() - _last_step_sound > 500:
+		_last_step_sound = OS.get_ticks_msec()
+		_step_sound()
 	
 	_velocity = move_and_slide(_velocity)
 	

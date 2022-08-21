@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ConcreteImpact.mp3-33e1d0a59854822ec5223d545d583e89.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/ConcreteImpact.mp3"
+dest_files=[ "res://.import/ConcreteImpact.mp3-33e1d0a59854822ec5223d545d583e89.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

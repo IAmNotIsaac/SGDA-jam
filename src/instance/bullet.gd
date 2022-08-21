@@ -11,6 +11,7 @@ enum ShotTypes {
 }
 
 const _Explosion := preload("res://src/instance/Explosion.tscn")
+const _SFX := preload("res://src/instance/SoundEffect.tscn")
 
 const _EXPLOSION_SIZE := 4.0
 
@@ -90,6 +91,13 @@ func shoot(type : int) -> void:
 				SHOT_DATA[type]["dmgtype"],
 				SHOT_DATA[type]["damage"]
 			))
+		
+		else:
+			var sound := _SFX.instance()
+			
+			get_parent().add_child(sound)
+			sound.global_translation = _n_ray.get_collision_point()
+			sound.play_sound(SoundEffect.SOUNDS.BULLET_IMPACT, 2.0)
 		
 		
 		if Settings.explosion_mode:
