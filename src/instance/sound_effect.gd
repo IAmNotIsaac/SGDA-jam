@@ -34,3 +34,7 @@ func play_sound(sound, distance := 1.0) -> void:
 	max_db = linear2db(Settings.sfx)
 	unit_db = linear2db(Settings.sfx)
 	play()
+	
+	yield(self, "finished")
+	
+	queue_free()
