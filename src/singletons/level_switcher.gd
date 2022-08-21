@@ -5,7 +5,8 @@ const LEVELS := [
 	preload("res://src/levels/Level1.tscn"),
 	preload("res://src/levels/Level2.tscn"),
 	preload("res://src/levels/Level3.tscn"),
-	preload("res://src/levels/Tutorial.tscn")
+	preload("res://src/levels/Tutorial.tscn"),
+	preload("res://src/levels/Final.tscn"),
 ]
 
 onready var _n_control := $Control

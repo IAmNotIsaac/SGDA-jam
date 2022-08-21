@@ -5,6 +5,7 @@ const LEVELS := {
 	"LEVEL_1": 0, #LevelSwitcher.LEVELS.,
 	"LEVEL_2": 1, #LevelSwitcher.LEVELS.LEVEL2,
 	"LEVEL_3": 2, #LevelSwitcher.LEVELS.LEVEL3
+	"LEVEL_FINAL:": 3
 }
 
 export(LEVELS) var _next_level
