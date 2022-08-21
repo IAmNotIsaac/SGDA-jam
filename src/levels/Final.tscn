@@ -1,0 +1,307 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/models/levels/final/final.dae" type="PackedScene" id=1]
+[ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/instance/LevelEnd.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/scripts/gun.gd" type="Script" id=4]
+[ext_resource path="res://assets/models/props/tree/tree.dae" type="PackedScene" id=5]
+[ext_resource path="res://src/instance/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=9]
+resource_name = "default"
+length = 32.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 6, 6.5, 7, 7.5, 15, 16, 17, 19, 22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -14, 1.5, 0 ), Vector3( -13, 1.6, 0 ), Vector3( -12, 1.5, 0 ), Vector3( -11, 1.6, 0 ), Vector3( -10, 1.5, 0 ), Vector3( -10, 1.5, 0 ), Vector3( -9, 1.6, 0 ), Vector3( -8, 2.6, 0 ), Vector3( -7, 2.5, 0 ), Vector3( 9, 2.5, 0 ), Vector3( 10, 1.5, 0 ), Vector3( 12, 1.5, 0 ), Vector3( 12, 1.5, 0 ), Vector3( 18, 1.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2, 3, 4, 5, 5.3, 5.5, 6, 6.3, 6.8, 7.3, 14.5, 15.5, 16.5, 19, 22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -100, 0 ), Vector3( 0, -100, 0 ), Vector3( 7, -90, 0 ), Vector3( 7, -90, 0 ), Vector3( 7, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( -5, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( -10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 20, -90, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../Level/Enemy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../Level/Door")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 18 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "switch_activate"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control/ColorRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 19, 22 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+base = 0
+secondaries = [ 1, 3, 4 ]
+secondary_idx = 0
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 9, 1, 3 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 32, 1, 24 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 8.5, 1, 4.2 )
+
+[sub_resource type="ProceduralSky" id=5]
+sky_top_color = Color( 0.937255, 0.682353, 0.682353, 1 )
+sky_horizon_color = Color( 1, 0.796078, 0.796078, 1 )
+ground_bottom_color = Color( 0.27451, 0.490196, 0.627451, 1 )
+ground_horizon_color = Color( 0.490196, 0.639216, 0.733333, 1 )
+sun_color = Color( 1, 0.988235, 0.341176, 1 )
+sun_latitude = 0.0
+sun_longitude = -120.0
+sun_energy = 1.5
+
+[sub_resource type="Environment" id=6]
+background_mode = 2
+background_sky = SubResource( 5 )
+background_sky_orientation = Basis( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026 )
+background_color = Color( 0.937255, 0.682353, 0.682353, 1 )
+ambient_light_color = Color( 0.87451, 0.792157, 0.792157, 1 )
+ambient_light_energy = 2.0
+fog_enabled = true
+fog_depth_end = 50.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 50.0
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 1.3
+glow_bloom = 0.01
+glow_blend_mode = 1
+glow_bicubic_upscale = true
+glow_high_quality = true
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Area
+
+
+onready var _n_anim := $\"../../Animation/AnimationPlayer\"
+onready var _n_player := $\"../Player\"
+onready var _n_cam := $\"../../Animation/Camera\"
+onready var _n_enemy := $\"../Enemy\"
+
+
+func _on_Area_body_entered(_body : PhysicsBody) -> void:
+	_n_cam.current = true
+	_n_anim.play(\"default\")
+	_n_enemy.set_physics_process(false)
+	_n_player.translation -= Vector3(0.0, 100.0, 0.0)
+"
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 1, 2, 2 )
+
+[node name="Final" type="Spatial"]
+
+[node name="Animation" type="Spatial" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+anims/default = SubResource( 9 )
+
+[node name="Camera" type="Camera" parent="Animation"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 1.5, 0 )
+
+[node name="Control" type="Control" parent="Animation"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Animation/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+
+[node name="Level" type="Spatial" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="final" parent="Level" instance=ExtResource( 1 )]
+
+[node name="Player" parent="Level" instance=ExtResource( 2 )]
+transform = Transform( 2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -27, 1, 0 )
+_gun = SubResource( 1 )
+
+[node name="LevelEnd" parent="Level" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 0 )
+_decorational = true
+
+[node name="StaticBody" type="StaticBody" parent="Level"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 6, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, 1, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource( 6 )
+
+[node name="Trees" type="Spatial" parent="Level"]
+
+[node name="tree31" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 3, -8 )
+
+[node name="tree32" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, -6 )
+
+[node name="tree33" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 3, 5 )
+
+[node name="tree34" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 3, 12 )
+
+[node name="tree35" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 7 )
+
+[node name="tree36" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 17 )
+
+[node name="tree37" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, -11 )
+
+[node name="tree40" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1, -7 )
+
+[node name="tree52" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -25 )
+
+[node name="tree53" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -22 )
+
+[node name="tree54" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2, -28 )
+
+[node name="tree55" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -1, -40 )
+
+[node name="tree56" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -40 )
+
+[node name="tree57" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6, -46 )
+
+[node name="tree58" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -37 )
+
+[node name="tree46" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -25 )
+
+[node name="tree47" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -20 )
+
+[node name="tree48" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 13 )
+
+[node name="tree49" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, 12 )
+
+[node name="tree41" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -5 )
+
+[node name="tree44" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1, -10 )
+
+[node name="tree50" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -1, -15 )
+
+[node name="tree51" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -1, 12 )
+
+[node name="tree45" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -1, 7 )
+
+[node name="tree42" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 4 )
+
+[node name="tree43" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 10 )
+
+[node name="tree38" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, -21 )
+
+[node name="tree39" parent="Level/Trees" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 3, 26 )
+
+[node name="Area" type="Area" parent="Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, 0 )
+script = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Area"]
+shape = SubResource( 7 )
+
+[node name="Enemy" parent="Level" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+_move_mode = 1
+_no_damage = true
+
+[node name="Door" parent="Level" instance=ExtResource( 7 )]
+transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, 17, 2, 0 )
+
+[connection signal="body_entered" from="Level/Area" to="Level/Area" method="_on_Area_body_entered"]

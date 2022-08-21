@@ -27,7 +27,7 @@
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 5 )
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=30]
 background_mode = 2
 background_sky = SubResource( 3 )
 background_color = Color( 0.937255, 0.682353, 0.682353, 1 )
@@ -140,7 +140,7 @@ extents = Vector3( 15, 4, 14 )
 [node name="Level3" type="Spatial"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+environment = SubResource( 30 )
 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58, 4, -3 )

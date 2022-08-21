@@ -49,6 +49,7 @@ export(Resource) var _gun : Resource
 export(AccuracyModes) var _accuracy_mode : int = AccuracyModes.MID
 export(ReactionModes) var _reaction_mode : int = ReactionModes.MID
 export(NodePath) var _path_points_path : NodePath
+export(bool) var _no_damage := false
 
 var _state := StateMachine.new(
 	self, States
@@ -76,7 +77,8 @@ onready var _n_path_points := get_node_or_null(_path_points_path)
 
 
 func _ready() -> void:
-	_n_gun_model.switch_to(_gun.get_base())
+	if _gun != null:
+		_n_gun_model.switch_to(_gun.get_base())
 	var _e := _n_agent.connect("navigation_finished", self, "_on_agent_navfinished")
 	_player = get_tree().get_nodes_in_group("player")[0]
 
@@ -108,8 +110,8 @@ func _shoot_at_player(alt : bool) -> void:
 		var d : float = _n_player_cast.cast_to.x
 		var r : float = atan2(d, w) + rand_range(0.0, _ACCURACY_FACTORS[_accuracy_mode]) * [1, -1][randi() % 2] * int(not Settings.super_difficult_enemies_mode)
 		
-		var f1 : bool = _gun.has_alt() and alt and not _gun.is_alt_auto()
-		var f2 : bool = not alt and not _gun.is_base_auto()
+		var f1 : bool = _gun and _gun.has_alt() and alt and not _gun.is_alt_auto()
+		var f2 : bool = not alt and _gun and not _gun.is_base_auto()
 		
 		if not Settings.super_difficult_enemies_mode and (f1 or f2):
 			_permitted_shoot_time = OS.get_ticks_msec() / 1000.0 + rand_range(_REACTION_FACTORS[_reaction_mode][0], _REACTION_FACTORS[_reaction_mode][1])
@@ -118,7 +120,7 @@ func _shoot_at_player(alt : bool) -> void:
 		
 		match alt:
 			true:
-				if dist <= _gun.get_alt_bullet_distance():
+				if _gun and dist <= _gun.get_alt_bullet_distance():
 					_n_gun_model.switch_to(_gun.get_secondary())
 					_gun.shoot_alt(
 						get_tree(),
@@ -126,7 +128,7 @@ func _shoot_at_player(alt : bool) -> void:
 						Vector3(0.0, PI + r, 0.0) #atan(h/w)
 					)
 			false:
-				if dist <= _gun.get_base_bullet_distance():
+				if _gun and dist <= _gun.get_base_bullet_distance():
 					_n_gun_model.switch_to(_gun.get_base())
 					_gun.shoot_base(
 						get_tree(),
@@ -139,7 +141,7 @@ func _shoot_if_can() -> void:
 	if _player.is_alive():
 		_n_player_cast.cast_to = _player.global_translation - _n_player_cast.global_translation
 		if _n_player_cast.get_collider() == _player:
-			if _gun.can_shoot_base():
+			if _gun and _gun.can_shoot_base():
 				_shoot_at_player(false)
 			else:
 				_shoot_at_player(true)
@@ -270,6 +272,9 @@ func _sp_AIR(delta : float) -> void:
 
 
 func damage(damage_data : Damage) -> void:
+	if _no_damage:
+		return
+	
 	var dmgind := _DamageIndicator.instance()
 	get_parent().add_child(dmgind)
 	
