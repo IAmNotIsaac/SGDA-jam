@@ -12,6 +12,7 @@ enum ShotTypes {
 
 const _Explosion := preload("res://src/instance/Explosion.tscn")
 const _SFX := preload("res://src/instance/SoundEffect.tscn")
+const _BulletHole := preload("res://src/instance/BulletHole.tscn")
 
 const _EXPLOSION_SIZE := 4.0
 
@@ -98,9 +99,18 @@ func shoot(type : int) -> void:
 			get_parent().add_child(sound)
 			sound.global_translation = _n_ray.get_collision_point()
 			sound.play_sound(SoundEffect.SOUNDS.BULLET_IMPACT, 2.0)
+			
+			
+			var bullet_hole := _BulletHole.instance()
+			
+			get_parent().add_child(bullet_hole)
+			
+			bullet_hole.global_translation = _n_ray.get_collision_point()
+			bullet_hole.look_at(_n_ray.get_collision_point() + _n_ray.get_collision_normal(), Vector3.UP)
 		
 		
 		if Settings.explosion_mode:
+			
 			var explosion := _Explosion.instance()
 			
 			get_parent().add_child(explosion)
