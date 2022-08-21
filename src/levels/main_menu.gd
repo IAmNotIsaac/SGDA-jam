@@ -33,4 +33,4 @@ func _on_SettingsMenu_back_pressed() -> void:
 
 
 func _on_ExitButton_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().quit()
