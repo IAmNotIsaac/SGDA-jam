@@ -266,6 +266,10 @@ func _sp_WALLRUN(_delta : float) -> void:
 	_n_wallrun_tracker.cast_to = -Vector3(normal.x, 0.0, normal.z)
 	var angle := atan2(normal.z, normal.x) + PI * 0.5 * (-1 if _wallrun_cast == _n_wallrunr_check else 1)
 	
+	if _velocity != Vector3.ZERO and OS.get_ticks_msec() - _last_step_sound > 200:
+		_last_step_sound = OS.get_ticks_msec()
+		_step_sound()
+	
 	_velocity = -Vector3(cos(angle), 0.0, sin(angle)) * 10.0
 	
 	_velocity = move_and_slide(_velocity)

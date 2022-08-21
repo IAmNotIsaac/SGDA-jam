@@ -41,7 +41,8 @@ func _on_RestartButton_pressed() -> void:
 
 func _on_TitleButton_pressed() -> void:
 	unpause()
-	LevelSwitcher.load_level(load("res://src/levels/MainMenu.tscn"))
+	var _e := get_tree().change_scene("res://src/levels/MainMenu.tscn")
+#	LevelSwitcher.load_level(load("res://src/levels/MainMenu.tscn"))
 
 
 func _on_SettingsButton_pressed() -> void:

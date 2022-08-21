@@ -17,7 +17,7 @@ const VOICE_LINE_DATA := {
 	},
 	LEVELS.LEVEL_2: {
 		"voice": preload("res://assets/voice/minigun.ogg"),
-		"subtitle": "Creator here. What's good? I think I dropped my minigun somewhere on this track. If you find it, you can keep it."
+		"subtitle": "Creator here. What's good. I think I dropped my minigun somewhere on this track. If you find it, you can keep it."
 	},
 	LEVELS.LEVEL_3: {
 		"voice": preload("res://assets/voice/grenade.ogg"),

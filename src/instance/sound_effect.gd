@@ -22,6 +22,8 @@ const SOUNDS := {
 	
 	"SWITCH": preload("res://assets/sfx/Switch.ogg"),
 	"DOOR": preload("res://assets/sfx/Door.ogg"),
+	
+	"PICK_UP": preload("res://assets/sfx/Pickup.mp3")
 }
 
 
