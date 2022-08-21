@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Royalty Free Music Evan King End This Epic.mp3-40241
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

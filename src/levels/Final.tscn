@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/models/levels/final/final.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/models/props/robot/Face.material" type="Material" id=9]
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/music/end this/Royalty Free Music Evan King End This Epic.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/voice/terminate.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/voice/won.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/Record scratch.mp3" type="AudioStream" id=14]
 
 [sub_resource type="GDScript" id=20]
 script/source = "extends Spatial
@@ -23,7 +26,7 @@ func _ready() -> void:
 
 [sub_resource type="Animation" id=9]
 resource_name = "default"
-length = 37.0
+length = 46.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera:translation")
 tracks/0/interp = 1
@@ -31,7 +34,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4, 6, 6.5, 7, 7.5, 15, 16, 17, 19, 22 ),
+"times": PoolRealArray( 0, 1, 2, 3, 4, 8.7, 9.2, 9.7, 10.2, 17.7, 18.7, 19.7, 21.7, 24.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( -14, 1.5, 0 ), Vector3( -13, 1.6, 0 ), Vector3( -12, 1.5, 0 ), Vector3( -11, 1.6, 0 ), Vector3( -10, 1.5, 0 ), Vector3( -10, 1.5, 0 ), Vector3( -9, 1.6, 0 ), Vector3( -8, 2.6, 0 ), Vector3( -7, 2.5, 0 ), Vector3( 9, 2.5, 0 ), Vector3( 10, 1.5, 0 ), Vector3( 12, 1.5, 0 ), Vector3( 12, 1.5, 0 ), Vector3( 18, 1.5, 0 ) ]
@@ -43,10 +46,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1.5, 2, 3, 4, 5, 5.3, 5.5, 6, 6.3, 6.8, 7.3, 14.5, 15.5, 16.5, 19, 22, 24.1, 26, 26.5, 26.8, 27.5, 32 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1.5, 2, 3, 4, 8, 8.2, 9, 9.5, 10, 12, 12.5, 13.5, 14.5, 17.2, 18.2, 19.2, 21.7, 24.7, 26.8, 28.7, 29.2, 29.5, 30.2, 34.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -100, 0 ), Vector3( 0, -100, 0 ), Vector3( 7, -90, 0 ), Vector3( 7, -90, 0 ), Vector3( 7, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( -5, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( -10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 20, -90, 0 ), Vector3( 20, -90, 0 ), Vector3( 10, -90, 0 ), Vector3( 10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 10, -90, 0 ) ]
+"values": [ Vector3( 0, -90, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -80, 0 ), Vector3( 0, -100, 0 ), Vector3( 0, -100, 0 ), Vector3( 7, -90, 0 ), Vector3( 7, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( 5, -90, 0 ), Vector3( -5, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( -10, -90, 0 ), Vector3( -10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( -10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 20, -90, 0 ), Vector3( 20, -90, 0 ), Vector3( 10, -90, 0 ), Vector3( 10, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 0, -90, 0 ), Vector3( 10, -90, 0 ) ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("../Level/Enemy")
@@ -55,7 +58,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 5 ),
+"times": PoolRealArray( 5.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -69,7 +72,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 18 ),
+"times": PoolRealArray( 16 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -83,7 +86,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 19, 22, 24, 37 ),
+"times": PoolRealArray( 0, 21.7, 24.7, 26.7, 37 ),
 "transitions": PoolRealArray( 1, 1, 17.0342, 1e+06, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -95,7 +98,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 25 ),
+"times": PoolRealArray( 27.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Twist", -1, 1.0, false ],
@@ -109,7 +112,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 25.1 ),
+"times": PoolRealArray( 0, 27.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -121,14 +124,146 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 37 ),
+"times": PoolRealArray( 0, 38 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("Won")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("Terminate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 25.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("Music")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 5.5, 13 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "stop"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/11/type = "method"
+tracks/11/path = NodePath("Record")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 5.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Music:volume_db")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 24.7, 26.7, 32, 38 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.7, 0.7, -20.0, -20.0, 0.1 ]
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath("Control/Subtitle1")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 6, 12.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+}, {
+"args": [  ],
+"method": "show"
+}, {
+"args": [  ],
+"method": "hide"
+} ]
+}
+tracks/14/type = "method"
+tracks/14/path = NodePath("Control/Subtitle2")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 25.3, 32.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+}, {
+"args": [  ],
+"method": "show"
+}, {
+"args": [  ],
+"method": "hide"
+} ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Control/Label:text")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 42, 46 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "thank you for playing", "created by isaac astell and hadi shaheen", "" ]
+}
 
 [sub_resource type="DynamicFont" id=19]
 size = 64
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 24
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
 
 [sub_resource type="ArrayMesh" id=1]
@@ -794,6 +929,9 @@ extents = Vector3( 32, 1, 24 )
 [sub_resource type="BoxShape" id=13]
 extents = Vector3( 8.5, 1, 4.2 )
 
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 1, 2, 2 )
+
 [sub_resource type="ProceduralSky" id=14]
 sky_top_color = Color( 0.937255, 0.682353, 0.682353, 1 )
 sky_horizon_color = Color( 1, 0.796078, 0.796078, 1 )
@@ -841,9 +979,6 @@ func _on_Area_body_entered(_body : PhysicsBody) -> void:
 		_n_player.translation -= Vector3(0.0, 100.0, 0.0)
 "
 
-[sub_resource type="BoxShape" id=17]
-extents = Vector3( 1, 2, 2 )
-
 [node name="Final" type="Spatial"]
 script = SubResource( 20 )
 
@@ -853,7 +988,7 @@ script = SubResource( 20 )
 anims/default = SubResource( 9 )
 
 [node name="Camera" type="Camera" parent="Animation"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 1.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.16, 2.5, 0 )
 
 [node name="Control" type="Control" parent="Animation"]
 anchor_right = 1.0
@@ -875,6 +1010,30 @@ custom_fonts/font = SubResource( 19 )
 text = "thank you for playing"
 align = 1
 valign = 1
+
+[node name="Subtitle1" type="Label" parent="Animation/Control"]
+visible = false
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.643137, 0.643137, 0.643137, 1 )
+custom_fonts/font = SubResource( 21 )
+text = "Oh, well. I guess you won. Congratulations. Enjoy your freedom."
+align = 1
+
+[node name="Subtitle2" type="Label" parent="Animation/Control"]
+visible = false
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.643137, 0.643137, 0.643137, 1 )
+custom_fonts/font = SubResource( 21 )
+text = "Oh, but uh, I have noticed some bugs, and consequently I will have to terminate you."
+align = 1
 
 [node name="big_robo" type="Spatial" parent="Animation"]
 transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 45, 0, 0 )
@@ -952,9 +1111,18 @@ anims/RunToward = SubResource( 6 )
 anims/RunTowardAim = SubResource( 7 )
 anims/Twist = SubResource( 8 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Animation"]
+[node name="Music" type="AudioStreamPlayer" parent="Animation"]
 stream = ExtResource( 11 )
 volume_db = 0.7
+
+[node name="Won" type="AudioStreamPlayer" parent="Animation"]
+stream = ExtResource( 13 )
+
+[node name="Terminate" type="AudioStreamPlayer" parent="Animation"]
+stream = ExtResource( 12 )
+
+[node name="Record" type="AudioStreamPlayer" parent="Animation"]
+stream = ExtResource( 14 )
 
 [node name="Level" type="Spatial" parent="."]
 __meta__ = {
@@ -1004,6 +1172,10 @@ shape = SubResource( 13 )
 [node name="CollisionShape4" type="CollisionShape" parent="Level/StaticBody"]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1, 0, 0 )
 shape = SubResource( 13 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="Level/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 2, 0 )
+shape = SubResource( 17 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
 environment = SubResource( 15 )
