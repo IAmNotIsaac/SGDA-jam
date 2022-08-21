@@ -194,6 +194,12 @@ func get_base() -> int:
 	return base
 
 
+func get_secondary() -> int:
+	if len(secondaries) == 0:
+		return -1
+	return secondaries[secondary_idx]
+
+
 func get_secondaries() -> Array:
 	return secondaries
 

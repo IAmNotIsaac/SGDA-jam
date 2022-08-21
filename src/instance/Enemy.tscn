@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/instance/enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/props/robot/robot.dae" type="PackedScene" id=2]
+[ext_resource path="res://src/instance/GunModel.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -23,3 +24,6 @@ enabled = true
 
 [node name="robot" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="GunModel" parent="robot" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

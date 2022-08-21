@@ -67,6 +67,8 @@ onready var _n_player_cast := $PlayerViewCast
 onready var _n_agent := $NavigationAgent
 onready var _n_model := $robot
 onready var _n_anim := $robot/AnimationPlayer
+onready var _n_skele := $robot/Armature/Skeleton
+onready var _n_gun_model := $robot/GunModel
 onready var _n_path_points := get_node_or_null(_path_points_path)
 
 
@@ -74,6 +76,7 @@ onready var _n_path_points := get_node_or_null(_path_points_path)
 
 
 func _ready() -> void:
+	_n_gun_model.switch_to(_gun.get_base())
 	var _e := _n_agent.connect("navigation_finished", self, "_on_agent_navfinished")
 	_player = get_tree().get_nodes_in_group("player")[0]
 
@@ -83,6 +86,13 @@ func _physics_process(delta : float) -> void:
 	
 	if not _player.has_enemy(self) and can_see_player():
 		_player.add_enemies([self])
+	
+	var b : Vector3 = _n_skele.get_bone_global_pose(_n_skele.find_bone("GunHold")).origin - _n_model.translation
+	_n_gun_model.translation = (
+		#_n_skele.get_bone_global_pose(_n_skele.find_bone("GunHold")).origin #+
+		b
+		#Vector3(sin(t), 0.0, cos(t))
+	)
 
 
 func _look_at_player() -> void:
@@ -109,6 +119,7 @@ func _shoot_at_player(alt : bool) -> void:
 		match alt:
 			true:
 				if dist <= _gun.get_alt_bullet_distance():
+					_n_gun_model.switch_to(_gun.get_secondary())
 					_gun.shoot_alt(
 						get_tree(),
 						_n_player_cast.global_translation,
@@ -116,6 +127,7 @@ func _shoot_at_player(alt : bool) -> void:
 					)
 			false:
 				if dist <= _gun.get_base_bullet_distance():
+					_n_gun_model.switch_to(_gun.get_base())
 					_gun.shoot_base(
 						get_tree(),
 						_n_player_cast.global_translation,

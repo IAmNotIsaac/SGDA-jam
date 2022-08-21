@@ -22,9 +22,14 @@ data = PoolVector3Array( -6, 1, 2, -10, 0, 2, -6, 0, 2, -18, 1, -4, -18, 0, -2, 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 7 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 7 )
+base = 2
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="PanoramaSky" id=26]
 radiance_size = 4

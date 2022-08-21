@@ -28,6 +28,8 @@
 [sub_resource type="Resource" id=17]
 script = ExtResource( 9 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="PanoramaSky" id=26]
 radiance_size = 4
@@ -95,17 +97,27 @@ extents = Vector3( 3.5, 3, 0.1 )
 
 [sub_resource type="Resource" id=13]
 script = ExtResource( 9 )
+base = 2
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 9 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 9 )
 base = 0
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 9 )
+base = 2
+secondaries = [  ]
+secondary_idx = 0
 
 [sub_resource type="BoxShape" id=28]
 extents = Vector3( 5, 1, 13 )

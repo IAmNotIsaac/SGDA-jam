@@ -55,6 +55,8 @@ onready var _n_interact_cast := $Gimbal/Camera/InteractCast
 onready var _n_death_action := $Control/DeathAction
 onready var _n_death_action_buttons := $Control/DeathAction/HBoxContainer
 onready var _n_damage_sound := $AudioStreamPlayer
+onready var _n_base_gun_model := $Gimbal/Camera/BaseGunModel
+onready var _n_alt_gun_model := $Gimbal/Camera/AltGunModel
 
 
 ## Private methods ##
@@ -73,6 +75,7 @@ func _spawn() -> void:
 
 
 func _ready() -> void:
+	_n_base_gun_model.switch_to(Gun.GunTypes.SHOTGUN)
 	_spawn_pos = translation
 	_spawn_rot = rotation.y
 	rotation.y = 0.0
@@ -107,6 +110,7 @@ func _physics_process(delta : float) -> void:
 	_shoot()
 	_health_stuff(delta)
 	_camera_tilt()
+	_n_alt_gun_model.switch_to(_gun.get_secondary())
 	
 	$Control/Label.visible = Settings.developer_mode
 	if _gun.get_secondaries():
