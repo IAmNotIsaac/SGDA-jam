@@ -8,7 +8,7 @@ enum Type {
 }
 
 const _ACTION_NAMES := {
-	Type.NONE: "None",
+	Type.NONE: "Respawn",
 	Type.EXPLODE: "BANG-BANG",
 	Type.BULLET_EXPLOSION: "SHRAPNEL",
 	Type.RANDOM_KO: "HEAD-SHOT",
