@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/models/levels/level1/level1.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Door.tscn" type="PackedScene" id=2]
@@ -15,6 +15,15 @@
 [ext_resource path="res://src/instance/Room.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/instance/Decal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/hints/hint_shoot_alt.png" type="Texture" id=15]
+[ext_resource path="res://assets/decals/arrow.png" type="Texture" id=16]
+[ext_resource path="res://assets/decals/skull.png" type="Texture" id=17]
+[ext_resource path="res://assets/decals/graffiti7.png" type="Texture" id=18]
+[ext_resource path="res://assets/decals/graffiti5.png" type="Texture" id=19]
+[ext_resource path="res://assets/decals/graffiti1.png" type="Texture" id=20]
+[ext_resource path="res://assets/decals/graffiti4.png" type="Texture" id=21]
+[ext_resource path="res://assets/decals/graffiti6.png" type="Texture" id=22]
+[ext_resource path="res://assets/decals/graffiti11.png" type="Texture" id=23]
+[ext_resource path="res://assets/decals/graffiti12.png" type="Texture" id=24]
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 9 )
@@ -480,4 +489,49 @@ shape = SubResource( 29 )
 [node name="Decal" parent="." instance=ExtResource( 14 )]
 transform = Transform( -2, 0, -1.50996e-07, 0, 2, 0, 3.01992e-07, 0, -1, 11, 1.5, 24 )
 _texture = ExtResource( 15 )
+_transparent = true
+
+[node name="Decal8" parent="." instance=ExtResource( 14 )]
+transform = Transform( 2, 0, 2.38419e-07, 0, 2, 0, -4.76838e-07, 0, 1, 16, 1.5, 14 )
+_texture = ExtResource( 22 )
+_transparent = true
+
+[node name="Decal9" parent="." instance=ExtResource( 14 )]
+transform = Transform( 3.89415e-07, 0, -1, 0, 2, 0, 2, 0, 1.94707e-07, 9, 1.5, 6 )
+_texture = ExtResource( 18 )
+_transparent = true
+
+[node name="Decal10" parent="." instance=ExtResource( 14 )]
+transform = Transform( 3.89415e-07, 0, -1, 0, 2, 0, 2, 0, 1.94707e-07, 27, 1.5, -3 )
+_texture = ExtResource( 24 )
+_transparent = true
+
+[node name="Decal4" parent="." instance=ExtResource( 14 )]
+transform = Transform( 2, 0, 2.38419e-07, 0, 2, 0, -4.76838e-07, 0, 1, 11, 1.5, -1 )
+_texture = ExtResource( 19 )
+_transparent = true
+
+[node name="Decal5" parent="." instance=ExtResource( 14 )]
+transform = Transform( -2, 0, -3.25842e-07, 0, 2, 0, 6.51683e-07, 0, -1, 4, 1.5, -4 )
+_texture = ExtResource( 23 )
+_transparent = true
+
+[node name="Decal6" parent="." instance=ExtResource( 14 )]
+transform = Transform( 7.39106e-07, 0, -1, 0, 2, 0, 2, 0, 3.69553e-07, -10, 3.5, -8 )
+_texture = ExtResource( 20 )
+_transparent = true
+
+[node name="Decal7" parent="." instance=ExtResource( 14 )]
+transform = Transform( -9.13951e-07, 0, 1, 0, 2, 0, -2, 0, -4.56976e-07, -19, 4.5, -2 )
+_texture = ExtResource( 21 )
+_transparent = true
+
+[node name="Decal2" parent="." instance=ExtResource( 14 )]
+transform = Transform( -8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -7, 2.30366, -6.19712 )
+_texture = ExtResource( 17 )
+_transparent = true
+
+[node name="Decal3" parent="." instance=ExtResource( 14 )]
+transform = Transform( -8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -7, 1, -6 )
+_texture = ExtResource( 16 )
 _transparent = true

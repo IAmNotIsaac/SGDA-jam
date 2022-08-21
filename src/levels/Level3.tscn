@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://assets/models/levels/level3/level3.dae" type="PackedScene" id=1]
 [ext_resource path="res://src/instance/Player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,13 @@
 [ext_resource path="res://assets/models/props/tree/tree.dae" type="PackedScene" id=13]
 [ext_resource path="res://src/instance/AttachmentPickup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/instance/Room.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/instance/Decal.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/decals/arrow.png" type="Texture" id=17]
+[ext_resource path="res://assets/decals/graffiti4.png" type="Texture" id=18]
+[ext_resource path="res://assets/decals/skull.png" type="Texture" id=19]
+[ext_resource path="res://assets/decals/warning.png" type="Texture" id=20]
+[ext_resource path="res://assets/decals/graffiti8.png" type="Texture" id=21]
+[ext_resource path="res://assets/decals/graffiti10.png" type="Texture" id=22]
 
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 5 )
@@ -675,3 +682,43 @@ __meta__ = {
 
 [node name="CollisionShape" type="CollisionShape" parent="Room5"]
 shape = SubResource( 29 )
+
+[node name="Decal" parent="." instance=ExtResource( 16 )]
+transform = Transform( -8.74228e-08, 0, -1, 0, 2, 0, 2, 0, -4.37114e-08, -13, 1, -4 )
+_texture = ExtResource( 22 )
+_transparent = true
+
+[node name="Decal7" parent="." instance=ExtResource( 16 )]
+transform = Transform( -1.19209e-07, 0, 1, 0, 2, 0, -2, 0, -5.96046e-08, -58, 2, -27 )
+_texture = ExtResource( 19 )
+_transparent = true
+
+[node name="Decal8" parent="." instance=ExtResource( 16 )]
+transform = Transform( -1.19209e-07, 0, 1, 0, 2, 0, -2, 0, -5.96046e-08, -58, 2, -25 )
+_texture = ExtResource( 20 )
+_transparent = true
+
+[node name="Decal2" parent="." instance=ExtResource( 16 )]
+transform = Transform( -2, 0, 8.74228e-08, 0, 2, 0, -1.74846e-07, 0, -1, -36, 2, 23 )
+_texture = ExtResource( 21 )
+_transparent = true
+
+[node name="Decal3" parent="." instance=ExtResource( 16 )]
+transform = Transform( -8.74228e-08, 0, -1, 0, 2, 0, 2, 0, -4.37114e-08, -4, 2, 16 )
+_texture = ExtResource( 22 )
+_transparent = true
+
+[node name="Decal4" parent="." instance=ExtResource( 16 )]
+transform = Transform( -8.74228e-08, 0, -1, 0, 2, 0, 2, 0, -4.37114e-08, 16, 4, -12 )
+_texture = ExtResource( 17 )
+_transparent = true
+
+[node name="Decal5" parent="." instance=ExtResource( 16 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 16, 0, -11 )
+_texture = ExtResource( 18 )
+_transparent = true
+
+[node name="Decal6" parent="." instance=ExtResource( 16 )]
+transform = Transform( -8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, 0.999999, 0, 0 )
+_texture = ExtResource( 19 )
+_transparent = true
