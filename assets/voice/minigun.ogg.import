@@ -11,5 +11,5 @@ dest_files=[ "res://.import/minigun.ogg-1de779d354d777418919433bc1bef002.oggstr"
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

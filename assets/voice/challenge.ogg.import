@@ -11,5 +11,5 @@ dest_files=[ "res://.import/challenge.ogg-d974c7ba1d693cda4e74c733b45b474e.oggst
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

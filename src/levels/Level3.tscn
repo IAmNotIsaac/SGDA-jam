@@ -644,6 +644,7 @@ _gun = SubResource( 12 )
 
 [node name="LevelEnd" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 64, 2, -3 )
+_next_level = 3
 
 [node name="Start" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -50, 0, -30 )

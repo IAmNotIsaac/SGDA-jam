@@ -1,6 +1,8 @@
 extends Spatial
 
 
+const _VOICE_LINE := preload("res://assets/voice/intro.ogg")
+
 onready var _n_play_button := $"%PlayButton"
 onready var _n_model_anim := $robot/AnimationPlayer
 onready var _n_anim := $AnimationPlayer
@@ -18,8 +20,7 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	SoundTrack.play(SoundTrack.Songs.KILLER, [0, 2])
-	LevelSwitcher.load_level(LevelSwitcher.LEVELS[Settings.level])
+	LevelSwitcher.load_level(LevelEnd.VOICE_LINE_DATA[Settings.level]["voice"], LevelEnd.VOICE_LINE_DATA[Settings.level]["subtitle"], LevelSwitcher.LEVELS[Settings.level])
 
 
 func _on_SettingsButton_pressed() -> void:

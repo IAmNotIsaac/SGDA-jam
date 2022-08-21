@@ -1,7 +1,7 @@
 extends Node
 
 
-var level := 3
+var level := 4
 var music := 0.4
 var sfx := 0.8
 var camera_sensitivity := 0.5
