@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/scripts/death_button.gd"
 }, {
+"base": "Spatial",
+"class": "Decal",
+"language": "GDScript",
+"path": "res://src/instance/decal.gd"
+}, {
 "base": "StaticBody",
 "class": "Door",
 "language": "GDScript",
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "Damage": "",
 "DeathAction": "",
 "DeathButton": "",
+"Decal": "",
 "Door": "",
 "Enemy": "",
 "Gun": "",

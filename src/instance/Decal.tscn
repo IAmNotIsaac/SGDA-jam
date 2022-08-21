@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/instance/decal.gd" type="Script" id=1]
+
+[sub_resource type="QuadMesh" id=1]
+
+[node name="Decal" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.02 )
+mesh = SubResource( 1 )
