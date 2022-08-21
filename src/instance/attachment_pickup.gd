@@ -3,26 +3,11 @@ extends Spatial
 
 export(Gun.GunTypes) var _pickup_attachment
 
-onready var _n_mesh := $MeshInstance
-onready var _n_outline := $MeshInstance/Outline
+onready var _n_model := $Spatial/GunModel
 
 
 func _ready() -> void:
-	var mesh := CapsuleMesh.new()
-	var outline := SpatialMaterial.new()
-	
-	mesh.radius = 0.5
-	
-	outline.albedo_color = Color.black
-	outline.metallic_specular = 0.0
-	outline.params_cull_mode = SpatialMaterial.CULL_FRONT
-	outline.params_grow = true
-	outline.params_grow_amount = 0.1
-	
-	_n_mesh.mesh = mesh
-	_n_outline.mesh = mesh.duplicate()
-	
-	_n_outline.mesh.material = outline
+	_n_model.switch_to(_pickup_attachment)
 
 
 func _on_Area_body_entered(body : PhysicsBody) -> void:
