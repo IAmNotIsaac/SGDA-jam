@@ -26,7 +26,7 @@ func _ready() -> void:
 
 [sub_resource type="Animation" id=9]
 resource_name = "default"
-length = 46.0
+length = 50.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera:translation")
 tracks/0/interp = 1
@@ -124,7 +124,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 38 ),
+"times": PoolRealArray( 0, 40 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -250,10 +250,10 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 42, 46 ),
+"times": PoolRealArray( 0, 45, 50 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ "thank you for playing", "created by isaac astell and hadi shaheen", "" ]
+"values": [ "created by isaac astell and hadi shaheen", "thank you for playing", "" ]
 }
 
 [sub_resource type="DynamicFont" id=19]
@@ -988,7 +988,7 @@ script = SubResource( 20 )
 anims/default = SubResource( 9 )
 
 [node name="Camera" type="Camera" parent="Animation"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.16, 2.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 1.5, 0 )
 
 [node name="Control" type="Control" parent="Animation"]
 anchor_right = 1.0
@@ -1007,7 +1007,7 @@ grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color = Color( 0.643137, 0.643137, 0.643137, 1 )
 custom_fonts/font = SubResource( 19 )
-text = "thank you for playing"
+text = "created by isaac astell and hadi shaheen"
 align = 1
 valign = 1
 

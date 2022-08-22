@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/asphalt.png-65d02f885e1f46967698c29c730c68ed.s3tc.stex"
-path.etc2="res://.import/asphalt.png-65d02f885e1f46967698c29c730c68ed.etc2.stex"
+path.s3tc="res://.import/BricksNormal.png-2c9a990992c42d38b78baca0397e21a1.s3tc.stex"
+path.etc2="res://.import/BricksNormal.png-2c9a990992c42d38b78baca0397e21a1.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/asphalt.png"
-dest_files=[ "res://.import/asphalt.png-65d02f885e1f46967698c29c730c68ed.s3tc.stex", "res://.import/asphalt.png-65d02f885e1f46967698c29c730c68ed.etc2.stex" ]
+source_file="res://assets/textures/BricksNormal.png"
+dest_files=[ "res://.import/BricksNormal.png-2c9a990992c42d38b78baca0397e21a1.s3tc.stex", "res://.import/BricksNormal.png-2c9a990992c42d38b78baca0397e21a1.etc2.stex" ]
 
 [params]
 
@@ -25,7 +25,7 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
