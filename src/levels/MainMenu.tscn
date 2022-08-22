@@ -163,7 +163,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=32]
 size = 32
-outline_size = 8
+outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
@@ -245,7 +245,6 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 32 )
 text = "isaac astell
 hadi shaheen
-
 made in seven days for the 
 sgda summer game jam"
 align = 1
