@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/instance/player.gd" type="Script" id=1]
 [ext_resource path="res://src/scripts/gun.gd" type="Script" id=2]
@@ -9,6 +9,14 @@
 [ext_resource path="res://src/instance/SettingsMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sfx/Glitch.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/instance/GunModel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/ui/grabber_focused.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/switch_on.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/button_focused.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/grabber.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/switch_off.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/switch_focus.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/slider.png" type="Texture" id=17]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
@@ -18,6 +26,61 @@ secondary_idx = 0
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.48
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 13 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 11.0
+margin_right = 10.0
+margin_top = 120.0
+margin_bottom = 118.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id=33]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 10.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxEmpty" id=39]
+
+[sub_resource type="StyleBoxTexture" id=40]
+texture = ExtResource( 16 )
+region_rect = Rect2( 0, 0, 16, 32 )
+margin_left = 16.0
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 17 )
+region_rect = Rect2( 0, 0, 128, 16 )
+margin_left = 8.0
+margin_right = 8.0
+
+[sub_resource type="Theme" id=34]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 0.992157, 0.929412, 0.427451, 1 )
+Button/styles/focus = SubResource( 35 )
+Button/styles/hover = SubResource( 33 )
+Button/styles/normal = SubResource( 33 )
+CheckButton/icons/off = ExtResource( 15 )
+CheckButton/icons/on = ExtResource( 12 )
+CheckButton/styles/disabled = SubResource( 39 )
+CheckButton/styles/focus = SubResource( 40 )
+CheckButton/styles/hover = SubResource( 39 )
+CheckButton/styles/hover_pressed = SubResource( 39 )
+CheckButton/styles/normal = SubResource( 39 )
+CheckButton/styles/pressed = SubResource( 39 )
+HSlider/icons/grabber = ExtResource( 14 )
+HSlider/icons/grabber_highlight = ExtResource( 10 )
+HSlider/styles/grabber_area = SubResource( 37 )
+HSlider/styles/grabber_area_highlight = SubResource( 38 )
+HSlider/styles/slider = SubResource( 36 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 128
@@ -93,6 +156,7 @@ cast_to = Vector3( 0, 0, 0 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 34 )
 
 [node name="DamageVignette" type="TextureRect" parent="Control"]
 modulate = Color( 1, 1, 1, 0 )
@@ -183,33 +247,33 @@ text = "PAUSED"
 [node name="ResumeButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
 margin_top = 195.0
 margin_right = 586.0
-margin_bottom = 250.0
+margin_bottom = 264.0
 focus_neighbour_bottom = NodePath("../SettingsButton")
 custom_fonts/font = SubResource( 4 )
 text = "RESUME"
 
 [node name="SettingsButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
-margin_top = 254.0
+margin_top = 268.0
 margin_right = 586.0
-margin_bottom = 309.0
+margin_bottom = 337.0
 focus_neighbour_top = NodePath("../ResumeButton")
 focus_neighbour_bottom = NodePath("../RestartButton")
 custom_fonts/font = SubResource( 4 )
 text = "SETTINGS"
 
 [node name="RestartButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
-margin_top = 313.0
+margin_top = 341.0
 margin_right = 586.0
-margin_bottom = 368.0
+margin_bottom = 410.0
 focus_neighbour_top = NodePath("../SettingsButton")
 focus_neighbour_bottom = NodePath("../TitleButton")
 custom_fonts/font = SubResource( 4 )
 text = "RESTART"
 
 [node name="TitleButton" type="Button" parent="Control/PauseMenu/VBoxContainer"]
-margin_top = 372.0
+margin_top = 414.0
 margin_right = 586.0
-margin_bottom = 427.0
+margin_bottom = 483.0
 focus_neighbour_top = NodePath("../RestartButton")
 custom_fonts/font = SubResource( 4 )
 text = "Return to Title"

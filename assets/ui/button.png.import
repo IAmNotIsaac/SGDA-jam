@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex"
+path="res://.import/button.png-473760ec7449fb30c95f607492aecb17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/damage_vignette.png"
-dest_files=[ "res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex" ]
+source_file="res://assets/ui/button.png"
+dest_files=[ "res://.import/button.png-473760ec7449fb30c95f607492aecb17.stex" ]
 
 [params]
 

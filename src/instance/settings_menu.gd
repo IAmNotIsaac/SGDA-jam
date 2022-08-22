@@ -13,6 +13,7 @@ onready var _n_sfmode := $"%SuperFastMode"
 onready var _n_vdemode := $"%VeryDifficultEnemies"
 onready var _n_godmode := $"%GodMode"
 onready var _n_emode := $"%ExplosionMode"
+onready var _n_return := $"%ReturnButton"
 
 
 func _ready() -> void:
@@ -28,7 +29,7 @@ func _ready() -> void:
 
 
 func focus_up() -> void:
-	_n_senslider.grab_focus()
+	_n_return.grab_focus()
 
 
 func _on_ReturnButton_pressed() -> void:

@@ -28,9 +28,15 @@ margin_left = -578.0
 custom_constants/separation = 60
 
 [node name="ReturnButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 margin_right = 578.0
 margin_bottom = 102.0
-focus_neighbour_top = NodePath("../VBoxContainer/VBoxContainer7/ExplosionMode")
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../VBoxContainer/VBoxContainer/SensitivitySlider")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 custom_fonts/font = SubResource( 2 )
 text = "Return"
 
@@ -60,13 +66,16 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../../../ReturnButton")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 min_value = 0.1
 max_value = 2.0
 step = 0.1
 value = 0.5
-tick_count = 20
-ticks_on_borders = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 69.0
@@ -86,14 +95,16 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer/SensitivitySlider")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer8/MusicVolume")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 min_value = 1.0
 max_value = 8.0
 step = 0.1
 value = 5.0
-tick_count = 8
-ticks_on_borders = true
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 138.0
@@ -113,13 +124,15 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer2/ControllerSensitivitySlider")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer9/SFXVolume")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 max_value = 1.0
 step = 0.1
 value = 1.0
-tick_count = 8
-ticks_on_borders = true
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 207.0
@@ -139,13 +152,15 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 69.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer8/MusicVolume")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 max_value = 1.0
 step = 0.1
 value = 1.0
-tick_count = 8
-ticks_on_borders = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 276.0
@@ -165,8 +180,12 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer9/SFXVolume")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer4/SuperFastMode")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 369.0
@@ -186,8 +205,12 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer3/DeveloperModeCheckButton")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 462.0
@@ -207,8 +230,12 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer4/SuperFastMode")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer6/GodMode")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 555.0
@@ -228,8 +255,12 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer5/VeryDifficultEnemies")
+focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../VBoxContainer7/ExplosionMode")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 648.0
@@ -249,8 +280,12 @@ unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 578.0
 margin_bottom = 93.0
+focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer6/GodMode")
-focus_neighbour_bottom = NodePath("../../../ReturnButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 
 [connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/VBoxContainer/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]

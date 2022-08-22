@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex"
+path="res://.import/switch_on.png-c104f25fed0dbc7989bf07d3d8550d31.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/damage_vignette.png"
-dest_files=[ "res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex" ]
+source_file="res://assets/ui/switch_on.png"
+dest_files=[ "res://.import/switch_on.png-c104f25fed0dbc7989bf07d3d8550d31.stex" ]
 
 [params]
 

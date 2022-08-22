@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/fonts/propaganda/PROPAGAN.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/Bricks.jpg" type="Texture" id=2]
@@ -7,6 +7,14 @@
 [ext_resource path="res://src/levels/main_menu.gd" type="Script" id=5]
 [ext_resource path="res://assets/models/levels/level2/Ground.material" type="Material" id=6]
 [ext_resource path="res://src/instance/SettingsMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/button_focused.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/grabber_focused.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/grabber.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/slider.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/switch_on.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/switch_off.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/switch_focus.png" type="Texture" id=15]
 
 [sub_resource type="SpatialMaterial" id=29]
 resource_name = "Bricks"
@@ -155,6 +163,61 @@ tracks/3/keys = {
 "values": [ 2.0, 1.0 ]
 }
 
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 11.0
+margin_right = 10.0
+margin_top = 120.0
+margin_bottom = 118.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id=33]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 10.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxEmpty" id=39]
+
+[sub_resource type="StyleBoxTexture" id=40]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 16, 32 )
+margin_left = 16.0
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 128, 16 )
+margin_left = 8.0
+margin_right = 8.0
+
+[sub_resource type="Theme" id=34]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 0.992157, 0.929412, 0.427451, 1 )
+Button/styles/focus = SubResource( 35 )
+Button/styles/hover = SubResource( 33 )
+Button/styles/normal = SubResource( 33 )
+CheckButton/icons/off = ExtResource( 14 )
+CheckButton/icons/on = ExtResource( 13 )
+CheckButton/styles/disabled = SubResource( 39 )
+CheckButton/styles/focus = SubResource( 40 )
+CheckButton/styles/hover = SubResource( 39 )
+CheckButton/styles/hover_pressed = SubResource( 39 )
+CheckButton/styles/normal = SubResource( 39 )
+CheckButton/styles/pressed = SubResource( 39 )
+HSlider/icons/grabber = ExtResource( 11 )
+HSlider/icons/grabber_highlight = ExtResource( 10 )
+HSlider/styles/grabber_area = SubResource( 37 )
+HSlider/styles/grabber_area_highlight = SubResource( 38 )
+HSlider/styles/slider = SubResource( 36 )
+
 [sub_resource type="DynamicFont" id=1]
 size = 128
 outline_size = 12
@@ -214,6 +277,7 @@ anims/open_settings = SubResource( 28 )
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 2.0
 anchor_bottom = 1.0
+theme = SubResource( 34 )
 
 [node name="Main" type="Control" parent="HBoxContainer"]
 margin_right = 1918.0
@@ -229,7 +293,7 @@ margin_left = -0.320068
 
 [node name="Title" type="Label" parent="HBoxContainer/Main/VBoxContainer"]
 margin_right = 863.0
-margin_bottom = 271.0
+margin_bottom = 250.0
 grow_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -237,9 +301,9 @@ text = "Akimbot"
 align = 1
 
 [node name="Title2" type="Label" parent="HBoxContainer/Main/VBoxContainer"]
-margin_top = 275.0
+margin_top = 254.0
 margin_right = 863.0
-margin_bottom = 546.0
+margin_bottom = 504.0
 grow_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 32 )
@@ -252,23 +316,41 @@ autowrap = true
 
 [node name="PlayButton" type="Button" parent="HBoxContainer/Main/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 550.0
+margin_top = 508.0
 margin_right = 863.0
-margin_bottom = 652.0
+margin_bottom = 624.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../SettingsButton")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 custom_fonts/font = SubResource( 2 )
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="HBoxContainer/Main/VBoxContainer"]
-margin_top = 656.0
+margin_top = 628.0
 margin_right = 863.0
-margin_bottom = 758.0
+margin_bottom = 744.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../PlayButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../ExitButton")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 custom_fonts/font = SubResource( 2 )
 text = "Settings"
 
 [node name="ExitButton" type="Button" parent="HBoxContainer/Main/VBoxContainer"]
-margin_top = 762.0
+margin_top = 748.0
 margin_right = 863.0
 margin_bottom = 864.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../SettingsButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 custom_fonts/font = SubResource( 2 )
 text = "Exit"
 

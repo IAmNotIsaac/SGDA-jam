@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex"
+path="res://.import/slider_focused.png-6aa626e06be89e5218ff15a591c02abd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/damage_vignette.png"
-dest_files=[ "res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex" ]
+source_file="res://assets/ui/slider_focused.png"
+dest_files=[ "res://.import/slider_focused.png-6aa626e06be89e5218ff15a591c02abd.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex"
+path="res://.import/switch_focus.png-37cd3d82e32d57b733b339819bf2c54c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/damage_vignette.png"
-dest_files=[ "res://.import/damage_vignette.png-507cbc441ab26637dfe7d72f4d339199.stex" ]
+source_file="res://assets/ui/switch_focus.png"
+dest_files=[ "res://.import/switch_focus.png-37cd3d82e32d57b733b339819bf2c54c.stex" ]
 
 [params]
 
